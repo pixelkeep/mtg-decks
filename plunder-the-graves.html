@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plunder the Graves – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080c08; --surface: #101410; --surface2: #141a14;
+      --border: #1a2a1a; --gold: #c9a84c; --gold-dim: #7a6330;
+      --text: #d8f0d8; --text-dim: #5a7a5a;
+      --accent: #3a6a2a; --accent2: #1a3a1a;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Crimson Text', serif; font-size: 18px; line-height: 1.6; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(ellipse at 20% 40%, rgba(58,106,42,0.08) 0%, transparent 55%), radial-gradient(ellipse at 80% 60%, rgba(26,42,26,0.12) 0%, transparent 50%); pointer-events: none; }
+    nav { position: relative; z-index: 2; padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+    nav a { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim); text-decoration: none; }
+    nav a:hover { color: var(--gold); } nav span { color: var(--border); }
+    .hero { position: relative; z-index: 1; padding: 3.5rem 2rem 2.5rem; border-bottom: 1px solid var(--border); background: linear-gradient(160deg, rgba(26,42,26,0.15) 0%, rgba(58,106,42,0.07) 100%); max-width: 1000px; margin: 0 auto; }
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+    .deck-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: var(--gold); letter-spacing: 0.04em; line-height: 1; }
+    .commander-name { font-family: 'Crimson Text', serif; font-style: italic; color: var(--text-dim); font-size: 1.05rem; margin-top: 0.4rem; }
+    .arch-link { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dim); text-decoration: none; margin-top: 0.4rem; display: inline-block; border-bottom: 1px solid var(--gold-dim); }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-start; padding-top: 0.5rem; }
+    .badge { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.3rem 0.8rem; border: 1px solid currentColor; text-transform: uppercase; }
+    .badge-cmd { color: #b87ab8; border-color: #4a2a5c; } .badge-arc { color: var(--gold-dim); border-color: var(--border); }
+    .badge-thm { color: #7ab870; border-color: #2a5a1a; } .badge-brk { color: #d4aa4a; border-color: #5a4a1a; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .meta-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.95rem; color: var(--text); }
+    .pip { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; font-family: sans-serif; }
+    .pip-B { background: #2a1a3a; color: #c8b8e8; border-color: #5a4a7a; } .pip-G { background: #1a5a2a; color: #a0ffa0; }
+    .color-pips { display: flex; gap: 0.3rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .dot.d { background: #d4844a; } .dot.s { background: var(--gold); }
+    .diff-meter, .str-meter { display: flex; gap: 4px; align-items: center; }
+    .content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem 5rem; display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; }
+    @media (max-width: 740px) { .content { grid-template-columns: 1fr; } }
+    section { margin-bottom: 2.5rem; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .intro-text { font-size: 1.05rem; color: #98c898; line-height: 1.7; }
+    .engine-box { background: var(--surface2); border: 1px solid #2a4a2a; border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin-bottom: 0.75rem; }
+    .engine-title { font-family: 'Cinzel', serif; font-size: 0.75rem; color: #7ab870; margin-bottom: 0.4rem; }
+    .engine-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.5; }
+    .engine-cards { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+    .etag { font-size: 0.75rem; font-style: italic; color: var(--gold); background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); padding: 0.15rem 0.5rem; }
+    .wincon-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .wincon-item { display: flex; gap: 0.75rem; align-items: flex-start; background: var(--surface2); border: 1px solid var(--border); padding: 0.8rem 1rem; }
+    .wincon-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .wincon-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .wincon-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.4; }
+    .keycard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .keycard { background: var(--surface2); border: 1px solid var(--border); padding: 0.75rem; }
+    .keycard-name { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold); margin-bottom: 0.3rem; }
+    .keycard-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
+    .tip-box { background: var(--surface2); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin-bottom: 0.75rem; }
+    .tip-box.w { border-color: #6a4a2a; }
+    .tip-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #7ab870; margin-bottom: 0.3rem; }
+    .tip-box.w .tip-label { color: #c08040; }
+    .tip-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+    .info-block { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 1.25rem; }
+    .bracket-block { background: rgba(200,160,60,0.07); border: 1px solid #5a4a1a; padding: 0.8rem 1rem; margin-bottom: 1.25rem; }
+    .bracket-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #d4aa4a; margin-bottom: 0.4rem; }
+    .bracket-value { font-size: 1rem; color: var(--text); }
+    .bracket-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.3rem; line-height: 1.4; }
+    .curve-bars { display: flex; align-items: flex-end; gap: 0.4rem; height: 70px; }
+    .curve-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+    .curve-bar { width: 100%; background: var(--accent); opacity: 0.8; min-height: 2px; }
+    .curve-label { font-family: 'Cinzel', serif; font-size: 0.55rem; color: var(--text-dim); }
+    .curve-count { font-size: 0.65rem; color: var(--text-dim); }
+    .decklist { list-style: none; font-size: 0.85rem; }
+    .decklist li { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid rgba(26,42,26,0.8); color: var(--text-dim); }
+    .decklist li:last-child { border: none; }
+    .decklist .cn { color: var(--text); } .decklist .cq { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold-dim); }
+    .dg { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); padding: 0.5rem 0 0.25rem; display: block; }
+    .arch-btn { display: block; text-align: center; padding: 0.8rem; border: 1px solid var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: background 0.2s; }
+    .arch-btn:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+    footer { position: relative; z-index: 1; text-align: center; padding: 1.5rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; font-style: italic; }
+
+    /* Commander Card Image */
+    .hero-top { align-items: flex-start; }
+    .hero-left { flex: 1; }
+    .commander-card {
+      flex-shrink: 0;
+      width: 180px;
+    }
+    .commander-card img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.15);
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .commander-card img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.35);
+    }
+    .commander-card .card-loading {
+      width: 100%;
+      aspect-ratio: 5/7;
+      background: var(--surface2, #1a1612);
+      border-radius: 12px;
+      border: 1px solid var(--border, #3a3020);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim, #8a7d65);
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 600px) {
+      .commander-card { width: 130px; }
+      .hero-top { flex-direction: column-reverse; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+<nav><a href="../index.html">Deck Library</a><span>/</span><a href="#">Plunder the Graves</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Plunder the Graves</div>
+      <div class="commander-name">Commander: Meren of Clan Nel Toth</div>
+      <a href="https://archidekt.com/decks/7407854/plunder_the_graves" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Meren of Clan Nel Toth" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Sacrifice · Recursion</span>
+      <span class="badge badge-thm">Graveyard · Midrange</span>
+      <span class="badge badge-brk">Bracket 3 – Upgraded</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Golgari)</div>
+      <div class="meta-value"><div class="color-pips"><span class="pip pip-B">B</span><span class="pip pip-G">G</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Hoog</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">5 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Gestaag — groeit elke beurt sterker</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Plunder the Graves is een van de klassieke Commander-archetypes: <strong>Meren of Clan Nel Toth</strong> als recursie-engine. Elke keer dat een creature sterft onder jouw controle, krijg je een ervaringsteller. Aan het einde van je beurt kies je een creature in je graveyard: als de mana value ervan lager of gelijk is aan je ervaringstellers, keert het terug naar het slagveld. Anders naar je hand.</p>
+      <p class="intro-text" style="margin-top:1rem">Het deck speelt een gesloten lus: offer creatures (voor mana via Ashnod's Altar, voor tutors via Birthing Pod, voor removal via Grave Pact) → krijg ervaringstellers → haal ze terug met Meren → doe het opnieuw, maar sterker. Na een paar ronden is je board onverslaanbaar. Met <strong>Survival of the Fittest</strong> (~€450!) en <strong>Grave Pact</strong> is dit een van de duurdere en sterkste decks in de pool.</p>
+    </section>
+
+    <section>
+      <div class="section-title">De Meren Engine</div>
+      <div class="engine-box">
+        <div class="engine-title">Stap 1: Goedkope Sacrifice Outlets</div>
+        <div class="engine-text">Offer creatures gratis of goedkoop via Viscera Seer (scry), Carrion Feeder (counters), Ashnod's Altar (mana), of Jarad (damage). Elke dood = ervaringsteller.</div>
+        <div class="engine-cards"><span class="etag">Viscera Seer</span><span class="etag">Carrion Feeder</span><span class="etag">Ashnod's Altar</span></div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">Stap 2: Ervaringstellers opbouwen</div>
+        <div class="engine-text">Met 3–4 tellers haal je Sakura-Tribe Elder elke beurt terug (ramp!). Met 5+ tellers haal je grotere threats terug. Met 7+ tellers haal je alles terug — inclusief Craterhoof.</div>
+        <div class="engine-cards"><span class="etag">Sakura-Tribe Elder</span><span class="etag">Wood Elves</span><span class="etag">Fleshbag Marauder</span></div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">Stap 3: Grave Pact board controle</div>
+        <div class="engine-text">Grave Pact + Butcher of Malakir: elke keer dat jij een creature offert, moeten alle tegenstanders ook een creature offeren. In combinatie met Fleshbag Marauder en Plaguecrafter (elke beurt teruggeroepen door Meren) is hun board leeg binnen drie ronden.</div>
+        <div class="engine-cards"><span class="etag">Grave Pact</span><span class="etag">Butcher of Malakir</span><span class="etag">Fleshbag Marauder</span><span class="etag">Plaguecrafter</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item"><div class="wincon-icon">🦌</div><div><div class="wincon-name">Craterhoof Behemoth Alpha Strike</div><div class="wincon-desc">De klassieke Golgari finisher. Met 6+ creatures in play geeft Craterhoof ze allemaal trample en +6/+6 of meer. Eén aanval is genoeg om iedereen aan tafel te elimineren. Via Survival of the Fittest of Birthing Pod op te zoeken.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">⚰️</div><div><div class="wincon-name">Grave Pact Lockdown</div><div class="wincon-desc">Met Grave Pact + continue sacrifice loop kunnen tegenstanders geen board opbouwen. Elke beurt moeten ze een creature offeren, terwijl jij je board herbouwt via Meren. Na 3–4 ronden heeft niemand meer blockers.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">💀</div><div><div class="wincon-name">Gray Merchant / Blood Artist Drain</div><div class="wincon-desc">Met hoge zwarte devotion doet Gray Merchant massale schade bij enter. Blood Artist en Zulaport Cutthroat draineren bij elke creature-dood. In combinatie met Living Death kan dit in één klap de hele tafel neerhalen.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">🐺</div><div><div class="wincon-name">Kessig Cagebreakers Token Flood</div><div class="wincon-desc">Kessig Cagebreakers maakt bij elke aanval Wolf tokens gelijk aan het aantal creature-kaarten in je graveyard. Met een volle graveyard (zoals die van Meren) is dit plotseling 10+ Wolves die aanvallen.</div></div></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard"><div class="keycard-name">Meren of Clan Nel Toth</div><div class="keycard-desc">De hart van het deck. Elke creature-dood = ervaringsteller. End step: gratis recursie. Bescherm haar met Lightning Greaves — zonder Meren werkt de engine niet.</div></div>
+        <div class="keycard"><div class="keycard-name">Survival of the Fittest (~€450)</div><div class="keycard-desc">Discard een creature, zoek een ander op. De beste creature-tutor in Magic. Zet elke creature die je nodig hebt in je graveyard voor Meren, terwijl je de juiste kaart op hand haalt.</div></div>
+        <div class="keycard"><div class="keycard-name">Grave Pact</div><div class="keycard-desc">Elke keer dat jij een creature offert, moeten alle andere spelers ook offeren. Met de sacrifice-engine in dit deck betekent dit dat niemand een board kan opbouwen.</div></div>
+        <div class="keycard"><div class="keycard-name">Birthing Pod</div><div class="keycard-desc">Offer een creature van mana value X, zoek een creature van mana value X+1 op. Klimt de curve op terwijl je ervaringstellers vergaart. Eindigt bij Craterhoof of Terastodon.</div></div>
+        <div class="keycard"><div class="keycard-name">Ashnod's Altar</div><div class="keycard-desc">Offer een creature: add {2} kleurloos. Combineert met Nim Deathmantle voor een infinite loop: als een creature sterft, pay {4} om het terug te brengen met de Mantle.</div></div>
+        <div class="keycard"><div class="keycard-name">Spore Frog</div><div class="keycard-desc">Offer: voorkom alle combat damage deze beurt. Met Meren haal je hem elke beurt terug. Één frog blokkert effectief alle aanvallen zolang jij hem kunt offeren.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Begin elke beurt met de vraag: "Welk creature wil ik Meren laten terugbrengen?" Plan je sacrifices zo dat je aan het einde van je beurt het juiste creature in je graveyard hebt.</div></div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Spore Frog is een geheime MVP. Offer hem elke beurt om geen combat damage te krijgen, en haal hem terug met Meren (mana value 1). Niemand kan je aanvallen zolang hij in je graveyard zit.</div></div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Grisly Salvage, Satyr Wayfinder en Mulch vullen je graveyard en halen een land. Dit zijn de "motor"-kaarten van de early game — speel ze vroeg.</div></div>
+      <div class="tip-box w"><div class="tip-label">Valkuil</div><div class="tip-text">Dit deck is zwak tegen graveyard hate (Bojuka Bog, Rest in Peace). Als tegenstanders je graveyard exilen, verliest Meren al haar kracht. Houd Golgari Charm achter de hand om enchantments te vernietigen die je graveyard locken.</div></div>
+      <div class="tip-box w"><div class="tip-label">Valkuil</div><div class="tip-text">De ervaringstellers verdwijnen als Meren sterft — maar de tellers <em>blijven</em>! Zelfs als Meren opnieuw gecast wordt, heb je nog dezelfde tellers. Wees dus niet bang om haar opnieuw te spelen als ze geremoved wordt.</div></div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een solide <strong style="color:var(--gold)">5/5</strong> naast Blight Curse. De combinatie van Survival of the Fittest, Grave Pact, Damnation, Sylvan Library en Craterhoof plaatst dit in bracket 3 — maar het voelt dichter bij een bracket 4 deck door de consistentie en de waarde van de tutors. Eén van de zwaarste decks in de pool qua competitief potentieel. Ideaal voor spelers die van planning, sac-loops en graveyard-combinaties houden.</p>
+    </section>
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 3 — Upgraded</div>
+      <div class="bracket-desc">Bevat krachtige tutors (Survival of the Fittest, Entomb, Birthing Pod) en sterke synergieën. Past het beste bij andere bracket 3–4 decks. ~€990 waarde.</div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:45px"></div><div class="curve-label">1</div><div class="curve-count">8</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:60px"></div><div class="curve-label">2</div><div class="curve-count">11</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px"></div><div class="curve-label">3</div><div class="curve-count">10</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:35px"></div><div class="curve-label">4</div><div class="curve-count">6</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:25px"></div><div class="curve-label">5+</div><div class="curve-count">5</div></div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="dg">Commander</span>
+        <li><span class="cn">Meren of Clan Nel Toth</span><span class="cq">1×</span></li>
+        <span class="dg">Tutors (4)</span>
+        <li><span class="cn">Survival of the Fittest</span><span class="cq">1×</span></li>
+        <li><span class="cn">Birthing Pod</span><span class="cq">1×</span></li>
+        <li><span class="cn">Buried Alive</span><span class="cq">1×</span></li>
+        <li><span class="cn">Entomb</span><span class="cq">1×</span></li>
+        <span class="dg">Sac Outlets (4)</span>
+        <li><span class="cn">Viscera Seer</span><span class="cq">1×</span></li>
+        <li><span class="cn">Carrion Feeder</span><span class="cq">1×</span></li>
+        <li><span class="cn">Ashnod's Altar</span><span class="cq">1×</span></li>
+        <li><span class="cn">Jarad, Golgari Lich Lord</span><span class="cq">1×</span></li>
+        <li><span class="cn">Phyrexian Plaguelord</span><span class="cq">1×</span></li>
+        <span class="dg">Removal (16)</span>
+        <li><span class="cn">Grave Pact</span><span class="cq">1×</span></li>
+        <li><span class="cn">Butcher of Malakir</span><span class="cq">1×</span></li>
+        <li><span class="cn">Fleshbag Marauder / Plaguecrafter</span><span class="cq">2×</span></li>
+        <li><span class="cn">Damnation</span><span class="cq">1×</span></li>
+        <li><span class="cn">Abrupt Decay / Putrefy / Golgari Charm</span><span class="cq">3×</span></li>
+        <li><span class="cn">Terastodon / Shriekmaw / Acidic Slime</span><span class="cq">3×</span></li>
+        <li><span class="cn">Barter in Blood / Rise of the Witch-king</span><span class="cq">2×</span></li>
+        <li><span class="cn">Cankerbloom / Haywire Mite / Viridian Zealot</span><span class="cq">3×</span></li>
+        <span class="dg">Draw (5)</span>
+        <li><span class="cn">Sylvan Library</span><span class="cq">1×</span></li>
+        <li><span class="cn">Skullclamp</span><span class="cq">1×</span></li>
+        <li><span class="cn">Corpse Augur / Wretched Confluence</span><span class="cq">2×</span></li>
+        <li><span class="cn">Wall of Blossoms</span><span class="cq">1×</span></li>
+        <span class="dg">Drain (4)</span>
+        <li><span class="cn">Blood Artist / Zulaport Cutthroat</span><span class="cq">2×</span></li>
+        <li><span class="cn">Gray Merchant of Asphodel / Mitotic Slime</span><span class="cq">2×</span></li>
+        <span class="dg">Finishers (3)</span>
+        <li><span class="cn">Craterhoof Behemoth</span><span class="cq">1×</span></li>
+        <li><span class="cn">Pathbreaker Ibex</span><span class="cq">1×</span></li>
+        <li><span class="cn">Overwhelming Stampede</span><span class="cq">1×</span></li>
+        <span class="dg">Recursie (6)</span>
+        <li><span class="cn">Eternal Witness / Skullwinder</span><span class="cq">2×</span></li>
+        <li><span class="cn">Victimize / Living Death</span><span class="cq">2×</span></li>
+        <li><span class="cn">Nim Deathmantle / Scourge of Nel Toth</span><span class="cq">2×</span></li>
+        <span class="dg">Ramp (8)</span>
+        <li><span class="cn">Sakura-Tribe Elder / Wood Elves / Viridian Emissary</span><span class="cq">3×</span></li>
+        <li><span class="cn">Deathrite Shaman / Sol Ring / Golgari Signet</span><span class="cq">3×</span></li>
+        <li><span class="cn">Primal Growth / Ashnod's Altar</span><span class="cq">2×</span></li>
+        <span class="dg">Tokens / Overig</span>
+        <li><span class="cn">Drivnod / Kessig Cagebreakers / Mycoloth</span><span class="cq">3×</span></li>
+        <li><span class="cn">Avenger of Zendikar / Mazirek</span><span class="cq">2×</span></li>
+        <li><span class="cn">Lotleth Troll / Grave Researcher</span><span class="cq">2×</span></li>
+        <li><span class="cn">Mill: Grisly Salvage / Mulch / Satyr Wayfinder</span><span class="cq">3×</span></li>
+        <li><span class="cn">Protection: Lightning Greaves / Spore Frog</span><span class="cq">2×</span></li>
+        <span class="dg">Lands (37)</span>
+        <li><span class="cn">Forest ×12, Swamp ×12</span><span class="cq"></span></li>
+        <li><span class="cn">Westvale Abbey + utility lands</span><span class="cq"></span></li>
+      </ul>
+    </div>
+    <a href="https://archidekt.com/decks/7407854/plunder_the_graves" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+  <script>
+    // Laad commander kaartafbeelding via Scryfall API
+    (function() {
+      var cardName = "Meren of Clan Nel Toth";
+      var img = document.getElementById('commander-card-img');
+      var loading = document.getElementById('commander-card-loading');
+      if (!img) return;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(cardName))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.image_uris && data.image_uris.normal) {
+            img.src = data.image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          } else if (data.card_faces && data.card_faces[0].image_uris) {
+            img.src = data.card_faces[0].image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          }
+        })
+        .catch(function() {
+          // Stil falen — loading div blijft zichtbaar
+        });
+    })();
+  </script>
+
+</body>
+</html>

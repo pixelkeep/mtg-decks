@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endless Punishment – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0c0808;
+      --surface:   #180e0e;
+      --surface2:  #1e1212;
+      --border:    #3a2020;
+      --gold:      #c9a84c;
+      --gold-dim:  #7a6330;
+      --text:      #ecdccc;
+      --text-dim:  #8a6a5a;
+      --accent:    #8c2a2a;
+      --accent2:   #2a1a3a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at 20% 30%, rgba(140,42,42,0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(42,26,58,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+    nav a:hover { color: var(--gold); }
+    nav span { color: var(--border); font-size: 0.8rem; }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 3.5rem 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(140,42,42,0.10) 0%, rgba(42,26,58,0.08) 100%);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .deck-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 40px rgba(201,168,76,0.2), 0 0 80px rgba(140,42,42,0.2);
+      line-height: 1;
+    }
+
+    .commander-name {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      margin-top: 0.4rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: flex-start;
+      padding-top: 0.5rem;
+    }
+
+    .badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid currentColor;
+      text-transform: uppercase;
+    }
+    .badge-format   { color: #b87ab8; border-color: #4a2a5c; }
+    .badge-archetype{ color: var(--gold-dim); border-color: var(--border); }
+    .badge-theme    { color: #d47a7a; border-color: #5c2a2a; }
+    .badge-bracket  { color: #8ab870; border-color: #2a5c1a; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.3rem;
+    }
+    .meta-value { font-size: 0.95rem; color: var(--text); }
+
+    .color-pips { display: flex; gap: 0.3rem; align-items: center; }
+    .pip {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+    .pip-B { background: #2a1a3a; color: #c8b8e8; border-color: #5a4a7a; }
+    .pip-R { background: #5a1a1a; color: #ffd0a0; }
+
+    .diff-meter, .strength-meter { display: flex; gap: 4px; align-items: center; }
+    .diff-dot, .str-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .diff-dot.filled { background: #d47a4a; }
+    .str-dot.filled  { background: var(--gold); }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 740px) { .content { grid-template-columns: 1fr; } }
+
+    section { margin-bottom: 2.5rem; }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro-text { font-size: 1.05rem; color: #c8a898; line-height: 1.7; }
+
+    /* Punishment tabel */
+    .punishment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .punish-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 0.7rem 0.9rem;
+    }
+    .punish-trigger {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      color: #d47a7a;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .punish-effect { font-size: 0.85rem; color: var(--text-dim); line-height: 1.4; }
+
+    .wincon-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .wincon-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+    }
+    .wincon-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .wincon-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .wincon-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.4; }
+
+    .keycard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .keycard { background: var(--surface2); border: 1px solid var(--border); padding: 0.75rem; }
+    .keycard-name { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold); margin-bottom: 0.3rem; }
+    .keycard-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
+
+    .tip-box {
+      background: var(--surface2);
+      border-left: 3px solid #6a3a3a;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .tip-box.warning { border-color: #8a4a2a; }
+    .tip-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c06060;
+      margin-bottom: 0.3rem;
+    }
+    .tip-box.warning .tip-label { color: #d47a4a; }
+    .tip-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+
+    .info-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .curve-bars { display: flex; align-items: flex-end; gap: 0.4rem; height: 70px; }
+    .curve-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+    .curve-bar { width: 100%; background: var(--accent); opacity: 0.75; min-height: 2px; }
+    .curve-label { font-family: 'Cinzel', serif; font-size: 0.55rem; color: var(--text-dim); }
+    .curve-count { font-size: 0.65rem; color: var(--text-dim); }
+
+    .decklist { list-style: none; font-size: 0.85rem; }
+    .decklist li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid rgba(58,32,32,0.6);
+      color: var(--text-dim);
+    }
+    .decklist li:last-child { border: none; }
+    .decklist .card-name { color: var(--text); }
+    .decklist .card-qty { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold-dim); }
+    .decklist-group {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      padding: 0.5rem 0 0.25rem;
+      display: block;
+    }
+
+    .bracket-block {
+      background: rgba(80,140,40,0.07);
+      border: 1px solid #2a5c1a;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .bracket-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8ab870;
+      margin-bottom: 0.4rem;
+    }
+    .bracket-value { font-size: 1rem; color: var(--text); }
+    .bracket-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.3rem; line-height: 1.4; }
+
+    .archidekt-link {
+      display: block;
+      text-align: center;
+      padding: 0.8rem;
+      border: 1px solid var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .archidekt-link:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+
+    /* Commander Card Image */
+    .hero-top { align-items: flex-start; }
+    .hero-left { flex: 1; }
+    .commander-card {
+      flex-shrink: 0;
+      width: 180px;
+    }
+    .commander-card img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.15);
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .commander-card img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.35);
+    }
+    .commander-card .card-loading {
+      width: 100%;
+      aspect-ratio: 5/7;
+      background: var(--surface2, #1a1612);
+      border-radius: 12px;
+      border: 1px solid var(--border, #3a3020);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim, #8a7d65);
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 600px) {
+      .commander-card { width: 130px; }
+      .hero-top { flex-direction: column-reverse; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Deck Library</a>
+  <span>/</span>
+  <a href="#">Endless Punishment</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Endless Punishment</div>
+      <div class="commander-name">Commander: Valgavoth, Harrower of Souls</div>
+      <a href="https://archidekt.com/decks/20251748/endless_punishment" target="_blank" style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;margin-top:0.4rem;display:inline-block;border-bottom:1px solid var(--gold-dim);">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Valgavoth, Harrower of Souls" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-format">Commander</span>
+      <span class="badge badge-archetype">Stax · Drain</span>
+      <span class="badge badge-theme">Punishment · Life Loss</span>
+      <span class="badge badge-bracket">Bracket 2 – Core</span>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Rakdos)</div>
+      <div class="meta-value">
+        <div class="color-pips">
+          <span class="pip pip-B" title="Zwart">B</span>
+          <span class="pip pip-R" title="Rood">R</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value">
+        <div class="diff-meter">
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot"></div>
+          <div class="diff-dot"></div>
+          &nbsp;<span style="font-size:0.85rem;color:var(--text-dim)">Gemiddeld</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value">
+        <div class="strength-meter">
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot"></div>
+          &nbsp;<span style="font-size:0.85rem;color:var(--text-dim)">4 / 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Gestaag — wint via accumulatie</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">
+        Endless Punishment is een Rakdos Commander deck met één meedogenloze filosofie: <em>alles wat tegenstanders doen, kost ze life</em>. Landen spelen, kaarten trekken, spells casten, creatures spelen — er is vrijwel geen normale spelactie die ongestraft blijft. De commander, <strong>Valgavoth, Harrower of Souls</strong>, groeit mee: elke keer dat een tegenstander voor het eerst life verliest in zijn beurt, trekt Valgavoth een kaart en krijgt een +1/+1 counter.
+      </p>
+      <p class="intro-text" style="margin-top:1rem;">
+        Het deck werkt als een sluipende machine: in de vroege beurten leg je "punishment triggers" neer die passief life draineren. Tegenstanders moeten kiezen tussen snel spelen en meer pijn lijden, of traag spelen en achterop raken. Zodra Valgavoth in play is en kaarten trekt, heb jij structureel meer gas dan de rest van de tafel. Dit is een relatief toegankelijk deck (bracket 2) maar zeer effectief en frustrerend om tegen te spelen.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-title">De Punishment Matrix — wat kost tegenstanders life?</div>
+      <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:1rem;line-height:1.5">
+        Dit deck stapelt meerdere "triggers" op. Hoe meer er tegelijk in play zijn, hoe sneller tegenstanders naar nul gaan — zelfs zonder dat jij aanvalt.
+      </p>
+      <div class="punishment-grid">
+        <div class="punish-item">
+          <div class="punish-trigger">Landen spelen</div>
+          <div class="punish-effect">Ankh of Mishra / Zo-Zu the Punisher: 2 schade per land. Nightshade Harvester: 1 life verlies. Polluted Bonds: 2 life verlies + jij wint 2.</div>
+        </div>
+        <div class="punish-item">
+          <div class="punish-trigger">Kaarten trekken</div>
+          <div class="punish-effect">Underworld Dreams, Fate Unraveler, Kederekt Parasite, Razorkin Needlehead, Scrawling Crawler: elk 1 schade per getrokken kaart. Stacks snel op.</div>
+        </div>
+        <div class="punish-item">
+          <div class="punish-trigger">Spells casten</div>
+          <div class="punish-effect">Kaervek: schade gelijk aan mana value. Magebane Lizard: opeenstapelend per spell per beurt. Rug of Smothering: life verlies per spell die beurt.</div>
+        </div>
+        <div class="punish-item">
+          <div class="punish-trigger">Mana tappen</div>
+          <div class="punish-effect">Manabarbs: 1 schade per getapt land. Gecombineerd met Ankh/Zo-Zu betekent elke landfase meerdere punishments tegelijk.</div>
+        </div>
+        <div class="punish-item">
+          <div class="punish-trigger">Creatures spelen</div>
+          <div class="punish-effect">Blood Seeker: 1 life verlies per creature dat tegenstander speelt. Rampaging Ferocidon: 1 schade per creature dat speelt.</div>
+        </div>
+        <div class="punish-item">
+          <div class="punish-trigger">Aanvallen op jou</div>
+          <div class="punish-effect">Marchesa's Decree / Revenge of Ravens: aanvallers kosten hun controller life. Mogis: betaal 2 damage of sacrifice een creature elke beurt.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">🔥</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Death by a Thousand Cuts</div>
+            <div class="wincon-desc">De primaire win con: genoeg punishment triggers stapelen zodat tegenstanders elke beurt 5–10+ life verliezen zonder dat jij iets actiefs doet. Met Wound Reflection wordt elk life verlies aan het eind van de beurt verdubbeld — verwoestend.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">😈</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Valgavoth als Finisher</div>
+            <div class="wincon-desc">Met Lightning Greaves of Swiftfoot Boots direct aanvallen. Valgavoth groeit snel dankzij de constante life loss triggers en kan met Witch's Clinic lifelink krijgen. Chandra's Ignition op een grote Valgavoth is een potentiële one-shot win.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">💀</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Bloodchief Ascension Lock</div>
+            <div class="wincon-desc">Eenmaal geladen (3 quest counters) laat Bloodchief Ascension tegenstanders 2 life verliezen bij elke kaart die hun graveyard ingaat. Gecombineerd met Scrawling Crawler (iedereen trekt een kaart per upkeep) of Stormfist Crusader is dit een sluipende end-game drain.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">👁️</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Ob Nixilis + 1-life-drain triggers</div>
+            <div class="wincon-desc">Ob Nixilis, Captive Kingpin triggert elke keer dat een tegenstander exact 1 life verliest: +1/+1 counter én gratis kaart spelen. Met Roiling Vortex (1 per upkeep) of Manabarbs (1 per land) kan Ob Nixilis elke beurt meerdere keren triggeren.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name">Valgavoth, Harrower of Souls</div>
+          <div class="keycard-desc">De motor van het deck. Ward — pay 2 life maakt hem kostbaar te removen. Trekt een kaart en groeit bij elk eerste life-verlies in de beurt van een tegenstander. Zo snel mogelijk spelen en beschermen.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Wound Reflection</div>
+          <div class="keycard-desc">Verdubbelt alle life verlies aan het eind van elke beurt. In een tafel van 4 spelers die elk 5–8 life per beurt verliezen, is dit kaart bijna altijd de game-ender.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Solphim, Mayhem Dominus</div>
+          <div class="keycard-desc">Verdubbelt alle noncombat schade van jouw bronnen. Maakt elke punishment trigger dubbel zo hard. Kan zichzelf indestructible maken via twee discards.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Mogis, God of Slaughter</div>
+          <div class="keycard-desc">Geeft tegenstanders elke beurt de keuze: 2 schade incasseren of een creature offeren. Indestructible god die bijna niet weg te removen is. Langzaam maar constant pressure.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Bloodchief Ascension</div>
+          <div class="keycard-desc">Klein enchantment dat snel opbouwt en daarna massive value levert. Eenmaal actief nauwelijks te stoppen. Zo vroeg mogelijk spelen.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Lightning Greaves / Swiftfoot Boots</div>
+          <div class="keycard-desc">Beschermt Valgavoth meteen na het spelen. Haste geeft hem direct een trigger-kans. Vrijwel altijd prioriteit om op Valgavoth te equippen.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Prioriteer de goedkope punishment triggers in de vroege beurten (Ankh of Mishra, Blood Seeker, Manabarbs). Hoe eerder ze in play zijn, hoe meer ze ophopen. Valgavoth kan even wachten als de tafel vol removal zit.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Valgavoth triggert maar één keer per beurt van elke tegenstander (het eerste life verlies). Zorg dat er elke beurt minstens één passieve trigger actief is zodat hij altijd een kaart trekt.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Manabarbs raakt ook jou. Tap je eigen lands zo min mogelijk als Manabarbs in play is — of tap ze alleen voor spells die de situatie direct winnen. Signet en Talisman produceren mana zonder lands te tappen.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Dit deck maakt tegenstanders snel geïrriteerd — het straft elke spelactie. Wees je bewust van de sociale dynamiek aan tafel. Bij bracket 2 decks kunnen spelers dat extra frustrerend vinden.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Kaervek the Merciless raakt ook jou als jij spells cast. Wees voorzichtig wanneer je hem speelt — idealiter als jij weinig spells meer nodig hebt en tegenstanders nog veel willen doen.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:0.92rem; color:var(--text-dim); line-height:1.6">
+        Endless Punishment scoort een stevige <strong style="color:var(--gold)">4/5</strong> in de pool ondanks zijn lagere bracket (2). Het deck is thematisch consistent, makkelijker te spelen dan Blight Curse, maar minstens zo effectief tegen minder ervaren tegenstanders. Het doet iets fundamenteels irritants: het straft passief normaal spelen. Wie niet weet wat het deck doet, verliest snel. Wie het kent, speelt voorzichtiger — maar ook dan hopen de triggers op. Ideaal voor spelers die een sterk maar niet overweldigend complex deck willen.
+      </p>
+    </section>
+
+  </main>
+
+  <aside class="sidebar">
+
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 2 — Core</div>
+      <div class="bracket-desc">Geen extra turns, geen combo kills, geen tutor chains. Past goed bij andere bracket 1–3 decks. Sterk genoeg om thematisch te domineren zonder de tafel te overrompelen.</div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col">
+          <div class="curve-bar" style="height:20px"></div>
+          <div class="curve-label">1</div>
+          <div class="curve-count">2</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:55px"></div>
+          <div class="curve-label">2</div>
+          <div class="curve-count">12</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:65px"></div>
+          <div class="curve-label">3</div>
+          <div class="curve-count">14</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:50px"></div>
+          <div class="curve-label">4</div>
+          <div class="curve-count">10</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:30px"></div>
+          <div class="curve-label">5+</div>
+          <div class="curve-count">6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="decklist-group">Commander</span>
+        <li><span class="card-name">Valgavoth, Harrower of Souls</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Burn / Punishment (11)</span>
+        <li><span class="card-name">Ankh of Mishra</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Zo-Zu the Punisher</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Manabarbs</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Razorkin Needlehead</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Roiling Vortex</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Rug of Smothering</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Solphim, Mayhem Dominus</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Sulfuric Vortex</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Torbran, Thane of Red Fell</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Underworld Dreams</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Magebane Lizard</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Creatures (15)</span>
+        <li><span class="card-name">Blood Seeker</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Fate Unraveler</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Gleeful Arsonist</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Harsh Mentor</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Kaervek the Merciless</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Kederekt Parasite</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Massacre Wurm</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Mogis, God of Slaughter</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Nightshade Harvester</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Persistent Constrictor</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Rampaging Ferocidon</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Stormfist Crusader</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Syr Konrad, the Grim</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">The Lord of Pain</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Vial Smasher the Fierce</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Drain & Draw</span>
+        <li><span class="card-name">Bloodchief Ascension</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Gray Merchant of Asphodel</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Wound Reflection</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Ob Nixilis, Captive Kingpin</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Marchesa's Decree</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Scrawling Crawler</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Theater of Horrors</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Spiteful Visions</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Artifacts & Protection</span>
+        <li><span class="card-name">Sol Ring</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Arcane Signet</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Rakdos Signet</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Fellwar Stone</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Talisman of Indulgence</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Mind Stone</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Thought Vessel</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Lightning Greaves</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Swiftfoot Boots</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Basilisk Collar</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Removal & Overig</span>
+        <li><span class="card-name">Bedevil</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Chaos Warp</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Infernal Grasp</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Blasphemous Act</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Toxic Deluge</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Chandra's Ignition</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Whip of Erebos</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Lands (38)</span>
+        <li><span class="card-name">Swamp ×8, Mountain ×8</span><span class="card-qty"></span></li>
+        <li><span class="card-name">Command Tower</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Blackcleave Cliffs</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Graven Cairns</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Sulfurous Springs</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Witch's Clinic</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Shivan Gorge</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Leechridden Swamp</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">+ diverse dual/utility lands</span><span class="card-qty"></span></li>
+      </ul>
+    </div>
+
+    <a href="https://archidekt.com/decks/20251748/endless_punishment" class="archidekt-link" target="_blank">
+      Bekijk volledig op Archidekt ↗
+    </a>
+
+  </aside>
+</div>
+
+<footer>
+  Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a>
+</footer>
+
+
+  <script>
+    // Laad commander kaartafbeelding via Scryfall API
+    (function() {
+      var cardName = "Valgavoth, Harrower of Souls";
+      var img = document.getElementById('commander-card-img');
+      var loading = document.getElementById('commander-card-loading');
+      if (!img) return;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(cardName))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.image_uris && data.image_uris.normal) {
+            img.src = data.image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          } else if (data.card_faces && data.card_faces[0].image_uris) {
+            img.src = data.card_faces[0].image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          }
+        })
+        .catch(function() {
+          // Stil falen — loading div blijft zichtbaar
+        });
+    })();
+  </script>
+
+</body>
+</html>

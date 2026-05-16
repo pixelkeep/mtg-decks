@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blight Curse – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0c0a;
+      --surface:   #121612;
+      --surface2:  #181c16;
+      --border:    #2a3020;
+      --gold:      #c9a84c;
+      --gold-dim:  #7a6330;
+      --text:      #e0e8d0;
+      --text-dim:  #7a8a65;
+      --accent:    #4a7c3a;
+      --accent2:   #7c3a2a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at 15% 40%, rgba(74,124,58,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 60%, rgba(60,20,10,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+    nav a:hover { color: var(--gold); }
+    nav span { color: var(--border); font-size: 0.8rem; }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 3.5rem 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(60,20,10,0.12) 0%, rgba(74,124,58,0.06) 100%);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .deck-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 40px rgba(201,168,76,0.2);
+      line-height: 1;
+    }
+
+    .commander-name {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      margin-top: 0.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: flex-start;
+      padding-top: 0.5rem;
+    }
+
+    .badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid currentColor;
+      text-transform: uppercase;
+    }
+    .badge-format   { color: #b87ab8; border-color: #4a2a5c; }
+    .badge-archetype{ color: var(--gold-dim); border-color: var(--border); }
+    .badge-theme    { color: #7ab870; border-color: #2a5c2a; }
+    .badge-bracket  { color: #cc6644; border-color: #5c2a1a; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.3rem;
+    }
+    .meta-value { font-size: 0.95rem; color: var(--text); }
+
+    .color-pips { display: flex; gap: 0.3rem; align-items: center; }
+    .pip {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+    .pip-B { background: #2a1a3a; color: #c8b8e8; border-color: #5a4a7a; }
+    .pip-R { background: #5a1a1a; color: #ffd0a0; }
+    .pip-G { background: #1a5a2a; color: #a0ffa0; }
+
+    .diff-meter, .strength-meter { display: flex; gap: 4px; align-items: center; }
+    .diff-dot, .str-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .diff-dot.filled { background: #cc6644; }
+    .str-dot.filled  { background: var(--gold); }
+
+    /* CONTENT */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 740px) { .content { grid-template-columns: 1fr; } }
+
+    section { margin-bottom: 2.5rem; }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro-text { font-size: 1.05rem; color: #b8c8a0; line-height: 1.7; }
+
+    /* Combo box */
+    .combo-box {
+      background: var(--surface2);
+      border: 1px solid #3a4a2a;
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .combo-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: #9aba70;
+      margin-bottom: 0.4rem;
+    }
+    .combo-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.5; }
+    .combo-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .combo-card-tag {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 0.15rem 0.5rem;
+    }
+
+    /* Win cons */
+    .wincon-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .wincon-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+    }
+    .wincon-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .wincon-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .wincon-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.4; }
+
+    /* Key cards */
+    .keycard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .keycard { background: var(--surface2); border: 1px solid var(--border); padding: 0.75rem; }
+    .keycard-name { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold); margin-bottom: 0.3rem; }
+    .keycard-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
+
+    /* Tips */
+    .tip-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .tip-box.warning { border-color: var(--accent2); }
+    .tip-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .tip-box.warning .tip-label { color: #d46040; }
+    .tip-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+
+    /* Sidebar */
+    .info-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .curve-bars { display: flex; align-items: flex-end; gap: 0.4rem; height: 70px; }
+    .curve-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+    .curve-bar { width: 100%; background: var(--accent); opacity: 0.75; min-height: 2px; }
+    .curve-label { font-family: 'Cinzel', serif; font-size: 0.55rem; color: var(--text-dim); }
+    .curve-count { font-size: 0.65rem; color: var(--text-dim); }
+
+    .decklist { list-style: none; font-size: 0.85rem; }
+    .decklist li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid rgba(42,48,32,0.6);
+      color: var(--text-dim);
+    }
+    .decklist li:last-child { border: none; }
+    .decklist .card-name { color: var(--text); }
+    .decklist .card-qty { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold-dim); }
+    .decklist-group {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      padding: 0.5rem 0 0.25rem;
+      display: block;
+    }
+
+    .bracket-block {
+      background: rgba(200,80,40,0.08);
+      border: 1px solid #5c2a1a;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .bracket-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #cc6644;
+      margin-bottom: 0.4rem;
+    }
+    .bracket-value { font-size: 1rem; color: var(--text); }
+    .bracket-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.3rem; line-height: 1.4; }
+
+    .archidekt-link {
+      display: block;
+      text-align: center;
+      padding: 0.8rem;
+      border: 1px solid var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .archidekt-link:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+
+    /* Commander Card Image */
+    .hero-top { align-items: flex-start; }
+    .hero-left { flex: 1; }
+    .commander-card {
+      flex-shrink: 0;
+      width: 180px;
+    }
+    .commander-card img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.15);
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .commander-card img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.35);
+    }
+    .commander-card .card-loading {
+      width: 100%;
+      aspect-ratio: 5/7;
+      background: var(--surface2, #1a1612);
+      border-radius: 12px;
+      border: 1px solid var(--border, #3a3020);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim, #8a7d65);
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 600px) {
+      .commander-card { width: 130px; }
+      .hero-top { flex-direction: column-reverse; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Deck Library</a>
+  <span>/</span>
+  <a href="#">Blight Curse</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Blight Curse</div>
+      <div class="commander-name">Commander: Auntie Ool, Cursewretch</div>
+      <a href="https://archidekt.com/decks/21789120/blight_curse" target="_blank" style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;margin-top:0.4rem;display:inline-block;border-bottom:1px solid var(--gold-dim);">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Auntie Ool, Cursewretch" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-format">Commander</span>
+      <span class="badge badge-archetype">Midrange · Control</span>
+      <span class="badge badge-theme">-1/-1 Counters</span>
+      <span class="badge badge-bracket">Bracket 4 – Optimized</span>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Jund)</div>
+      <div class="meta-value">
+        <div class="color-pips">
+          <span class="pip pip-B" title="Zwart">B</span>
+          <span class="pip pip-R" title="Rood">R</span>
+          <span class="pip pip-G" title="Groen">G</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value">
+        <div class="diff-meter">
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot filled"></div>
+          &nbsp;<span style="font-size:0.85rem;color:var(--text-dim)">Hoog</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value">
+        <div class="strength-meter">
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          &nbsp;<span style="font-size:0.85rem;color:var(--text-dim)">5 / 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Gestaag, wint via uitputting</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">
+        Blight Curse is een Jund Commander deck dat volledig draait om <strong>-1/-1 counters</strong> — een van de meest sluipende mechanismen in Magic. De commander, <strong>Auntie Ool, Cursewretch</strong>, trekt een kaart elke keer dat jouw creatures -1/-1 counters krijgen, en laat tegenstanders life verliezen als hun creatures dat ondergaan. Ze heeft ward — blight 2, wat haar lastig maakt om te removen.
+      </p>
+      <p class="intro-text" style="margin-top:1rem;">
+        Het deck werkt op meerdere niveaus tegelijk: het verzwakt en doodt tegenstanders' creatures via counters, genereert daarmee kaartvoordeel en life-drain, prolifereert bestaande counters om alles te versnellen, en gebruikt sterke payoffs zoals Nest of Scarabs, Flourishing Defenses en All Will Be One om de engine te kapitaliseren. Dit is een thematisch coherent en sterk deck met een hoge geschatte bracket (4 – Optimized).
+      </p>
+    </section>
+
+    <section>
+      <div class="section-title">Kern Engine: Hoe het werkt</div>
+      <p style="font-size:0.95rem; color:var(--text-dim); margin-bottom:1rem; line-height:1.6">
+        Het deck bouwt een loop van synergetische triggers op. Zodra de engine draait, zijn er zoveel gelijktijdige effecten dat de board snel onhoudbaar wordt voor tegenstanders.
+      </p>
+      <div class="combo-box">
+        <div class="combo-title">De Blight-loop</div>
+        <div class="combo-text">Auntie Ool + Hapatra of Nest of Scarabs + Blowfly Infestation: elke keer dat een counter op een creature wordt gezet, trigert Blowfly Infestation een nieuwe counter op een volgend target. Dit creëert een keten van triggers die tokens genereert (Hapatra/Nest), kaarten trekt (Auntie Ool) en life draineert.</div>
+        <div class="combo-cards">
+          <span class="combo-card-tag">Auntie Ool</span>
+          <span class="combo-card-tag">Blowfly Infestation</span>
+          <span class="combo-card-tag">Hapatra, Vizier of Poisons</span>
+          <span class="combo-card-tag">Nest of Scarabs</span>
+        </div>
+      </div>
+      <div class="combo-box">
+        <div class="combo-title">Proliferate = alles versnellen</div>
+        <div class="combo-text">Evolution Sage (landfall → proliferate), Contagion Engine, Grim Affliction en Karn's Bastion verdubbelen/verspreiden bestaande -1/-1 counters continu. Elk land dat speelt kan een extra trigger geven.</div>
+        <div class="combo-cards">
+          <span class="combo-card-tag">Evolution Sage</span>
+          <span class="combo-card-tag">Contagion Engine</span>
+          <span class="combo-card-tag">Karn's Bastion</span>
+        </div>
+      </div>
+      <div class="combo-box">
+        <div class="combo-title">All Will Be One – directe schade</div>
+        <div class="combo-text">Zodra deze enchantment in play is, doet elke geplaatste counter direct schade aan een tegenstander of permanente. In combinatie met Carnifex Demon of Black Sun's Zenith kan dit meerdere tegenstanders tegelijk treffen.</div>
+        <div class="combo-cards">
+          <span class="combo-card-tag">All Will Be One</span>
+          <span class="combo-card-tag">Carnifex Demon</span>
+          <span class="combo-card-tag">Black Sun's Zenith</span>
+        </div>
+      </div>
+      <div class="combo-box">
+        <div class="combo-title">Mikaeus + Persist-creatures</div>
+        <div class="combo-text">Mikaeus, the Unhallowed geeft alle non-Human creatures undying (+1/+1 counter bij sterven). -1/-1 counters neutraliseren die +1/+1 counters bij herhaling, zodat persist-achtige creatures meerdere keren recyclen, Auntie Ool extra kaarten trekt en Yawgmoth meerdere keren kan activeren.</div>
+        <div class="combo-cards">
+          <span class="combo-card-tag">Mikaeus, the Unhallowed</span>
+          <span class="combo-card-tag">Yawgmoth, Thran Physician</span>
+          <span class="combo-card-tag">Dusk Urchins</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">🐝</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Life Drain via -1/-1 Triggers</div>
+            <div class="wincon-desc">Obelisk Spider en Auntie Ool laten tegenstanders langzaam life verliezen. Lasting Tarfire doet 2 schade per end step als je een counter hebt geplaatst. In een langere game is dit genoeg om meerdere spelers te elimineren.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🦂</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Creature Board Wipe + Token Flood</div>
+            <div class="wincon-desc">Board wipes via Black Sun's Zenith, Carnifex Demon of Darkness Descends genereren tegelijkertijd een vloed aan insect-tokens via Nest of Scarabs en elf-tokens via Flourishing Defenses. De tegenstander's board is leeg, die van jou niet.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">☠️</div>
+          <div class="wincon-body">
+            <div class="wincon-name">All Will Be One Burn</div>
+            <div class="wincon-desc">Met All Will Be One in play doet elke geplaatste counter direct damage. In combinatie met massa-counter-spreaders kun je in één beurt meerdere tegenstanders naar nul brengen.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🧟</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Necroskitter + Creature Steal</div>
+            <div class="wincon-desc">Necroskitter en The Reaper, King No More brengen tegenstanders' creatures die met -1/-1 counters sterven onder jouw controle. Gecombineerd met wither-creatures die counters plaatsen, steel je systematisch het beste van de tafel.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name">Auntie Ool, Cursewretch</div>
+          <div class="keycard-desc">De commander die de engine aandrijft. Kaarten trekken van eigen counters, life drain van counters op tegenstanders. Ward maakt haar lastig te removen. Zo snel mogelijk spelen.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Yawgmoth, Thran Physician</div>
+          <div class="keycard-desc">Meest waardevolle kaart in het deck. Goedkope herhaalbare counter-placer + card draw. In combinatie met Mikaeus bijna oneindig te activeren.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Blowfly Infestation</div>
+          <div class="keycard-desc">De ketenschakel: elke dood met een counter triggert een nieuwe counter. Houdt de engine lopend zonder extra mana te kosten.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">All Will Be One</div>
+          <div class="keycard-desc">Zet alle counter-plaatsingen om in directe schade. Een game-changer zodra hij in play komt samen met een board-wipe spell.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Mikaeus, the Unhallowed</div>
+          <div class="keycard-desc">Geeft undying aan alle non-humans. Werkt synergetisch met -1/-1 counters: neutraliseer de +1/+1 counter en de creature recyclet zich opnieuw.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Maha, Its Feathers Night</div>
+          <div class="keycard-desc">Zet alle tegenstanders' creatures op 0/1 base toughness. In combinatie met Everlasting Torment (wither) of een kleine -1/-1 counter worden ze allemaal tegelijk gedood.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Begin met ramp en de commander. Auntie Ool zo vroeg mogelijk spelen geeft je card advantage voor elke trigger die volgt. Zonder haar aan tafel is het deck veel minder explosief.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Kulrath Knight vergrendelt tegenstanders' creatures met counters — ze kunnen niet meer aanvallen of blokkeren. Combineer dit met Everlasting Torment (alle schade als wither) voor een volledige board-lock.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Channeler Initiate en Devoted Druid zijn ramp die zichzelf van counters voorzien — perfecte synergieën met Auntie Ool die je daarvoor een kaart laat trekken.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Dit deck heeft veel triggers tegelijk. Houdt de volgorde van triggers goed bij — Blowfly Infestation in combinatie met Nest of Scarabs en Auntie Ool kan snel complex worden. Neem de tijd bij je resolution.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Maha, Its Feathers Night heeft geen bescherming. Speel haar pas als je een goede follow-up hebt (bijv. Carnifex Demon of wither creatures) zodat de toughness-0 creatures meteen sterven.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Let op: Bracket 4</div>
+        <div class="tip-text">Dit is één van de sterkste decks in de pool. Zorg dat tegenstanders weten wat ze kunnen verwachten — het deck kan snel en overweldigend zijn voor minder ervaren spelers.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:0.92rem; color:var(--text-dim); line-height:1.6">
+        Blight Curse is het sterkste deck in de pool — een <strong style="color:var(--gold)">5/5</strong>. De combinatie van Bayou, Badlands en Taiga (dure dual lands), Yawgmoth en Mikaeus plaatst dit deck in Commander bracket 4 (Optimized). De engine is consistent, heeft meerdere onafhankelijke win conditions, en kan een tafel overnemen als hij eenmaal loopt. Ideaal voor ervaren spelers die een uitdagend deck zoeken.
+      </p>
+    </section>
+
+  </main>
+
+  <aside class="sidebar">
+
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 4 — Optimized</div>
+      <div class="bracket-desc">Bevat krachtige stukken zoals Yawgmoth, Mikaeus en reservelijst dual lands (Bayou, Badlands, Taiga). Past het beste bij andere bracket 3–4 decks.</div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col">
+          <div class="curve-bar" style="height:35px"></div>
+          <div class="curve-label">1</div>
+          <div class="curve-count">4</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:50px"></div>
+          <div class="curve-label">2</div>
+          <div class="curve-count">7</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:55px"></div>
+          <div class="curve-label">3</div>
+          <div class="curve-count">8</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:45px"></div>
+          <div class="curve-label">4</div>
+          <div class="curve-count">6</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:30px"></div>
+          <div class="curve-label">5+</div>
+          <div class="curve-count">4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="decklist-group">Commander</span>
+        <li><span class="card-name">Auntie Ool, Cursewretch</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Creatures (23)</span>
+        <li><span class="card-name">Ignoble Hierarch</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Channeler Initiate</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Devoted Druid</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Hapatra, Vizier of Poisons</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Obelisk Spider</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Ammit Eternal</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Kulrath Knight</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Necroskitter</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Glissa Sunslayer</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Massacre Girl, Known Killer</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Skinrender</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Soul Snuffers</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Carnifex Demon</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">The Scorpion God</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">The Reaper, King No More</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Mikaeus, the Unhallowed</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Yawgmoth, Thran Physician</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Maha, Its Feathers Night</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Generous Patron</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Dusk Urchins</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Scavenging Ooze</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Dread Tiller</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Persistent Constrictor</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Enchantments</span>
+        <li><span class="card-name">Blowfly Infestation</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Everlasting Torment</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Flourishing Defenses</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Nest of Scarabs</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">All Will Be One</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Lasting Tarfire</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Puca's Covenant</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Phyrexian Reclamation</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Sorceries & Instants</span>
+        <li><span class="card-name">Black Sun's Zenith</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Darkness Descends</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Soul Immolation</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Assassin's Trophy</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Sudden Spoiling</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Grim Affliction</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Drown in Ichor</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Ramp & Proliferate</span>
+        <li><span class="card-name">Sol Ring</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Arcane Signet</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Farseek</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Nature's Lore</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Evolution Sage</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Contagion Engine</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Eldritch Evolution</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Lands (37)</span>
+        <li><span class="card-name">Badlands</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Bayou</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Taiga</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Forest ×7, Swamp ×7, Mountain ×3</span><span class="card-qty"></span></li>
+        <li><span class="card-name">Command Tower</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Karn's Bastion</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">Ifnir Deadlands</span><span class="card-qty">1×</span></li>
+        <li><span class="card-name">+ diverse dual lands</span><span class="card-qty"></span></li>
+      </ul>
+    </div>
+
+    <a href="https://archidekt.com/decks/21789120/blight_curse" class="archidekt-link" target="_blank">
+      Bekijk volledig op Archidekt ↗
+    </a>
+
+  </aside>
+</div>
+
+<footer>
+  Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a>
+</footer>
+
+
+  <script>
+    // Laad commander kaartafbeelding via Scryfall API
+    (function() {
+      var cardName = "Auntie Ool, Cursewretch";
+      var img = document.getElementById('commander-card-img');
+      var loading = document.getElementById('commander-card-loading');
+      if (!img) return;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(cardName))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.image_uris && data.image_uris.normal) {
+            img.src = data.image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          } else if (data.card_faces && data.card_faces[0].image_uris) {
+            img.src = data.card_faces[0].image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          }
+        })
+        .catch(function() {
+          // Stil falen — loading div blijft zichtbaar
+        });
+    })();
+  </script>
+
+</body>
+</html>
