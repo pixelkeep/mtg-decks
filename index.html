@@ -5,354 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ed's MTG Deck Library</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #0e0c0a;
-      --surface:   #1a1612;
-      --border:    #3a3020;
-      --gold:      #c9a84c;
-      --gold-dim:  #7a6330;
-      --text:      #e8dfc8;
-      --text-dim:  #8a7d65;
-      --green:     #4a7c59;
-      --black:     #2a2535;
-      --white:     #c8c0b0;
-      --blue:      #2a4a7c;
-      --red:       #7c2a2a;
-      --colorless: #4a4a4a;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Crimson Text', Georgia, serif;
-      font-size: 18px;
-      min-height: 100vh;
-    }
-
-    /* Parchment texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(74,124,89,0.04) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    header {
-      position: relative;
-      text-align: center;
-      padding: 4rem 2rem 3rem;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
-    }
-
-    header::after {
-      content: '';
-      display: block;
-      width: 200px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 1.5rem auto 0;
-    }
-
-    .site-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 40px rgba(201,168,76,0.3);
-    }
-
-    .site-subtitle {
-      font-family: 'Crimson Text', serif;
-      font-style: italic;
-      color: var(--text-dim);
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* Filters */
-    .filters {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      padding: 2rem 2rem 1rem;
-    }
-
-    .filter-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      padding: 0.4rem 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-transform: uppercase;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(201,168,76,0.08);
-    }
-
-    /* Grid */
-    .deck-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 1.5rem 2rem 4rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    /* Card */
-    .deck-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .deck-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold-accent, var(--gold)), transparent);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .deck-card:hover {
-      border-color: var(--gold-dim);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    }
-    .deck-card:hover::before { opacity: 1; }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
-      gap: 0.5rem;
-    }
-
-    .deck-name {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1.2;
-    }
-
-    .format-badge {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      padding: 0.2rem 0.6rem;
-      border: 1px solid currentColor;
-      white-space: nowrap;
-      flex-shrink: 0;
-      text-transform: uppercase;
-    }
-    .fmt-modern  { color: #7ab8d4; border-color: #2a4a5c; }
-    .fmt-commander { color: #b87ab8; border-color: #4a2a5c; }
-    .fmt-legacy  { color: #d4a87a; border-color: #5c3a2a; }
-    .fmt-pioneer { color: #a8d47a; border-color: #3a5c2a; }
-    .fmt-standard{ color: #d47a7a; border-color: #5c2a2a; }
-
-    .color-pips {
-      display: flex;
-      gap: 0.25rem;
-      margin-bottom: 0.75rem;
-    }
-    .pip {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: bold;
-    }
-    .pip-W { background: #c8c0a0; color: #333; }
-    .pip-U { background: #2a5a8c; color: #fff; }
-    .pip-B { background: #2a1a3a; color: #c8b8e8; border-color: #5a4a7a; }
-    .pip-R { background: #8c2a2a; color: #ffd0a0; }
-    .pip-G { background: #1a5a2a; color: #a0ffa0; }
-    .pip-C { background: #3a3a3a; color: #c0c0c0; }
-
-    .archetype-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      font-style: italic;
-      margin-bottom: 0.6rem;
-    }
-
-    .deck-desc {
-      font-size: 0.9rem;
-      color: #a09880;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
-      padding-top: 0.75rem;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .difficulty {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .diff-1 { color: #6aaa6a; }
-    .diff-2 { color: #aaaa6a; }
-    .diff-3 { color: #d4844a; }
-    .diff-4 { color: #cc4444; }
-
-    .strength-bar {
-      display: flex;
-      gap: 3px;
-      align-items: center;
-    }
-    .strength-pip {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-    .strength-pip.filled { background: var(--gold); }
-
-    .read-more {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      color: var(--gold-dim);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* hidden for filter */
-    .deck-card.hidden { display: none; }
-
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--text-dim);
-      font-size: 0.8rem;
-      font-style: italic;
-    }
-
-    @media (max-width: 600px) {
-      .deck-grid { padding: 1rem; gap: 1rem; }
-    }
-
-    /* Info nav in header */
-    .info-nav {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .info-nav a {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 0.4rem 1.1rem;
-      transition: all 0.2s;
-    }
-    .info-nav a:hover {
-      color: var(--gold);
-      border-color: var(--gold-dim);
-      background: rgba(201,168,76,0.07);
-    }
-
-    /* Legenda */
-    .legenda {
-      position: relative;
-      z-index: 1;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .legenda-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1.25rem 2rem;
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-    .legenda-group {
-      flex: 1;
-      min-width: 200px;
-    }
-    .legenda-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.3rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .legenda-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      line-height: 1.5;
-    }
-    .legenda-sep {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-    }
-    .str-ex { color: var(--gold); font-family: monospace; font-size: 0.75rem; }
-    @media (max-width: 700px) {
-      .legenda-sep { display: none; }
-      .legenda-inner { gap: 1.25rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -637,6 +290,109 @@
     </div>
     <div class="archetype-tag">❄ Snow · Stax · Untap Engine · Sultai</div>
     <div class="deck-desc">Jorn untapt alle snow permanenten bij elke aanval. Winter Orb bevriest de rest van de tafel. Jij raast door het spel met enorme mana; tegenstanders kunnen nauwelijks bewegen.</div>
+    <div class="card-footer">
+      <div class="difficulty diff-4">⬥ Hoog</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:#d4844a;letter-spacing:0.08em">Bracket 4</div>
+      <div class="strength-bar" title="Sterkte: 5/5">
+        <div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div>
+      </div>
+      <div class="read-more">Lees meer →</div>
+    </div>
+  </a>
+
+  <!-- ELDRAZI INCURSION -->
+  <a href="decks/eldrazi-incursion.html" class="deck-card" data-format="commander" data-archetype="midrange tribal combo">
+    <div class="card-header">
+      <div>
+        <div class="deck-name">Eldrazi Incursion</div>
+        <div style="font-size:0.75rem;color:var(--text-dim);font-style:italic;margin-top:0.2rem">Ulalek, Fused Atrocity</div>
+      </div>
+      <div class="format-badge fmt-commander">Commander</div>
+    </div>
+    <div class="color-pips">
+      <span class="pip pip-W" title="Wit">W</span>
+      <span class="pip pip-U" title="Blauw">U</span>
+      <span class="pip pip-B" title="Zwart">B</span>
+      <span class="pip pip-R" title="Rood">R</span>
+      <span class="pip pip-G" title="Groen">G</span>
+    </div>
+    <div class="archetype-tag">Eldrazi Tribal · Copy · Annihilator · Vijfkleurig</div>
+    <div class="deck-desc">Eldrazi met Annihilator dwingen tegenstanders elke aanval permanenten op te geven. Ulalek kopieert alles zodra jij een Eldrazi cast. Één grote beurt beslist het spel.</div>
+    <div class="card-footer">
+      <div class="difficulty diff-3">⬥ Gevorderd</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:#d4aa4a;letter-spacing:0.08em">Bracket 3</div>
+      <div class="strength-bar" title="Sterkte: 4/5">
+        <div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip"></div>
+      </div>
+      <div class="read-more">Lees meer →</div>
+    </div>
+  </a>
+
+  <!-- ALELA'S ARCANE ARMY -->
+  <a href="decks/alelas-arcane-army.html" class="deck-card" data-format="commander" data-archetype="control tribal combo">
+    <div class="card-header">
+      <div>
+        <div class="deck-name">Alela's Arcane Army</div>
+        <div style="font-size:0.75rem;color:var(--text-dim);font-style:italic;margin-top:0.2rem">Alela, Cunning Conqueror</div>
+      </div>
+      <div class="format-badge fmt-commander">Commander</div>
+    </div>
+    <div class="color-pips">
+      <span class="pip pip-U" title="Blauw">U</span>
+      <span class="pip pip-B" title="Zwart">B</span>
+    </div>
+    <div class="archetype-tag">Control · Faerie Tribal · Flash · Goad · Dimir</div>
+    <div class="deck-desc">Elke spell in andermans beurt geeft een gratis vliegende Faerie. Faeries die schade doen goaden tegenstanders' creatures weg. Een reactief controlledeck met Force of Will en een groeiende vloot.</div>
+    <div class="card-footer">
+      <div class="difficulty diff-3">⬥ Gevorderd</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:#d4aa4a;letter-spacing:0.08em">Bracket 3</div>
+      <div class="strength-bar" title="Sterkte: 4/5">
+        <div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip"></div>
+      </div>
+      <div class="read-more">Lees meer →</div>
+    </div>
+  </a>
+
+  <!-- HAKBAL'S MERFOLK -->
+  <a href="decks/hakbals-merfolk.html" class="deck-card" data-format="commander" data-archetype="aggro midrange tribal">
+    <div class="card-header">
+      <div>
+        <div class="deck-name">Hakbal's Merfolk</div>
+        <div style="font-size:0.75rem;color:var(--text-dim);font-style:italic;margin-top:0.2rem">Hakbal of the Surging Soul</div>
+      </div>
+      <div class="format-badge fmt-commander">Commander</div>
+    </div>
+    <div class="color-pips">
+      <span class="pip pip-U" title="Blauw">U</span>
+      <span class="pip pip-G" title="Groen">G</span>
+    </div>
+    <div class="archetype-tag">Merfolk Tribal · Explore · +1/+1 Counters · Simic</div>
+    <div class="deck-desc">Alle Merfolk exploreren tegelijk bij elke combat. Counters groeien snel via Branching Evolution. Herald of Secret Streams maakt alles onblokbaar. Harbinger maakt islandwalk lethal voor iedereen.</div>
+    <div class="card-footer">
+      <div class="difficulty diff-2">⬥ Gemiddeld</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:#d4844a;letter-spacing:0.08em">Bracket 4</div>
+      <div class="strength-bar" title="Sterkte: 5/5">
+        <div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div><div class="strength-pip filled"></div>
+      </div>
+      <div class="read-more">Lees meer →</div>
+    </div>
+  </a>
+
+  <!-- STELLA LEE SPELL-SLINGER -->
+  <a href="decks/stella-lee-spellslinger.html" class="deck-card" data-format="commander" data-archetype="combo control aggro">
+    <div class="card-header">
+      <div>
+        <div class="deck-name">Stella Lee Spell-slinger</div>
+        <div style="font-size:0.75rem;color:var(--text-dim);font-style:italic;margin-top:0.2rem">Stella Lee, Wild Card</div>
+      </div>
+      <div class="format-badge fmt-commander">Commander</div>
+    </div>
+    <div class="color-pips">
+      <span class="pip pip-U" title="Blauw">U</span>
+      <span class="pip pip-R" title="Rood">R</span>
+    </div>
+    <div class="archetype-tag">Spellslinger · Copy · Storm · Combo · Izzet</div>
+    <div class="deck-desc">Cast 10+ spells in één beurt via Birgi en cantrips. Guttersnipe + Electrostatic Field + Ral doen 4 schade per spell. Thousand-Year Storm en Mizzix's Mastery maken het exponentieel. Eén grote beurt = iedereen dood.</div>
     <div class="card-footer">
       <div class="difficulty diff-4">⬥ Hoog</div>
       <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:#d4844a;letter-spacing:0.08em">Bracket 4</div>
