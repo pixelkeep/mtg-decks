@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formaten – Ed's Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Deck Library</a>
+  <span>/</span>
+  <a href="#">Formaten</a>
+  <div class="nav-info">
+    <a href="mtg-basics.html">MTG Uitleg</a>
+    <span>·</span>
+    <a href="cheatsheet.html">Cheatsheet</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-title">MTG Formaten</div>
+  <div class="page-sub">Welke regels gelden, hoeveel kaarten, en wat mag je spelen?</div>
+</div>
+
+<div class="content">
+
+  <h2>Wat is een format?</h2>
+  <p>Een <strong>format</strong> bepaalt de spelregels: hoeveel kaarten in je deck, hoeveel kopieën per kaart, welke sets zijn toegestaan, en of er speciale regels gelden. De decks in deze bibliotheek zijn voor <strong>thuis spelen</strong> — de formaten dienen als richtlijn, niet als toernooiregel.</p>
+
+  <!-- COMMANDER -->
+  <h2>Commander (EDH) — het hoofdformat hier</h2>
+
+  <div class="format-card">
+    <div class="format-header">
+      <div class="format-icon">👑</div>
+      <div>
+        <div class="format-name">Commander / EDH</div>
+        <div class="format-tagline">Multiplayer politiek en epische momenten</div>
+      </div>
+    </div>
+    <div class="format-body">
+      <p>Commander is het populairste casual format. Je speelt met <strong>4 spelers</strong> tegelijk (ook met 2 of 3 mogelijk). Elke speler begint met <strong>40 life</strong>. Het draait om grote, langdurige potjes vol politiek, interactie en spectaculaire momenten.</p>
+      <div class="format-stats">
+        <div class="stat"><span class="stat-label">Deck grootte</span><span class="stat-value">100 kaarten (exact)</span></div>
+        <div class="stat"><span class="stat-label">Kopieën per kaart</span><span class="stat-value">Max 1× (behalve basic lands)</span></div>
+        <div class="stat"><span class="stat-label">Startlife</span><span class="stat-value">40 life</span></div>
+        <div class="stat"><span class="stat-label">Legale sets</span><span class="stat-value">Bijna alles (zie banned list)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="commander-section">
+    <div class="commander-section-header">De Commander-regels uitgelegd</div>
+    <div class="commander-section-body">
+      <p><strong>De Commander</strong> is een legendaire creature (of speciale planeswalker) die je als "generaal" aanwijst. Hij zit in de <em>command zone</em> — buiten het spel — en je kunt hem op elk moment casten alsof hij op hand staat. Elke keer dat hij de command zone verlaat (sterft, exile) kun je hem terug sturen naar de command zone. Elke keer dat je hem opnieuw cast, kost hij <strong>2 extra generieke mana</strong> bovenop zijn normale mana cost.</p>
+      <p style="margin-top:0.75rem"><strong>Kleuridentiteit</strong>: je deck mag alleen kaarten bevatten waarvan de kleuridentiteit past binnen de kleuren van je commander. Een symbool in de mana cost, maar ook in regeltekst ({W}, {U}, etc.) telt mee. Kaarten met split mana ({G/W}) vereisen dat je commander zowel groen als wit is.</p>
+      <p style="margin-top:0.75rem"><strong>Commander Damage</strong>: als één commander je 21 combat damage heeft toegebracht (opgeteld over het hele spel), verlies je — ongeacht je huidige life totaal. Dit telt per commander afzonderlijk.</p>
+    </div>
+  </div>
+
+  <div class="commander-section">
+    <div class="commander-section-header">Commander Brackets (Power Level)</div>
+    <div class="commander-section-body">
+      <p>De bracket-indeling helpt spelers om decks van gelijk niveau bij elkaar te brengen. Het is een richtlijn, geen officiële regel.</p>
+      <table class="bracket-table">
+        <tr><th>Bracket</th><th>Naam</th><th>Kenmerken</th></tr>
+        <tr><td class="b2">Bracket 1</td><td>Exhibition</td><td>Zeer casual, precon-niveau, weinig interactie. Ideaal voor absolute beginners.</td></tr>
+        <tr><td class="b2">Bracket 2</td><td>Core</td><td>Casual met lichte upgrades. Geen tutors voor combo, geen oneindige loops. Meeste decks hier.</td></tr>
+        <tr><td class="b3">Bracket 3</td><td>Upgraded</td><td>Sterkere synergieën, tutors, krachtige kaarten. Wint consistent maar geen pure combo.</td></tr>
+        <tr><td class="b4">Bracket 4</td><td>Optimized</td><td>Efficiënte combo's, veel tutors, snel. Past bij ervaren spelers die competitief willen spelen.</td></tr>
+        <tr><td class="b5">Bracket 5</td><td>cEDH</td><td>Competitive EDH: snelste combo's, duurste kaarten, optimale interactie. Toernooi-niveau.</td></tr>
+      </table>
+      <p>In deze collectie hebben we decks van bracket 2 t/m 4. Check de individuele deckpagina voor de bracket van elk deck.</p>
+    </div>
+  </div>
+
+  <div class="commander-section">
+    <div class="commander-section-header">Extra Commander-regels om te kennen</div>
+    <div class="commander-section-body">
+      <ul class="rule-list">
+        <li><strong>Muldrotha-regel</strong>: als een kaart zegt "cast from graveyard", geldt dat niet voor je commander in de command zone — die cast je altijd vanuit de command zone, niet de graveyard.</li>
+        <li><strong>Replacement effects</strong>: als je commander zou sterven of geëxiled worden, <em>mag</em> je hem naar de command zone sturen in plaats daarvan. Je hoeft dit niet te doen.</li>
+        <li><strong>Planeswalkers als commander</strong>: alleen als de kaart expliciet zegt "can be your commander" (zoals Quintorius, History Chaser).</li>
+        <li><strong>Partner</strong>: sommige commanders hebben de Partner keyword — je mag dan twee commanders kiezen. De kleuridentiteit is dan de combinatie van beide.</li>
+        <li><strong>Poison counters</strong>: 10 poison counters = verlies, net als in andere formats.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MODERN -->
+  <h2>Modern</h2>
+  <div class="format-card">
+    <div class="format-header">
+      <div class="format-icon">⚡</div>
+      <div>
+        <div class="format-name">Modern</div>
+        <div class="format-tagline">Snelheid en kracht — kaarten vanaf 2003</div>
+      </div>
+    </div>
+    <div class="format-body">
+      <p>Modern is een competitief 1-op-1 format met kaarten vanaf de <strong>8th Edition (2003)</strong>. Het is sneller dan Legacy maar heeft meer kaarten tot de beschikking dan Standard. Potjes eindigen vaak voor beurt 5. Entmoot is een Modern deck.</p>
+      <div class="format-stats">
+        <div class="stat"><span class="stat-label">Deck grootte</span><span class="stat-value">Min. 60 + max. 15 sideboard</span></div>
+        <div class="stat"><span class="stat-label">Kopieën per kaart</span><span class="stat-value">Max 4× (behalve basic lands)</span></div>
+        <div class="stat"><span class="stat-label">Startlife</span><span class="stat-value">20 life</span></div>
+        <div class="stat"><span class="stat-label">Legale sets</span><span class="stat-value">8th Edition t/m heden</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGACY -->
+  <h2>Legacy & Vintage</h2>
+  <div class="format-card">
+    <div class="format-header">
+      <div class="format-icon">🏺</div>
+      <div>
+        <div class="format-name">Legacy / Vintage</div>
+        <div class="format-tagline">Alle sets, maximale kracht</div>
+      </div>
+    </div>
+    <div class="format-body">
+      <p><strong>Legacy</strong> staat alle sets toe (met een banned list). <strong>Vintage</strong> staat bijna alles toe maar beperkt de krachtigste kaarten tot 1 exemplaar (restricted list). Beide formats zijn duurder en meer competitief. Niet aanwezig in deze collectie, maar goed om te kennen.</p>
+      <div class="format-stats">
+        <div class="stat"><span class="stat-label">Deck grootte</span><span class="stat-value">Min. 60 + max. 15 sideboard</span></div>
+        <div class="stat"><span class="stat-label">Legale sets</span><span class="stat-value">Alle sets ooit</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STANDARD / PIONEER -->
+  <h2>Standard & Pioneer</h2>
+  <div class="format-card">
+    <div class="format-header">
+      <div class="format-icon">📅</div>
+      <div>
+        <div class="format-name">Standard & Pioneer</div>
+        <div class="format-tagline">Recente sets, steeds wisselend</div>
+      </div>
+    </div>
+    <div class="format-body">
+      <p><strong>Standard</strong> gebruikt alleen de meest recente sets (circa 2 jaar). Elke jaar roteert een deel weg. <strong>Pioneer</strong> gebruikt sets vanaf 2012 — groter card pool, meer variëteit. Goed voor toernooispelen bij je LGS (Local Game Store).</p>
+      <div class="format-stats">
+        <div class="stat"><span class="stat-label">Standard sets</span><span class="stat-value">~6 meest recente sets</span></div>
+        <div class="stat"><span class="stat-label">Pioneer sets</span><span class="stat-value">Return to Ravnica (2012) t/m heden</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOEKOMSTIGE FORMATS -->
+  <h2>Binnenkort toe te voegen</h2>
+  <p>Deze pagina groeit mee. De volgende formats komen er later bij:</p>
+
+  <div class="coming-soon">
+    <div class="cs-name">🎲 Cube Draft</div>
+    <div class="cs-desc">Een zelfgebouwde cube van ~360–540 kaarten, waaruit spelers boosters "draften" en tijdelijke decks bouwen. Volledig vrij in kaartenkeuze en spelstijl.</div>
+  </div>
+  <div class="coming-soon">
+    <div class="cs-name">🔮 Pauper</div>
+    <div class="cs-desc">Alleen commons (gewone kaarten). Verrassend diep en complex met een eigen meta-game. Zeer budgetvriendelijk.</div>
+  </div>
+  <div class="coming-soon">
+    <div class="cs-name">🃏 Brawl / Historic Brawl</div>
+    <div class="cs-desc">Commander maar dan met Standard-legale kaarten en 25 life (of 60 bij Historic Brawl). Populair op Magic: The Gathering Arena.</div>
+  </div>
+  <div class="coming-soon">
+    <div class="cs-name">🎯 Sealed / Booster Draft</div>
+    <div class="cs-desc">Limited formats waarbij je decks bouwt met enkel geopende boosters. Skill-intensief en altijd anders. Standaard bij Pre-release events.</div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="../index.html" style="color:var(--gold-dim)">← Terug naar Deck Library</a>
+  &nbsp;·&nbsp;
+  <a href="mtg-basics.html" style="color:var(--gold-dim)">MTG Uitleg</a>
+  &nbsp;·&nbsp;
+  <a href="cheatsheet.html" style="color:var(--gold-dim)">Cheatsheet →</a>
+</footer>
+
+</body>
+</html>

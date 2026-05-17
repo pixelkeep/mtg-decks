@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTG Uitleg – Ed's Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
 
+<nav>
+  <a href="../index.html">Deck Library</a>
+  <span>/</span>
+  <a href="#">MTG Uitleg</a>
+  <div class="nav-info">
+    <a href="formats.html">Formaten</a>
+    <span>·</span>
+    <a href="cheatsheet.html">Cheatsheet</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-title">Magic: The Gathering — Uitleg</div>
+  <div class="page-sub">De basis van het spel voor nieuwe en terugkerende spelers</div>
+</div>
+
+<div class="content">
+
+  <h2>Wat is Magic: The Gathering?</h2>
+  <p>Magic: The Gathering (MTG) is een strategisch kaartspel waarbij twee of meer spelers het opnemen als <strong>tovenaars (Planeswalkers)</strong> die strijden met spreuken, creatures en artefacten. Elk deck is een bibliotheek van minimaal 60 kaarten (of 100 bij Commander). Het doel is het leven van je tegenstander(s) naar nul te brengen.</p>
+  <p>Elke speler begint met <span class="life-box">20 life</span> (bij Commander: <span class="life-box">40 life</span>). Je verliest als je life op nul komt, je library leeg is en je een kaart moet trekken, of als je 10 poison counters hebt.</p>
+
+  <h2>De vijf kleuren mana</h2>
+  <p>Alles in Magic draait om mana — de energie die je gebruikt om kaarten te spelen. Er zijn vijf kleuren, elk met een eigen filosofie en speelstijl:</p>
+  <div class="mana-row">
+    <div class="mana-pip"><span class="pip pip-W">W</span><span><strong>Wit</strong> — Orde, bescherming, lifelink. Veel kleine creatures en removal.</span></div>
+    <div class="mana-pip"><span class="pip pip-U">U</span><span><strong>Blauw</strong> — Controle, counters, draw. Reageert op tegenstanders.</span></div>
+    <div class="mana-pip"><span class="pip pip-B">B</span><span><strong>Zwart</strong> — Kracht door offers, recursie, drain. Betaalt in life.</span></div>
+    <div class="mana-pip"><span class="pip pip-R">R</span><span><strong>Rood</strong> — Snelheid, directe schade, aggro. Wint vroeg of niet.</span></div>
+    <div class="mana-pip"><span class="pip pip-G">G</span><span><strong>Groen</strong> — Grote creatures, ramp, natuur. Wordt snel groot.</span></div>
+    <div class="mana-pip"><span class="pip pip-C">C</span><span><strong>Kleurloos</strong> — Artefacten en speciale lands. Past in elk deck.</span></div>
+  </div>
+  <p>Je gebruikt lands om mana te produceren. Elke beurt tap je (draai je 90°) een land om mana te maken. Aan het begin van elke beurt untap je al je permanenten.</p>
+
+  <h2>Soorten kaarten</h2>
+  <div class="card-types">
+    <div class="card-type">
+      <span class="ct-icon">🦁</span>
+      <div class="ct-name">Creature</div>
+      <div class="ct-desc">Vecht voor jou. Heeft power (aanval) en toughness (verdediging). Kan aanvallen en blokkeren. Komt tapped (summoning sickness) — kan pas aanvallen volgende beurt.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">⚡</span>
+      <div class="ct-name">Instant</div>
+      <div class="ct-desc">Kan op elk moment gespeeld worden — ook tijdens de beurt van de tegenstander of als reactie op iets. De meest flexibele kaartsoort.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">📜</span>
+      <div class="ct-name">Sorcery</div>
+      <div class="ct-desc">Kan alleen in jouw beurt gespeeld worden, als de stack leeg is. Vaak krachtigere effecten dan instants vanwege die beperking.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">✨</span>
+      <div class="ct-name">Enchantment</div>
+      <div class="ct-desc">Blijft op het slagveld en heeft een aanhoudend effect. Aura's bevestigen zich aan een creature of land. Andere enchantments beïnvloeden het hele spel.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">⚙️</span>
+      <div class="ct-name">Artifact</div>
+      <div class="ct-desc">Kleurloos permanente. Wapens (equipment), mana-stenen (signet, sol ring) of creatures. Kan door elke kleur gespeeld worden.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">🌟</span>
+      <div class="ct-name">Planeswalker</div>
+      <div class="ct-desc">Machtige bondgenoten met loyalty counters. Elke beurt kun je één ability activeren (+/−). Ze kunnen aangevallen worden door tegenstanders.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">🏔️</span>
+      <div class="ct-name">Land</div>
+      <div class="ct-desc">Je mana-bron. Eén per beurt spelen (normaal). Tap voor mana. Basics: Plains, Island, Swamp, Mountain, Forest. Dual lands produceren twee kleuren.</div>
+    </div>
+    <div class="card-type">
+      <span class="ct-icon">🏛️</span>
+      <div class="ct-name">Battle</div>
+      <div class="ct-desc">Nieuw kaarttype (2023). Heeft defense counters. Tegenstanders kunnen hem aanvallen; als alle counters eraf zijn, transformeert hij in iets krachtigs van jou.</div>
+    </div>
+  </div>
+
+  <h2>Zones op het slagveld</h2>
+  <p>Elke kaart bevindt zich altijd in één van deze zones:</p>
+  <div class="zone-list">
+    <div class="zone">
+      <div class="zone-name">Library (stapel)</div>
+      <div class="zone-desc">Je deck, face-down. Je trekt elke beurt de bovenste kaart. Als je moet trekken maar de library is leeg: je verliest.</div>
+    </div>
+    <div class="zone">
+      <div class="zone-name">Hand</div>
+      <div class="zone-desc">Kaarten die je kunt spelen. Maximum 7 aan het einde van je beurt (tenzij een kaart anders zegt). Niemand anders mag ze zien.</div>
+    </div>
+    <div class="zone">
+      <div class="zone-name">Battlefield</div>
+      <div class="zone-desc">Alle permanenten (creatures, enchantments, artefacten, lands, planeswalkers) die in play zijn. Zichtbaar voor iedereen.</div>
+    </div>
+    <div class="zone">
+      <div class="zone-name">Graveyard</div>
+      <div class="zone-desc">Gestorven creatures, gebruikte instants en sorceries. Zichtbaar voor iedereen. Sommige decks halen kaarten hieruit terug.</div>
+    </div>
+    <div class="zone">
+      <div class="zone-name">Exile</div>
+      <div class="zone-desc">"Buiten het spel" gezet. Normaal permanent verwijderd — maar sommige kaarten kunnen exile kaarten later toch spelen.</div>
+    </div>
+    <div class="zone">
+      <div class="zone-name">Stack</div>
+      <div class="zone-desc">Waar spells en triggered abilities even "wachten" voordat ze resolveren. Beide spelers kunnen reageren. Laatste in = eerste uit (LIFO).</div>
+    </div>
+    <div class="zone">
+      <div class="zone-name">Command Zone</div>
+      <div class="zone-desc">Alleen bij Commander: waar je commander wacht als die zou sterven. Je kunt hem opnieuw casten (elke keer 2 extra).</div>
+    </div>
+  </div>
+
+  <h2>De Stack — hoe reageren werkt</h2>
+  <p>Als iemand een spell of ability speelt, gaat die op de <strong>stack</strong>. Voordat die resolveerd, krijgt de andere speler de kans te reageren. Dit gaat door totdat niemand meer wil reageren — dan resolvt de bovenste spell eerst (LIFO: last in, first out).</p>
+  <div class="tip-box">
+    <strong>Voorbeeld</strong>
+    Je tegenstander cast Lightning Bolt op jouw creature. Jij speelt als reactie Giant Growth (+3/+3). De stack is nu: Giant Growth (bovenste) → Lightning Bolt. Giant Growth resolvt eerst: creature krijgt +3/+3. Dan resolvt Lightning Bolt: 3 schade. Als de creature nu genoeg toughness had, overleeft hij.
+  </div>
+
+  <h2>Priority — wie mag wanneer iets doen?</h2>
+  <div class="priority-box">
+    <div class="priority-title">De regel</div>
+    <p>De actieve speler (wiens beurt het is) krijgt altijd eerst <strong>priority</strong> — het recht om een spell te spelen of een ability te activeren. Als de actieve speler past, krijgt de niet-actieve speler priority. Als beiden passen met een lege stack, gaat het spel door naar de volgende stap.</p>
+  </div>
+  <p>In de praktijk: <strong>instants en activated abilities</strong> mag je spelen wanneer je priority hebt — ook in de beurt van een tegenstander. <strong>Sorceries, creatures, enchantments, artefacten en lands</strong> mag je alleen spelen als jij de actieve speler bent én de stack leeg is.</p>
+
+  <h2>Wanneer mag ik welke kaart spelen?</h2>
+  <div class="card-types">
+    <div class="card-type">
+      <div class="ct-name">Altijd (als je priority hebt)</div>
+      <div class="ct-desc">Instants · Activated abilities van permanenten · Mana abilities (gratis, gaan niet op de stack)</div>
+    </div>
+    <div class="card-type">
+      <div class="ct-name">Alleen in jouw beurt, stack leeg</div>
+      <div class="ct-desc">Sorceries · Creatures · Enchantments · Artifacts · Planeswalkers · Lands (max 1 per beurt)</div>
+    </div>
+    <div class="card-type">
+      <div class="ct-name">Speciale gevallen</div>
+      <div class="ct-desc">Flash: als een instant · Morph/Disguise: face-down als instant · Cycling: altijd (betaal cost, discard, draw)</div>
+    </div>
+  </div>
+
+  <h2>Combat — hoe aanvallen werkt</h2>
+  <p>Combat verloopt in deze stappen:</p>
+  <p><strong>1. Begin Combat</strong> — beide spelers kunnen reageren vóórdat aanvallers worden gekozen.</p>
+  <p><strong>2. Declare Attackers</strong> — actieve speler kiest welke creatures aanvallen (en op wie/wat). Aanvallende creatures tappen.</p>
+  <p><strong>3. Declare Blockers</strong> — verdedigende speler kiest welke creatures blokkeren. Meerdere creatures mogen één aanvaller blokkeren. Eén creature kan maar één aanvaller blokkeren.</p>
+  <p><strong>4. First Strike damage</strong> (als relevant) — creatures met first strike of double strike doen schade eerst.</p>
+  <p><strong>5. Regular Combat damage</strong> — alle overige creatures doen tegelijkertijd schade.</p>
+  <p><strong>6. End Combat</strong> — cleanup, triggers.</p>
+  <div class="tip-box">
+    <strong>Belangrijk</strong>
+    Een geblokt creature doet geen schade aan de speler — het doet schade aan de blocker(s). Tenzij het trample heeft: dan doet het overschot schade aan de speler/planeswalker.
+  </div>
+
+</div>
+
+<footer>
+  <a href="../index.html" style="color:var(--gold-dim)">← Terug naar Deck Library</a>
+  &nbsp;·&nbsp;
+  <a href="formats.html" style="color:var(--gold-dim)">Formaten →</a>
+  &nbsp;·&nbsp;
+  <a href="cheatsheet.html" style="color:var(--gold-dim)">Cheatsheet →</a>
+</footer>
+
+</body>
+</html>

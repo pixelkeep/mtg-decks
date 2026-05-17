@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cheatsheet – Ed's Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Deck Library</a>
+  <span>/</span>
+  <a href="#">Cheatsheet</a>
+  <div class="nav-info">
+    <a href="mtg-basics.html">MTG Uitleg</a>
+    <span>·</span>
+    <a href="formats.html">Formaten</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-title">MTG Cheatsheet</div>
+  <div class="page-sub">Snel opzoeken: beurtvolgorde, keywords, mana-notatie en priority</div>
+</div>
+
+<div class="jump-links">
+  <a href="#beurt">Beurtvolgorde</a>
+  <a href="#wanneer">Wanneer spelen?</a>
+  <a href="#keywords">Keywords</a>
+  <a href="#mana">Mana-notatie</a>
+  <a href="#verlies">Verliescondities</a>
+  <a href="#combat">Combat snel</a>
+</div>
+
+<div class="content">
+
+  <!-- BEURTVOLGORDE -->
+  <h2 id="beurt">Beurtvolgorde (Turn Structure)</h2>
+  <p>Elke beurt verloopt altijd in dezelfde volgorde. Tussen iedere stap hebben beide spelers priority om te reageren.</p>
+  <div class="turn-steps">
+    <div class="turn-step">
+      <span class="step-num">1</span>
+      <div class="step-name">Untap</div>
+      <div class="step-detail">Draai alle getapte permanenten terug rechtop. Geen priority — niemand kan hier reageren.</div>
+      <span class="step-tag tag-cant">Geen spells</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">2</span>
+      <div class="step-name">Upkeep</div>
+      <div class="step-detail">"Begin van je upkeep" triggers gaan af (bijv. Meren, Sylvan Library). Eerste kans om te reageren deze beurt.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">3</span>
+      <div class="step-name">Draw</div>
+      <div class="step-detail">Trek de bovenste kaart van je library. Verplicht — als je niet kunt trekken, verlies je.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">4</span>
+      <div class="step-name">Pre-Combat Main Phase</div>
+      <div class="step-detail">Speel lands, creatures, sorceries, enchantments, artefacten, planeswalkers. De meeste acties gebeuren hier.</div>
+      <span class="step-tag tag-can">Alles</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">5</span>
+      <div class="step-name">Begin of Combat</div>
+      <div class="step-detail">Vóórdat je aanvalt. Laatste kans om iets te doen vóór combat-triggers.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">6</span>
+      <div class="step-name">Declare Attackers</div>
+      <div class="step-detail">Kies welke creatures aanvallen en op wie. Aanvallers tappen.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">7</span>
+      <div class="step-name">Declare Blockers</div>
+      <div class="step-detail">Tegenstander kiest welke creatures blokkeren. Daarna: schade verdelen bij meerdere blockers.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">8</span>
+      <div class="step-name">Combat Damage</div>
+      <div class="step-detail">Schade wordt tegelijk uitgedeeld. First strike/Double strike gaan eerder. Creatures met lethal damage sterven.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">9</span>
+      <div class="step-name">End of Combat</div>
+      <div class="step-detail">"At end of combat" triggers. Combat-buffs ("until end of combat") verdwijnen hier.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">10</span>
+      <div class="step-name">Post-Combat Main Phase</div>
+      <div class="step-detail">Tweede main phase — kun je nog lands spelen, creatures casten, etc. Vaak gebruikt voor post-combat follow-up.</div>
+      <span class="step-tag tag-can">Alles</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">11</span>
+      <div class="step-name">End Step</div>
+      <div class="step-detail">"At the beginning of each end step" triggers. Effecten "until end of turn" verdwijnen hier. Tegenstanders kunnen nog reageren.</div>
+      <span class="step-tag tag-can">Instants / abilities</span>
+    </div>
+    <div class="turn-step">
+      <span class="step-num">12</span>
+      <div class="step-name">Cleanup</div>
+      <div class="step-detail">Gooi kaarten weg tot maximale hand (7). "Until end of turn" effecten eindigen. Schade op creatures wordt verwijderd. Geen priority (tenzij triggers afgaan).</div>
+      <span class="step-tag tag-cant">Geen priority</span>
+    </div>
+  </div>
+
+  <!-- WANNEER MAG IK SPELEN -->
+  <h2 id="wanneer">Wanneer mag ik welke kaart spelen?</h2>
+  <div class="priority-table">
+    <div class="prio-box can">
+      <div class="prio-title">✓ Altijd (als je priority hebt)</div>
+      <ul class="prio-list">
+        <li>Instants</li>
+        <li>Activated abilities van permanenten</li>
+        <li>Mana abilities (tap land voor mana — gaat niet eens op de stack)</li>
+        <li>Triggered abilities (als ze afspringen, gaan ze op de stack)</li>
+        <li>Kaarten met Flash (als een instant)</li>
+      </ul>
+    </div>
+    <div class="prio-box cant">
+      <div class="prio-title">✗ Alleen in jouw beurt, stack leeg</div>
+      <ul class="prio-list">
+        <li>Sorceries</li>
+        <li>Creatures</li>
+        <li>Enchantments (incl. Aura's)</li>
+        <li>Artifacts</li>
+        <li>Planeswalkers</li>
+        <li>Lands (max 1 per beurt, geen mana nodig)</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>De Stack:</strong> alles gaat "op de stack" — de laatste spell die erop gaat, resolvert als eerste (LIFO). Mana abilities gaan niet op de stack. Als beide spelers passen met een lege stack, gaat het spel naar de volgende stap.</p>
+
+  <!-- KEYWORDS -->
+  <h2 id="keywords">Keyword Abilities — alle veelvoorkomende trefwoorden</h2>
+
+  <div class="kw-grid">
+
+    <div class="kw-cat">Aanvalskeywords</div>
+
+    <div class="kw-item">
+      <div class="kw-name">Flying</div>
+      <div class="kw-def">Kan alleen geblokt worden door andere creatures met flying of reach.</div>
+      <div class="kw-example">Voorbeeld: Serra Angel, Sphinxen, de meeste engelen en draken</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Trample</div>
+      <div class="kw-def">Als de aanvaller meer schade doet dan de blocker(s) toughness, gaat het overschot naar de speler of planeswalker.</div>
+      <div class="kw-example">Voorbeeld: Craterhoof Behemoth, de meeste grote groene creatures</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">First Strike</div>
+      <div class="kw-def">Doet combat schade vóór creatures zonder first strike. Als de blocker sterft, doet die geen schade terug.</div>
+      <div class="kw-example">Voorbeeld: White Knight, Mirran Crusader</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Double Strike</div>
+      <div class="kw-def">Doet zowel first strike schade als reguliere combat schade — effectief twee keer aanvallen.</div>
+      <div class="kw-example">Voorbeeld: Aurelia, Kor Duelist met Bonesplitter</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Menace</div>
+      <div class="kw-def">Kan alleen geblokt worden door twee of meer creatures tegelijk.</div>
+      <div class="kw-example">Voorbeeld: Goblin Piker in latere printingen</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Haste</div>
+      <div class="kw-def">Kan aanvallen en activated abilities activeren al de beurt dat hij in play komt. Geen summoning sickness.</div>
+      <div class="kw-example">Voorbeeld: Goblin Guide, Lightning Mauler</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Vigilance</div>
+      <div class="kw-def">Tapped niet bij aanvallen. Kan aanvallen én nog steeds blokkeren de volgende beurt van de tegenstander.</div>
+      <div class="kw-example">Voorbeeld: Serra Angel, Trostani</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Reach</div>
+      <div class="kw-def">Kan creatures met flying blokkeren, ook al heeft het zelf geen flying.</div>
+      <div class="kw-example">Voorbeeld: Spidery Grasp, Wall of Tanglevine</div>
+    </div>
+
+    <div class="kw-cat">Bescherming & Duurzaamheid</div>
+
+    <div class="kw-item">
+      <div class="kw-name">Hexproof</div>
+      <div class="kw-def">Kan niet getarget worden door spells of abilities van tegenstanders. Kan wel door board wipes getroffen worden.</div>
+      <div class="kw-example">Voorbeeld: Dungrove Elder, Sigarda</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Shroud</div>
+      <div class="kw-def">Kan door niemand getarget worden — ook niet door de eigenaar. Ouder dan hexproof.</div>
+      <div class="kw-example">Voorbeeld: Lightning Greaves (equipped creature)</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Ward</div>
+      <div class="kw-def">Als tegenstander targeteert: hij moet een extra cost betalen (mana, life, etc.) anders wordt de spell gecountered.</div>
+      <div class="kw-example">Voorbeeld: Auntie Ool — Ward: Blight 2</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Indestructible</div>
+      <div class="kw-def">Kan niet vernietigd worden door "destroy"-effecten of lethal damage. Wél door exile, -X/-X tot 0 toughness, of sacrifice.</div>
+      <div class="kw-example">Voorbeeld: Avacyn, Elspeth, Darksteel Colossus</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Protection from [X]</div>
+      <div class="kw-def">Kan niet getarget, beschadigd, geblokt of bevestigd worden door iets van kleur/type X. "DEBT" — Damage, Enchanted, Blocked, Targeted.</div>
+      <div class="kw-example">Voorbeeld: White Knight (protection from black)</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Regenerate</div>
+      <div class="kw-def">Oud keyword: als dit creature zou sterven, tap het in plaats daarvan en verwijder alle schade. Eenmalig effect.</div>
+      <div class="kw-example">Voorbeeld: Lotleth Troll</div>
+    </div>
+
+    <div class="kw-cat">Schade & Removal keywords</div>
+
+    <div class="kw-item">
+      <div class="kw-name">Deathtouch</div>
+      <div class="kw-def">Elk beetje schade van dit creature is genoeg om een creature te vernietigen, ongeacht toughness.</div>
+      <div class="kw-example">Voorbeeld: Typhoid Rats, Acidic Slime</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Lifelink</div>
+      <div class="kw-def">Elke schade die dit creature doet (combat of anderszins) geeft jou evenveel life terug.</div>
+      <div class="kw-example">Voorbeeld: Serra Angel, Ajani's Pridemate</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Wither</div>
+      <div class="kw-def">Doet schade in de vorm van -1/-1 counters in plaats van gewone schade. Die counters gaan niet weg aan het einde van de beurt.</div>
+      <div class="kw-example">Voorbeeld: Everlasting Torment geeft alle schade wither</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Infect</div>
+      <div class="kw-def">Doet schade aan spelers als poison counters (10 = verlies) en aan creatures als -1/-1 counters.</div>
+      <div class="kw-example">Voorbeeld: Phyrexian Crusader, Glistener Elf</div>
+    </div>
+
+    <div class="kw-cat">Graveyard & Recursie</div>
+
+    <div class="kw-item">
+      <div class="kw-name">Flashback</div>
+      <div class="kw-def">Kun je casten vanuit je graveyard voor de flashback cost. Wordt daarna geëxiled.</div>
+      <div class="kw-example">Voorbeeld: Faithless Looting, Lingering Souls</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Undying</div>
+      <div class="kw-def">Als dit creature sterft zonder +1/+1 counter, keert het terug met een +1/+1 counter. Sterft het opnieuw mét counter, dan is het weg.</div>
+      <div class="kw-example">Voorbeeld: Mikaeus, Geralf's Messenger</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Persist</div>
+      <div class="kw-def">Als dit creature sterft zonder -1/-1 counter, keert het terug met een -1/-1 counter.</div>
+      <div class="kw-example">Voorbeeld: Kitchen Finks, Murderous Redcap</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Encore</div>
+      <div class="kw-def">Activeer vanuit graveyard: maak voor elke tegenstander een haaste token-kopie die aanvalt; sacrifice ze aan het einde.</div>
+      <div class="kw-example">Voorbeeld: Angel of Indemnity</div>
+    </div>
+
+    <div class="kw-cat">Cast & Speel keywords</div>
+
+    <div class="kw-item">
+      <div class="kw-name">Flash</div>
+      <div class="kw-def">Kun je spelen als een instant — op elk moment dat je priority hebt.</div>
+      <div class="kw-example">Voorbeeld: Ambush Viper, Teferi (sommige versies)</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Convoke</div>
+      <div class="kw-def">Creatures kunnen helpen casten: tap een creature om {1} of één mana van die kleur te betalen.</div>
+      <div class="kw-example">Voorbeeld: Bennie Bracks, Chord of Calling</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Cascade</div>
+      <div class="kw-def">Bij casten: exile kaarten van je library totdat je een non-land vind met lagere mana value; cast die gratis.</div>
+      <div class="kw-example">Voorbeeld: Shardless Agent, Bloodbraid Elf</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Kicker</div>
+      <div class="kw-def">Optionele extra cost bij casten voor een extra effect.</div>
+      <div class="kw-example">Voorbeeld: Primal Growth — kick voor twee lands</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Cycling</div>
+      <div class="kw-def">Betaal de cycling cost en discard: trek een kaart. Altijd bruikbaar.</div>
+      <div class="kw-example">Voorbeeld: Desert lands, Secluded Steppe</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Evoke</div>
+      <div class="kw-def">Alternatieve, goedkopere cast cost. Creature wordt gesacrificed zodra hij binnenkomt, maar de ETB trigger gaat wel af.</div>
+      <div class="kw-example">Voorbeeld: Shriekmaw — evoke {1}{B} = instant remove</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Overload</div>
+      <div class="kw-def">Betaal de overload cost: "target" wordt "each" — raakt alles in plaats van één ding.</div>
+      <div class="kw-example">Voorbeeld: Vandalblast — overload: vernietig alle artefacten van tegenstanders</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Replicate</div>
+      <div class="kw-def">Betaal de replicate cost één of meer keer bij casten: maak kopieën van de spell.</div>
+      <div class="kw-example">Voorbeeld: Changing Loyalty</div>
+    </div>
+
+    <div class="kw-cat">Counter & Groei</div>
+
+    <div class="kw-item">
+      <div class="kw-name">Proliferate</div>
+      <div class="kw-def">Kies een aantal spelers en permanenten met counters; zet op elk een extra counter van elk type dat er al op staat.</div>
+      <div class="kw-example">Voorbeeld: Evolution Sage, Karn's Bastion</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Adapt</div>
+      <div class="kw-def">Als dit creature geen +1/+1 counter heeft: zet X counters erop.</div>
+      <div class="kw-example">Voorbeeld: Incubation Druid — adapt 3</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Goad</div>
+      <div class="kw-def">Gegoade creature moet aanvallen elke combat (indien mogelijk) en mag niet aanvallen op jou.</div>
+      <div class="kw-example">Voorbeeld: Coercive Impetus, Killian trigger</div>
+    </div>
+
+    <div class="kw-cat">Overige veelgebruikte termen</div>
+
+    <div class="kw-item">
+      <div class="kw-name">ETB (Enter the Battlefield)</div>
+      <div class="kw-def">"When this creature enters" — trigger die afgaat zodra het permanente binnenkomt op het slagveld.</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Dies trigger</div>
+      <div class="kw-def">"When this creature dies" — trigger als het van het slagveld naar de graveyard gaat.</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Tap / Untap</div>
+      <div class="kw-def">Tap (⟳) = 90° draaien; gebruikt land voor mana, of geeft aan dat een creature aangevallen heeft. Untap: aan het begin van je beurt alles rechtop.</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Summoning Sickness</div>
+      <div class="kw-def">Een creature dat net in play is gekomen kan die beurt niet aanvallen of {T} activeren (tenzij het Haste heeft).</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Legendary Rule</div>
+      <div class="kw-def">Als je twee legendaries met dezelfde naam controleert, moet je één sacrificen. Geldt ook voor planeswalkers met dezelfde naam.</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Mill</div>
+      <div class="kw-def">Zet de bovenste X kaarten van een library in de graveyard. Geen damage, maar kan library leegmaken (= verlies).</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Scry X</div>
+      <div class="kw-def">Bekijk de bovenste X kaarten van je library; leg ze terug in elke gewenste volgorde (boven/onder).</div>
+    </div>
+    <div class="kw-item">
+      <div class="kw-name">Surveil X</div>
+      <div class="kw-def">Bekijk de bovenste X kaarten; stuur naar graveyard of boven op library, in elke volgorde.</div>
+    </div>
+  </div>
+
+  <!-- MANA NOTATIE -->
+  <h2 id="mana">Mana-notatie begrijpen</h2>
+  <table class="mana-table">
+    <tr><th>Notatie</th><th>Betekenis</th></tr>
+    <tr><td>{W}</td><td>Eén witte mana (een Plains of witte mana-bron)</td></tr>
+    <tr><td>{U}</td><td>Eén blauwe mana (Island of blauwe bron)</td></tr>
+    <tr><td>{B}</td><td>Eén zwarte mana (Swamp of zwarte bron)</td></tr>
+    <tr><td>{R}</td><td>Eén rode mana (Mountain of rode bron)</td></tr>
+    <tr><td>{G}</td><td>Eén groene mana (Forest of groene bron)</td></tr>
+    <tr><td>{C}</td><td>Eén kleurloos mana (specifiek kleurloos — niet elk mana voldoet)</td></tr>
+    <tr><td>{1}, {2}, {3}...</td><td>Generieke mana — elk type mana voldoet</td></tr>
+    <tr><td>{X}</td><td>Variabel — je kiest hoeveel je betaalt bij casten</td></tr>
+    <tr><td>{W/U}</td><td>Hybrid mana — betaal ofwel wit ofwel blauw</td></tr>
+    <tr><td>{2/B}</td><td>Phyrexian hybrid — betaal {2} of {B}</td></tr>
+    <tr><td>{B/P}</td><td>Phyrexian mana — betaal {B} of 2 life</td></tr>
+    <tr><td>{S}</td><td>Snow mana — van een snow permanent/land</td></tr>
+    <tr><td>{T}</td><td>Tap-symbool — tap dit permanent als cost</td></tr>
+    <tr><td>{Q}</td><td>Untap-symbool — untap dit permanent als cost</td></tr>
+  </table>
+
+  <!-- VERLIES CONDITIONS -->
+  <h2 id="verlies">Je verliest het spel als...</h2>
+  <div class="loss-list">
+    <div class="loss-item"><div class="loss-icon">❤️</div><div class="loss-text"><strong>Je life op nul (of lager) komt.</strong> Schade, life verlies, en drain tellen allemaal mee. Lifelink kan dit voorkomen.</div></div>
+    <div class="loss-item"><div class="loss-icon">📚</div><div class="loss-text"><strong>Je moet een kaart trekken maar je library is leeg.</strong> Je verliest meteen als je deze trekpoging doet — niet als de library leeg wordt.</div></div>
+    <div class="loss-item"><div class="loss-icon">☠️</div><div class="loss-text"><strong>Je krijgt 10 of meer poison counters.</strong> Dit telt los van je life total — zelfs bij 39 life kun je hiermee verliezen.</div></div>
+    <div class="loss-item"><div class="loss-icon">⚔️</div><div class="loss-text"><strong>Commander Damage: 21+ combat schade van één commander.</strong> Opgeteld over het hele spel. Geldt per commander afzonderlijk.</div></div>
+    <div class="loss-item"><div class="loss-icon">📜</div><div class="loss-text"><strong>Een kaart zegt dat je verliest.</strong> Bijv. Phage the Untouchable (die je uit hand cast) of Triskaidekaphobia (als je precies 13 life hebt).</div></div>
+  </div>
+
+  <!-- COMBAT SNEL -->
+  <h2 id="combat">Combat — snel overzicht</h2>
+  <p><strong>Blokkeren:</strong> de verdedigende speler kiest blokkers — niet de aanvaller. Een creature hoeft niet te blokkeren (tenzij een effect dat zegt). Meerdere creatures mogen één aanvaller blokkeren, maar één creature kan slechts één aanvaller blokkeren.</p>
+  <p><strong>Schade bij meerdere blockers:</strong> de aanvallende speler verdeelt zijn schade over de blockers (in door hem gekozen volgorde). Hij moet minstens genoeg schade verdelen om de eerste blocker te "dodgen" voor het overschot naar de volgende gaat — tenzij trample.</p>
+  <p><strong>Blokt maar heeft niets bereikt?</strong> Een geblokt creature doet <em>geen</em> schade aan de speler — alleen aan de blocker(s). Een ongeblokt aanvaller doet schade aan de speler of planeswalker.</p>
+  <p><strong>Planeswalkers aanvallen:</strong> aanvallende creatures kunnen kiezen om een planeswalker aan te vallen in plaats van de speler. Schade aan een planeswalker verwijdert loyalty counters.</p>
+
+</div>
+
+<footer>
+  <a href="../index.html" style="color:var(--gold-dim)">← Terug naar Deck Library</a>
+  &nbsp;·&nbsp;
+  <a href="mtg-basics.html" style="color:var(--gold-dim)">MTG Uitleg</a>
+  &nbsp;·&nbsp;
+  <a href="formats.html" style="color:var(--gold-dim)">Formaten</a>
+</footer>
+
+</body>
+</html>
