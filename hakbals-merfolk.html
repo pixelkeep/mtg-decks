@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakbal's Merfolk – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root {
+      --bg: #060e0a; --surface: #0d1a10; --surface2: #122018;
+      --border: #1a3020; --text: #d0f0d8; --text-dim: #4a8060;
+      --accent: #2a7040; --accent2: #60c080;
+    }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 20% 40%, rgba(42,112,64,0.09) 0%, transparent 55%), radial-gradient(ellipse at 80% 60%, rgba(42,80,120,0.07) 0%, transparent 50%); pointer-events: none; }
+    .hero { background: linear-gradient(160deg, rgba(12,26,16,0.98) 0%, rgba(42,80,140,0.10) 100%); }
+    .intro-text { color: #90d0a8; }
+    .card-link { color: #80d0a0; border-bottom-color: var(--accent); }
+    .tip-box { border-left-color: var(--accent); }
+    .tip-label { color: var(--accent2); }
+    .explore-box { background: var(--surface2); border: 1px solid #2a5030; border-left: 3px solid var(--accent2); padding: 1rem 1.2rem; margin-bottom: 0.75rem; }
+    .explore-title { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--accent2); margin-bottom: 0.4rem; letter-spacing: 0.08em; }
+    .explore-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.55; }
+    .explore-steps { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .explore-step { font-size: 0.85rem; color: var(--text-dim); padding-left: 1rem; position: relative; }
+    .explore-step::before { content: '→'; position: absolute; left: 0; color: var(--accent2); }
+    .islandwalk-note { background: rgba(42,80,140,0.10); border: 1px solid #1a3060; border-left: 3px solid #4a70b0; padding: 0.8rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; color: var(--text-dim); }
+    .islandwalk-title { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #6090c0; margin-bottom: 0.35rem; }
+    .decklist li { border-bottom-color: rgba(26,48,32,0.8); }
+    .bracket-block { border-color: #3a5a20; background: rgba(42,112,64,0.07); }
+    .bracket-title { color: #d4aa4a; }
+  </style>
+</head>
+<body>
+<nav class="breadcrumb"><a href="../index.html">Deck Library</a><span>/</span><a href="#">Hakbal's Merfolk</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Hakbal's Merfolk</div>
+      <div class="commander-name">Commander: Hakbal of the Surging Soul</div>
+      <a href="https://archidekt.com/decks/7629806/hakbals_merfolk" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Hakbal of the Surging Soul" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Midrange · Tribal</span>
+      <span class="badge badge-thm" style="color:#70c090;border-color:#205030">Merfolk · Explore · +1/+1</span>
+      <span class="badge badge-brk-4">Bracket 4 – Optimized</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Simic)</div>
+      <div class="meta-value"><div class="color-pips"><span class="pip pip-U">U</span><span class="pip pip-G">G</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="meter-dot diff"></div><div class="meter-dot diff"></div><div class="meter-dot"></div><div class="meter-dot"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Gemiddeld</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="meter-dot str"></div><div class="meter-dot str"></div><div class="meter-dot str"></div><div class="meter-dot str"></div><div class="meter-dot str"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">5 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Snel — opgebouwd en aanvallend vanaf beurt 4</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Hakbal's Merfolk is een klassiek tribaal aggro/midrange deck dat op twee motoren draait: <strong>explore</strong> en <strong>+1/+1 counters</strong>. <span class="card-link">Hakbal of the Surging Soul<span class="card-preview"><img src="" data-name="Hakbal of the Surging Soul" alt="" /></span></span> laat aan het begin van elke combat alle Merfolk exploreren — dat betekent gratis kaartselectie, landen of counters voor elk Merfolk tegelijk. Na combat mag hij zelf een land uit de hand leggen (of een kaart trekken), wat extra ramp of card advantage geeft.</p>
+      <p class="intro-text" style="margin-top:1rem">Het deck stapelt counters snel via explore, proliferate en counter-doublers als <span class="card-link">Branching Evolution<span class="card-preview"><img src="" data-name="Branching Evolution" alt="" /></span></span> en <span class="card-link">Hardened Scales<span class="card-preview"><img src="" data-name="Hardened Scales" alt="" /></span></span>. Zodra Merfolk counters hebben, zijn ze onblokbaar via <span class="card-link">Herald of Secret Streams<span class="card-preview"><img src="" data-name="Herald of Secret Streams" alt="" /></span></span>. Stax via <span class="card-link">Harbinger of the Seas<span class="card-preview"><img src="" data-name="Harbinger of the Seas" alt="" /></span></span> (alle non-basic lands worden Islands) maakt islandwalk van je lords lethal.</p>
+    </section>
+
+    <section>
+      <div class="section-title">Explore uitgelegd</div>
+      <div class="explore-box">
+        <div class="explore-title">Wat is Explore?</div>
+        <div class="explore-text">Wanneer een creature "explores", onthul je de bovenste kaart van je library:</div>
+        <div class="explore-steps">
+          <div class="explore-step">Is het een <strong>land</strong>? → Neem hem in je hand. Het creature doet niets anders.</div>
+          <div class="explore-step">Is het <strong>geen land</strong>? → Zet een +1/+1 counter op het creature. Dan: leg de kaart terug bovenop, of gooi hem in je graveyard.</div>
+        </div>
+        <div class="explore-text" style="margin-top:0.5rem">Met Hakbal exploreren <em>alle</em> Merfolk tegelijk. Met 6 Merfolk in play: 6 gratis explores, 6 mogelijke counters of 6 landen in hand. <span class="card-link">Topography Tracker<span class="card-preview"><img src="" data-name="Topography Tracker" alt="" /></span></span> laat een creature twee keer exploreren — dubbel effect. <span class="card-link">Nicanzil<span class="card-preview"><img src="" data-name="Nicanzil, Current Conductor" alt="" /></span></span> legt bij een land-explore meteen nog een land uit je hand neer.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">De Islandwalk Stax-combo</div>
+      <div class="islandwalk-note">
+        <div class="islandwalk-title">🌊 Harbinger of the Seas + Islandwalk Lords</div>
+        <span class="card-link">Harbinger of the Seas<span class="card-preview"><img src="" data-name="Harbinger of the Seas" alt="" /></span></span> maakt alle non-basic lands van tegenstanders tot Islands. <span class="card-link">Lord of Atlantis<span class="card-preview"><img src="" data-name="Lord of Atlantis" alt="" /></span></span> en <span class="card-link">Master of the Pearl Trident<span class="card-preview"><img src="" data-name="Master of the Pearl Trident" alt="" /></span></span> geven alle Merfolk islandwalk (kan niet geblokt worden als de verdedigende speler een Island controleert). Resultaat: zodra Harbinger in play is, zijn al je Merfolk <strong>permanent onblokbaar</strong> voor iedereen die non-basic lands heeft — wat vrijwel alle decks zijn.
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">🌊</div>
+          <div>
+            <div class="wincon-name">Islandwalk Overrun</div>
+            <div class="wincon-desc">Harbinger + Lord of Atlantis/Master: alle Merfolk zijn onblokbaar. Met 8–10 Merfolk (elk met 2–3 counters van explore + Branching Evolution) aanvallen voor 20–30 combat damage in één beurt. Wave Goodbye ruimt daarvoor alle non-counter creatures van tegenstanders op.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🚫</div>
+          <div>
+            <div class="wincon-name">Herald of Secret Streams — Alles Onblokbaar</div>
+            <div class="wincon-desc"><span class="card-link">Herald of Secret Streams<span class="card-preview"><img src="" data-name="Herald of Secret Streams" alt="" /></span></span>: alle creatures met +1/+1 counters kunnen niet geblokt worden. Gecombineerd met de explore-engine (bijna alle Merfolk krijgen snel counters) is praktisch je hele board onblokbaar — zelfs zonder Harbinger.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🏆</div>
+          <div>
+            <div class="wincon-name">Simic Ascendancy — Alternatieve Win</div>
+            <div class="wincon-desc"><span class="card-link">Simic Ascendancy<span class="card-preview"><img src="" data-name="Simic Ascendancy" alt="" /></span></span>: elke +1/+1 counter die ergens op komt, legt ook een growth counter op dit enchantment. Bij 20 growth counters win je het spel aan het begin van je upkeep. Met de explore-engine en proliferate gaat dit verrassend snel — vaak sneller dan tegenstanders verwachten.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🦣</div>
+          <div>
+            <div class="wincon-name">Overwhelming Stampede Alpha Strike</div>
+            <div class="wincon-desc">Met 10+ Merfolk die elk 3–4 counters hebben via Branching Evolution + explore: <span class="card-link">Overwhelming Stampede<span class="card-preview"><img src="" data-name="Overwhelming Stampede" alt="" /></span></span> geeft ze allemaal +X/+X trample, waar X de grootste power is. Als het grootste Merfolk een 8/8 is: alles wordt 8 groter. 50+ combat damage in één beurt is realistisch.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">⬆️</div>
+          <div>
+            <div class="wincon-name">Kumena Tap-abilities</div>
+            <div class="wincon-desc"><span class="card-link">Kumena, Tyrant of Orazca<span class="card-preview"><img src="" data-name="Kumena, Tyrant of Orazca" alt="" /></span></span> heeft drie tap-abilities: tap 1 extra Merfolk (ongblokbaar), tap 3 (draw een kaart), tap 5 (+1/+1 op elk Merfolk). Met <span class="card-link">Merrow Commerce<span class="card-preview"><img src="" data-name="Merrow Commerce" alt="" /></span></span> (untap alle Merfolk elke end step) kun je elke beurt meerdere malen Kumena's abilities activeren.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Hakbal of the Surging Soul<span class="card-preview"><img src="" data-name="Hakbal of the Surging Soul" alt="" /></span></span></div>
+          <div class="keycard-desc">Alle Merfolk exploreren aan het begin van combat. Zelf: leg een land neer of trek een kaart na aanvallen. Snelste manier om counters op het board te krijgen. Beschermen met Swiftfoot Boots.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Branching Evolution<span class="card-preview"><img src="" data-name="Branching Evolution" alt="" /></span></span></div>
+          <div class="keycard-desc">Verdubbelt alle +1/+1 counters. Elke explore die een counter geeft → twee counters. Met Hardened Scales erbij: drie counters per explore. Exponentiële groei vanaf beurt 3.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Herald of Secret Streams<span class="card-preview"><img src="" data-name="Herald of Secret Streams" alt="" /></span></span></div>
+          <div class="keycard-desc">Alle creatures met +1/+1 counters zijn onblokbaar. Met Hakbal's explore-engine hebben bijna alle Merfolk snel counters. Speel dit zodra je 4+ Merfolk met counters hebt.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Harbinger of the Seas<span class="card-preview"><img src="" data-name="Harbinger of the Seas" alt="" /></span></span></div>
+          <div class="keycard-desc">Non-basic lands worden Islands. Maakt islandwalk van al je lords actief tegen vrijwel elk deck. Geeft ook mana-fixing problemen aan tegenstanders met veel non-basics.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Merrow Commerce<span class="card-preview"><img src="" data-name="Merrow Commerce" alt="" /></span></span></div>
+          <div class="keycard-desc">Untapt alle Merfolk elke end step. Dit laat je Kumena's tap-abilities hergebruiken, blockers klaar hebben na het aanvallen, én Merrow Reejerey triggeren voor extra tap/untap van permanenten.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Kindred Discovery<span class="card-preview"><img src="" data-name="Kindred Discovery" alt="" /></span></span></div>
+          <div class="keycard-desc">Trek een kaart bij elk Merfolk dat binnenkomt én bij elk Merfolk dat aanvalt. In een beurt met 8 aanvallende Merfolk: trek 8 kaarten. De beste draw-engine voor tribale decks.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Explore-prioriteit</div>
+        <div class="tip-text">Als je bij explore een non-land onthult en hem niet in hand wil, kies je: bovenop library (zodat je hem volgende explore weer kunt pakken) of in graveyard (voor Deeproot Historian of Bygone Marvels). Wees bewust van die keuze — hij telt mee voor je volgende explore.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Wave Goodbye timing</div>
+        <div class="tip-text"><span class="card-link">Wave Goodbye<span class="card-preview"><img src="" data-name="Wave Goodbye" alt="" /></span></span> stuurt alle creatures zonder +1/+1 counter terug naar hand. Gebruik het als je board vol counters heeft en tegenstanders niet. Jij verliest niets, zij alles — dan aanvallen voor lethal.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Raise the Palisade</div>
+        <div class="tip-text"><span class="card-link">Raise the Palisade<span class="card-preview"><img src="" data-name="Raise the Palisade" alt="" /></span></span> kies je Merfolk als type: alle non-Merfolk terug naar hand. Een asymmetrische boardwipe die je board intact laat. Combineer met een aanval voor lethal daarna.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil — Harbinger raakt ook jou</div>
+        <div class="tip-text">Harbinger of the Seas maakt <em>alle</em> non-basic lands Islands — inclusief jouw eigen non-basics. Zorg dat je voldoende basic Islands en Forests hebt voor groen mana. Check je manabase voor je hem speelt.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Bracket 4 — waarschuwing</div>
+        <div class="tip-text">Dit deck heeft een uiterst hoge consistentie: Exploration + Hakbal's land-ability = 3 landen per beurt, Branching Evolution maakt het snel dominant. Archidekt schat het op bracket 4. Communiceer dit voor het spel.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een <strong style="color:var(--gold)">5/5</strong>. Hakbal's Merfolk is het meest gestroomlijnde deck in de pool: een goedkope commander, een consistente engine (explore), snelle counters via Branching Evolution + Hardened Scales, en meerdere "alles onblokbaar" win conditions. Het deck wint via combat damage, maar doet dat zo efficiënt dat het moeilijk te stoppen is. Bracket 4 is terecht. Verrassend laag budget voor de kracht (~€280).</p>
+    </section>
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 4 — Optimized</div>
+      <div class="bracket-desc">Uiterst consistente engine via explore + counter-doublers. Heroic Intervention, Exploration en meerdere one-sided boardwipes. Past bij bracket 3–4 decks.</div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:50px;background:var(--accent)"></div><div class="curve-label">1</div><div class="curve-count">6</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:65px;background:var(--accent)"></div><div class="curve-label">2</div><div class="curve-count">13</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px;background:var(--accent)"></div><div class="curve-label">3</div><div class="curve-count">11</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:40px;background:var(--accent)"></div><div class="curve-label">4</div><div class="curve-count">8</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:20px;background:var(--accent)"></div><div class="curve-label">5+</div><div class="curve-count">4</div></div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="decklist-group">Commander</span>
+        <li><span class="cn">Hakbal of the Surging Soul</span><span class="cq">1×</span></li>
+        <span class="decklist-group">Lords & Anthems</span>
+        <li><span class="cn">Lord of Atlantis</span><span class="cq">1×</span></li>
+        <li><span class="cn">Master of the Pearl Trident</span><span class="cq">1×</span></li>
+        <li><span class="cn">Merfolk Mistbinder / Merfolk Sovereign</span><span class="cq">2×</span></li>
+        <li><span class="cn">Glen Elendra Liege (splash blauw)</span><span class="cq">1×</span></li>
+        <span class="decklist-group">Explore Engine</span>
+        <li><span class="cn">Topography Tracker</span><span class="cq">1×</span></li>
+        <li><span class="cn">Nicanzil, Current Conductor</span><span class="cq">1×</span></li>
+        <li><span class="cn">Deeproot Elite / Metallic Mimic</span><span class="cq">2×</span></li>
+        <span class="decklist-group">Counters (Doublers)</span>
+        <li><span class="cn">Branching Evolution</span><span class="cq">1×</span></li>
+        <li><span class="cn">Hardened Scales</span><span class="cq">1×</span></li>
+        <li><span class="cn">Ozolith, the Shattered Spire</span><span class="cq">1×</span></li>
+        <li><span class="cn">Evolution Sage (proliferate)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Merfolk Skydiver (proliferate)</span><span class="cq">1×</span></li>
+        <span class="decklist-group">Onblokbaar</span>
+        <li><span class="cn">Herald of Secret Streams</span><span class="cq">1×</span></li>
+        <li><span class="cn">Harbinger of the Seas</span><span class="cq">1×</span></li>
+        <li><span class="cn">Merfolk Sovereign (ability)</span><span class="cq">1×</span></li>
+        <span class="decklist-group">Draw (9)</span>
+        <li><span class="cn">Kindred Discovery</span><span class="cq">1×</span></li>
+        <li><span class="cn">Seafloor Oracle / Cold-Eyed Selkie</span><span class="cq">2×</span></li>
+        <li><span class="cn">Tishana, Voice of Thunder</span><span class="cq">1×</span></li>
+        <li><span class="cn">Bident of Thassa</span><span class="cq">1×</span></li>
+        <li><span class="cn">Benthic Biomancer</span><span class="cq">1×</span></li>
+        <li><span class="cn">Emperor Mihail II / Realmwalker</span><span class="cq">2×</span></li>
+        <span class="decklist-group">Utility Merfolk</span>
+        <li><span class="cn">Kumena, Tyrant of Orazca</span><span class="cq">1×</span></li>
+        <li><span class="cn">Merrow Reejerey</span><span class="cq">1×</span></li>
+        <li><span class="cn">Svyelun of Sea and Sky</span><span class="cq">1×</span></li>
+        <li><span class="cn">Kopala, Warden of Waves</span><span class="cq">1×</span></li>
+        <li><span class="cn">Tatyova, Benthic Druid</span><span class="cq">1×</span></li>
+        <li><span class="cn">Zegana, Utopian Speaker</span><span class="cq">1×</span></li>
+        <li><span class="cn">Singer of Swift Rivers / Stonybrook Banneret</span><span class="cq">2×</span></li>
+        <li><span class="cn">Surgespanner / Thieving Skydiver / Mist Dancer</span><span class="cq">3×</span></li>
+        <li><span class="cn">Kiora's Follower / Vodalian Hexcatcher / Tishana's Tidebinder</span><span class="cq">3×</span></li>
+        <span class="decklist-group">Enchantments</span>
+        <li><span class="cn">Deeproot Waters / Deeproot Pilgrimage</span><span class="cq">2×</span></li>
+        <li><span class="cn">Reflections of Littjara</span><span class="cq">1×</span></li>
+        <li><span class="cn">Simic Ascendancy</span><span class="cq">1×</span></li>
+        <li><span class="cn">Exploration / Twists and Turns</span><span class="cq">2×</span></li>
+        <li><span class="cn">Merrow Commerce / Carpet of Flowers</span><span class="cq">2×</span></li>
+        <span class="decklist-group">Removal & Boardwipes</span>
+        <li><span class="cn">Wave Goodbye / Raise the Palisade</span><span class="cq">2×</span></li>
+        <li><span class="cn">Counterspell / Repulsive Mutation</span><span class="cq">2×</span></li>
+        <li><span class="cn">Beast Within / Rapid Hybridization / Aetherize</span><span class="cq">3×</span></li>
+        <li><span class="cn">Ripples of Potential (proliferate + phase)</span><span class="cq">1×</span></li>
+        <span class="decklist-group">Bescherming</span>
+        <li><span class="cn">Heroic Intervention / Mutational Advantage</span><span class="cq">2×</span></li>
+        <li><span class="cn">Inspiring Call / Swiftfoot Boots</span><span class="cq">2×</span></li>
+        <span class="decklist-group">Ramp</span>
+        <li><span class="cn">Sol Ring / Arcane Signet / Simic Signet</span><span class="cq">3×</span></li>
+        <li><span class="cn">Cultivate / Kodama's Reach / Growth Spiral</span><span class="cq">3×</span></li>
+        <span class="decklist-group">Tutor & Overig</span>
+        <li><span class="cn">Seahunter (Merfolk tutor)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Overwhelming Stampede / Bygone Marvels</span><span class="cq">2×</span></li>
+        <span class="decklist-group">Lands (33)</span>
+        <li><span class="cn">Island ×13, Forest ×4</span><span class="cq"></span></li>
+        <li><span class="cn">Karn's Bastion / Rogue's Passage / Mosswort Bridge</span><span class="cq">3×</span></li>
+        <li><span class="cn">Command Tower / Exotic Orchard / Path of Ancestry</span><span class="cq">3×</span></li>
+        <li><span class="cn">Hinterland Harbor / Vineglimmer Snarl / Flooded Grove</span><span class="cq">3×</span></li>
+        <li><span class="cn">Yavimaya Coast / Temple of Mystery / Simic Growth Chamber</span><span class="cq">3×</span></li>
+        <li><span class="cn">Secluded Courtyard / Unclaimed Territory / Alchemist's Refuge</span><span class="cq">3×</span></li>
+        <li><span class="cn">Reliquary Tower</span><span class="cq">1×</span></li>
+      </ul>
+    </div>
+    <a href="https://archidekt.com/decks/7629806/hakbals_merfolk" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+<script>
+  (function() {
+    var img = document.getElementById('commander-card-img');
+    var loading = document.getElementById('commander-card-loading');
+    if (!img) return;
+    fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent('Hakbal of the Surging Soul'))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var uri = data.image_uris ? data.image_uris.normal : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+        if (uri) { img.src = uri; img.style.display = 'block'; if (loading) loading.style.display = 'none'; }
+      }).catch(function() {});
+  })();
+  document.querySelectorAll('.card-preview img[data-name]').forEach(function(img) {
+    var name = img.getAttribute('data-name');
+    if (!name) return;
+    var loaded = false;
+    var parent = img.closest('.card-link');
+    if (!parent) return;
+    parent.addEventListener('mouseenter', function() {
+      if (loaded) return;
+      loaded = true;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(name))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var uri = data.image_uris ? data.image_uris.normal : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+          if (uri) img.src = uri;
+        }).catch(function() {});
+    });
+  });
+</script>
+</body>
+</html>

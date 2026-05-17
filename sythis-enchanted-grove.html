@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sythis' Enchanted Grove – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #090c09; --surface: #111811; --surface2: #172017;
+      --border: #253525; --gold: #c9a84c; --gold-dim: #7a6330;
+      --text: #dff0df; --text-dim: #608060;
+      --accent: #4a7c2a; --accent2: #c8c080;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Crimson Text', serif; font-size: 18px; line-height: 1.6; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(ellipse at 15% 40%, rgba(74,124,42,0.08) 0%, transparent 55%), radial-gradient(ellipse at 85% 60%, rgba(200,192,128,0.05) 0%, transparent 50%); pointer-events: none; }
+
+    nav { position: relative; z-index: 2; padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+    nav a { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim); text-decoration: none; }
+    nav a:hover { color: var(--gold); } nav span { color: var(--border); }
+
+    .hero { position: relative; z-index: 1; padding: 3.5rem 2rem 2.5rem; border-bottom: 1px solid var(--border); background: linear-gradient(160deg, rgba(74,124,42,0.10) 0%, rgba(200,192,128,0.05) 100%); max-width: 1000px; margin: 0 auto; }
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1rem; }
+    .hero-left { flex: 1; }
+    .deck-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; color: var(--gold); letter-spacing: 0.04em; line-height: 1; }
+    .commander-name { font-family: 'Crimson Text', serif; font-style: italic; color: var(--text-dim); font-size: 1.05rem; margin-top: 0.4rem; }
+    .arch-link { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dim); text-decoration: none; margin-top: 0.4rem; display: inline-block; border-bottom: 1px solid var(--gold-dim); }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-start; padding-top: 0.5rem; }
+    .badge { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.3rem 0.8rem; border: 1px solid currentColor; text-transform: uppercase; }
+    .badge-cmd { color: #b87ab8; border-color: #4a2a5c; }
+    .badge-arc { color: var(--gold-dim); border-color: var(--border); }
+    .badge-thm { color: #a0d070; border-color: #3a5a1a; }
+    .badge-brk { color: #d4844a; border-color: #5a3a1a; }
+
+    .commander-card { flex-shrink: 0; width: 180px; }
+    .commander-card img { width: 100%; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.15); display: block; transition: transform 0.2s, box-shadow 0.2s; }
+    .commander-card img:hover { transform: scale(1.04); box-shadow: 0 12px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.35); }
+    .card-loading { width: 100%; aspect-ratio: 5/7; background: var(--surface2); border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; }
+    @media (max-width: 600px) { .commander-card { width: 130px; } .hero-top { flex-direction: column-reverse; } }
+
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .meta-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.95rem; color: var(--text); }
+    .pip { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; font-family: sans-serif; }
+    .pip-W { background: #c8c0a0; color: #333; } .pip-G { background: #1a5a2a; color: #a0ffa0; }
+    .color-pips { display: flex; gap: 0.3rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .dot.d { background: #d4844a; } .dot.s { background: var(--gold); }
+    .diff-meter, .str-meter { display: flex; gap: 4px; align-items: center; }
+
+    .content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem 5rem; display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; }
+    @media (max-width: 740px) { .content { grid-template-columns: 1fr; } }
+    section { margin-bottom: 2.5rem; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .intro-text { font-size: 1.05rem; color: #98c878; line-height: 1.7; }
+
+    /* Scryfall card hover */
+    .card-link { color: var(--accent2); text-decoration: none; border-bottom: 1px dotted var(--accent); cursor: pointer; position: relative; white-space: nowrap; }
+    .card-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .card-preview { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: 200px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.8); z-index: 100; pointer-events: none; opacity: 0; transition: opacity 0.15s; }
+    .card-preview img { width: 100%; border-radius: 10px; display: block; }
+    .card-link:hover .card-preview { opacity: 1; }
+
+    .wincon-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .wincon-item { display: flex; gap: 0.75rem; align-items: flex-start; background: var(--surface2); border: 1px solid var(--border); padding: 0.8rem 1rem; }
+    .wincon-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .wincon-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .wincon-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.4; }
+
+    /* Combo box */
+    .combo-box { background: var(--surface2); border: 1px solid #4a6a2a; border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin-bottom: 1rem; }
+    .combo-title { font-family: 'Cinzel', serif; font-size: 0.78rem; color: #90c060; margin-bottom: 0.4rem; }
+    .combo-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.5; }
+    .combo-warning { background: rgba(180,100,40,0.1); border: 1px solid #5a3a1a; border-left: 3px solid #c08040; padding: 0.8rem 1rem; margin-top: 0.75rem; font-size: 0.85rem; color: #c09060; }
+
+    .keycard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .keycard { background: var(--surface2); border: 1px solid var(--border); padding: 0.75rem; }
+    .keycard-name { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold); margin-bottom: 0.3rem; }
+    .keycard-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
+
+    .tip-box { background: var(--surface2); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin-bottom: 0.75rem; }
+    .tip-box.w { border-color: #7a5020; }
+    .tip-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #80b060; margin-bottom: 0.3rem; }
+    .tip-box.w .tip-label { color: #c08040; }
+    .tip-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+
+    .info-block { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 1.25rem; }
+    .bracket-block { background: rgba(180,100,40,0.07); border: 1px solid #5a3a1a; padding: 0.8rem 1rem; margin-bottom: 1.25rem; }
+    .bracket-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #d4844a; margin-bottom: 0.4rem; }
+    .bracket-value { font-size: 1rem; color: var(--text); }
+    .bracket-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.3rem; line-height: 1.4; }
+
+    .curve-bars { display: flex; align-items: flex-end; gap: 0.4rem; height: 70px; }
+    .curve-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+    .curve-bar { width: 100%; background: var(--accent); opacity: 0.8; min-height: 2px; }
+    .curve-label { font-family: 'Cinzel', serif; font-size: 0.55rem; color: var(--text-dim); }
+    .curve-count { font-size: 0.65rem; color: var(--text-dim); }
+
+    .decklist { list-style: none; font-size: 0.85rem; }
+    .decklist li { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid rgba(37,53,37,0.8); color: var(--text-dim); }
+    .decklist li:last-child { border: none; }
+    .decklist .cn { color: var(--text); } .decklist .cq { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold-dim); }
+    .dg { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); padding: 0.5rem 0 0.25rem; display: block; }
+
+    .arch-btn { display: block; text-align: center; padding: 0.8rem; border: 1px solid var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: background 0.2s; }
+    .arch-btn:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+    footer { position: relative; z-index: 1; text-align: center; padding: 1.5rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav><a href="../index.html">Deck Library</a><span>/</span><a href="#">Sythis' Enchanted Grove</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Sythis' Enchanted Grove</div>
+      <div class="commander-name">Commander: Sythis, Harvest's Hand</div>
+      <a href="https://archidekt.com/decks/7195676/sythis_enchanted_grove" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Sythis, Harvest's Hand" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Enchantress · Control</span>
+      <span class="badge badge-thm">Enchantments · Combo</span>
+      <span class="badge badge-brk">Bracket 4 – Optimized</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Selesnya)</div>
+      <div class="meta-value"><div class="color-pips"><span class="pip pip-W">W</span><span class="pip pip-G">G</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Hoog</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">5 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Opbouw — wint via dominantie of combo</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Sythis' Enchanted Grove is een pure Enchantress-engine: elke enchantment die je cast, geeft je life en een kaart via <span class="card-link">Sythis, Harvest's Hand<span class="card-preview"><img src="" data-name="Sythis, Harvest's Hand" alt="Sythis, Harvest's Hand" /></span></span>. Combineer dat met meerdere andere enchantress-payoffs (Argothian Enchantress, Mesa Enchantress, Eidolon of Blossoms) en je trekt vrijwel je hele deck in één beurt zodra de engine loopt.</p>
+      <p class="intro-text" style="margin-top:1rem">Het deck is volledig rondom enchantments gebouwd: de ramp zijn enchantments (<span class="card-link">Wild Growth<span class="card-preview"><img src="" data-name="Wild Growth" alt="" /></span></span>, <span class="card-link">Utopia Sprawl<span class="card-preview"><img src="" data-name="Utopia Sprawl" alt="" /></span></span>, <span class="card-link">Sanctum Weaver<span class="card-preview"><img src="" data-name="Sanctum Weaver" alt="" /></span></span>), de removal zijn enchantments (Oblivion Ring-varianten), en de bescherming zijn enchantments (Greater Auramancy, Sterling Grove). Dit maakt het extreem coherent maar ook kwetsbaar voor massale enchantment hate.</p>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">✨</div>
+          <div>
+            <div class="wincon-name">Enchantment Creature Armada (Opalescence / Starfield)</div>
+            <div class="wincon-desc"><span class="card-link">Opalescence<span class="card-preview"><img src="" data-name="Opalescence" alt="" /></span></span> maakt alle non-Aura enchantments tot creatures met power/toughness gelijk aan hun mana value. Met 15–20 enchantments in play: een armada van creatures die aanvalt voor lethal. <span class="card-link">Starfield of Nyx<span class="card-preview"><img src="" data-name="Starfield of Nyx" alt="" /></span></span> doet hetzelfde zodra je 5+ enchantments hebt en haalt er elke beurt één terug uit je graveyard.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🏹</div>
+          <div>
+            <div class="wincon-name">Walking Ballista + Heliod Infinite Combo</div>
+            <div class="wincon-desc">De verborgen wincon. <span class="card-link">Heliod, Sun-Crowned<span class="card-preview"><img src="" data-name="Heliod, Sun-Crowned" alt="" /></span></span> geeft <span class="card-link">Walking Ballista<span class="card-preview"><img src="" data-name="Walking Ballista" alt="" /></span></span> lifelink. Ballista pings voor 1 schade → jij wint 1 life → Heliod plaatst een +1/+1 counter op Ballista → Ballista kan opnieuw pingen. Oneindige schade aan alle tegenstanders. Alleen gebruiken als de hoofdstrategie niet werkt.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🌿</div>
+          <div>
+            <div class="wincon-name">Destiny Spinner Land Attack</div>
+            <div class="wincon-desc"><span class="card-link">Destiny Spinner<span class="card-preview"><img src="" data-name="Destiny Spinner" alt="" /></span></span> kan een land tijdelijk omzetten in een X/X elemental met trample en haste, waarbij X het aantal enchantments is dat je controleert. Met 10+ enchantments: een 10/10 trample haste voor {2}{G} — bijna altijd commander damage lethal in één klap.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🛡️</div>
+          <div>
+            <div class="wincon-name">Solitary Confinement Lock</div>
+            <div class="wincon-desc"><span class="card-link">Solitary Confinement<span class="card-preview"><img src="" data-name="Solitary Confinement" alt="" /></span></span> geeft jou shroud en voorkomt alle schade aan jou, maar kost elke upkeep een discard. Met de enchantress-engine trek je zo veel kaarten dat discarden geen probleem is. Tegenstanders kunnen jou letterlijk niet raken terwijl jij je wins opbouwt.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">De Combo uitgelegd — Walking Ballista + Heliod</div>
+      <div class="combo-box">
+        <div class="combo-title">Benodigdheden</div>
+        <div class="combo-text">
+          1. <strong>Heliod, Sun-Crowned</strong> in play als enchantment (niet als creature vereist — zijn eerste ability werkt altijd).<br>
+          2. <strong>Walking Ballista</strong> in play met minstens 2 +1/+1 counters (zodat je na het pingen nog een counter over hebt).<br>
+          3. Activeer Heliod's ability: betaal {W}{W} om Ballista lifelink te geven tot einde beurt.<br>
+          4. Remove een counter van Ballista: deal 1 damage aan een tegenstander → jij wint 1 life (lifelink).<br>
+          5. Heliod triggert: zet een +1/+1 counter op Ballista. Je bent terug bij stap 4.<br>
+          6. Herhaal totdat alle tegenstanders 0 life hebben.
+        </div>
+        <div class="combo-warning">
+          ⚠️ <strong>Gebruik dit als laatste redmiddel.</strong> Het deck is primair een enchantress deck — de combo is er als noodoptie als je dominant bent maar niet via aanvallen kunt winnen (bijv. door Solitary Confinement die je draw step skip maakt).
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Sythis, Harvest's Hand<span class="card-preview"><img src="" data-name="Sythis, Harvest's Hand" alt="" /></span></span></div>
+          <div class="keycard-desc">Elke enchantment die je cast: 1 life + 1 kaart. Met 5–10 enchantments per beurt trek je het halve deck. Beschermen is de hoogste prioriteit — zonder haar is de engine veel trager.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Serra's Sanctum<span class="card-preview"><img src="" data-name="Serra's Sanctum" alt="" /></span></span></div>
+          <div class="keycard-desc">Produceert {W} voor elk enchantment dat je controleert. Met 10 enchantments: 10 witte mana van één land. De krachtigste mana-bron in het deck, en zelden makkelijk te removen.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Greater Auramancy<span class="card-preview"><img src="" data-name="Greater Auramancy" alt="" /></span></span></div>
+          <div class="keycard-desc">Alle enchantments krijgen shroud — ook zichzelf. Beschermt de hele engine. Pas op: je kunt je eigen enchantments daarna niet meer targetten (voor bijv. aura's herbevestigen).</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Sterling Grove<span class="card-preview"><img src="" data-name="Sterling Grove" alt="" /></span></span></div>
+          <div class="keycard-desc">Enchantments krijgen shroud én je kunt hem opofferen om elke enchantment te tutoren (bovenop je library). Dubbel nut: bescherming én tutoring.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Replenish<span class="card-preview"><img src="" data-name="Replenish" alt="" /></span></span></div>
+          <div class="keycard-desc">Zet alle enchantments uit je graveyard terug op het slagveld. Na een board wipe of Armageddon-achtig effect herstel je in één beurt volledig. Één van de krachtigste recovery spells voor enchantress.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Solitary Confinement<span class="card-preview"><img src="" data-name="Solitary Confinement" alt="" /></span></span></div>
+          <div class="keycard-desc">Shroud + damage preventie voor jou. Kost elke upkeep een discard — maar met Sythis trek je zoveel dat dit geen probleem is. Maakt jou letterlijk ongrijpbaar.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Begin altijd met mana-enchantments (Wild Growth, Utopia Sprawl, Fertile Ground) op je lands. Elke land-enchantment triggert Sythis voor een kaart, en dubbelproduceert mana. Zo speel je in beurt 3 al vier of vijf enchantments per beurt.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text"><span class="card-link">Mana Bloom<span class="card-preview"><img src="" data-name="Mana Bloom" alt="" /></span></span> is een verborgen MVP: als hij geen counters meer heeft keert hij terug naar je hand — dan kun je hem opnieuw casten voor weer een Sythis-trigger én een kaart. Eindeloos kaarten trekken als je genoeg mana hebt.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Pas op met <span class="card-link">Opalescence<span class="card-preview"><img src="" data-name="Opalescence" alt="" /></span></span> en <span class="card-link">Starfield of Nyx<span class="card-preview"><img src="" data-name="Starfield of Nyx" alt="" /></span></span> tegelijk: enchantments die creatures worden kunnen dan sterven aan board wipes — en ze halen ze ook terug uit je graveyard. Speel ze nooit samen tenzij je die beurt wint.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Greater Auramancy en Sterling Grove geven al je enchantments shroud — inclusief jouw eigen Aura's. Je kunt ze daarna niet meer verplaatsen of targeten. Speel Aura's eerst, dan pas de beschermingslaag.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Solitary Confinement skip je draw step. Dat betekent dat Sythis' triggered ability (draw) nog wel werkt — enchantments casten geeft nog steeds een kaart. Maar je trekt niet automatisch meer aan het begin van je beurt. Vergeet dit niet bij het tellen van je hand.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Bracket 4 — waarschuwing</div>
+        <div class="tip-text">Dit is het sterkste enchantress-deck in de pool. De combo (Walking Ballista + Heliod) kan het spel instant beëindigen. Kommuniceer dit vóór het spel zodat medespelers weten wat ze kunnen verwachten.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een <strong style="color:var(--gold)">5/5</strong> — naast Blight Curse, Plunder the Graves en Agatha van de sterkste decks in de pool. De combinatie van een onvervangbare draw-engine (Sythis + meerdere Enchantress-payoffs), beschermingslaag (shroud op alles), massa removal (15 stukken!), en een oneindige combo maakt dit deck extreem consistent en moeilijk te stoppen. Ideaal voor spelers die van puzzelen, veelzijdige strategieën en elegante combos houden.</p>
+    </section>
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 4 — Optimized</div>
+      <div class="bracket-desc">Bevat een oneindige combo (Walking Ballista + Heliod), krachtige tutors (Sterling Grove, Chord of Calling, Eladamri's Call), en reserves-list kaarten (Savannah, Serra's Sanctum, Argothian Enchantress). Past bij andere bracket 3–4 decks.</div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:50px"></div><div class="curve-label">1</div><div class="curve-count">8</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:65px"></div><div class="curve-label">2</div><div class="curve-count">13</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px"></div><div class="curve-label">3</div><div class="curve-count">11</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:40px"></div><div class="curve-label">4</div><div class="curve-count">8</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:20px"></div><div class="curve-label">5+</div><div class="curve-count">4</div></div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="dg">Commander</span>
+        <li><span class="cn">Sythis, Harvest's Hand</span><span class="cq">1×</span></li>
+        <span class="dg">Draw Engines (6)</span>
+        <li><span class="cn">Argothian Enchantress</span><span class="cq">1×</span></li>
+        <li><span class="cn">Mesa Enchantress</span><span class="cq">1×</span></li>
+        <li><span class="cn">Enchantress's Presence</span><span class="cq">1×</span></li>
+        <li><span class="cn">Eidolon of Blossoms</span><span class="cq">1×</span></li>
+        <li><span class="cn">Sylvan Library</span><span class="cq">1×</span></li>
+        <li><span class="cn">Mirri's Guile</span><span class="cq">1×</span></li>
+        <span class="dg">Ramp (12)</span>
+        <li><span class="cn">Wild Growth / Utopia Sprawl</span><span class="cq">2×</span></li>
+        <li><span class="cn">Fertile Ground / Overgrowth / Abundant Growth</span><span class="cq">3×</span></li>
+        <li><span class="cn">Sanctum Weaver / Herald of the Pantheon</span><span class="cq">2×</span></li>
+        <li><span class="cn">Mirari's Wake / Exploration</span><span class="cq">2×</span></li>
+        <li><span class="cn">Mana Bloom / Courser of Kruphix / Sol Ring</span><span class="cq">3×</span></li>
+        <span class="dg">Protection (11)</span>
+        <li><span class="cn">Greater Auramancy</span><span class="cq">1×</span></li>
+        <li><span class="cn">Sterling Grove</span><span class="cq">1×</span></li>
+        <li><span class="cn">Solitary Confinement</span><span class="cq">1×</span></li>
+        <li><span class="cn">Karmic Justice</span><span class="cq">1×</span></li>
+        <li><span class="cn">Ghostly Prison</span><span class="cq">1×</span></li>
+        <li><span class="cn">Worship</span><span class="cq">1×</span></li>
+        <li><span class="cn">Aegis of the Gods / Destiny Spinner</span><span class="cq">2×</span></li>
+        <li><span class="cn">Sigarda Host/Heron's Grace / Dragonlord Dromoka</span><span class="cq">3×</span></li>
+        <span class="dg">Removal (15)</span>
+        <li><span class="cn">Oblivion Ring / Banishing Light / Journey to Nowhere</span><span class="cq">3×</span></li>
+        <li><span class="cn">Darksteel Mutation / Song of the Dryads / Prison Term</span><span class="cq">3×</span></li>
+        <li><span class="cn">Faith's Fetters / Stasis Snare / Quarantine Field</span><span class="cq">3×</span></li>
+        <li><span class="cn">Aura Shards / Aura of Silence / Seal of Cleansing</span><span class="cq">3×</span></li>
+        <li><span class="cn">Acidic Slime / Soul Snare</span><span class="cq">2×</span></li>
+        <span class="dg">Wincons / Finishers</span>
+        <li><span class="cn">Opalescence</span><span class="cq">1×</span></li>
+        <li><span class="cn">Starfield of Nyx</span><span class="cq">1×</span></li>
+        <li><span class="cn">Nylea, God of the Hunt (trample)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Sigil of the Empty Throne</span><span class="cq">1×</span></li>
+        <span class="dg">Combo (2)</span>
+        <li><span class="cn">Walking Ballista</span><span class="cq">1×</span></li>
+        <li><span class="cn">Heliod, Sun-Crowned</span><span class="cq">1×</span></li>
+        <span class="dg">Tutors (5)</span>
+        <li><span class="cn">Sterling Grove (sac)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Chord of Calling</span><span class="cq">1×</span></li>
+        <li><span class="cn">Eladamri's Call</span><span class="cq">1×</span></li>
+        <li><span class="cn">Idyllic Tutor</span><span class="cq">1×</span></li>
+        <li><span class="cn">Enlightened Tutor</span><span class="cq">1×</span></li>
+        <span class="dg">Recursie (4)</span>
+        <li><span class="cn">Replenish</span><span class="cq">1×</span></li>
+        <li><span class="cn">Starfield of Nyx (upkeep)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Auramancer / Eternal Witness</span><span class="cq">2×</span></li>
+        <span class="dg">Stax (2)</span>
+        <li><span class="cn">Stony Silence / Ground Seal</span><span class="cq">2×</span></li>
+        <span class="dg">Lifegain (2)</span>
+        <li><span class="cn">Heliod, God of the Sun / Nyx-Fleece Ram</span><span class="cq">2×</span></li>
+        <span class="dg">Creatures (2)</span>
+        <li><span class="cn">Dryad Arbor / Karametra, God of Harvests</span><span class="cq">2×</span></li>
+        <span class="dg">Lands (36)</span>
+        <li><span class="cn">Serra's Sanctum</span><span class="cq">1×</span></li>
+        <li><span class="cn">Savannah (reserved list)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Windswept Heath / Verdant Catacombs / Wooded Foothills</span><span class="cq">3×</span></li>
+        <li><span class="cn">Temple Garden / Razorverge Thicket / Brushland</span><span class="cq">3×</span></li>
+        <li><span class="cn">Hall of Heliod's Generosity / Reliquary Tower</span><span class="cq">2×</span></li>
+        <li><span class="cn">Plains ×4, Forest ×6 + utility lands</span><span class="cq"></span></li>
+      </ul>
+    </div>
+    <a href="https://archidekt.com/decks/7195676/sythis_enchanted_grove" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+<script>
+  // Commander card via Scryfall
+  (function() {
+    var img = document.getElementById('commander-card-img');
+    var loading = document.getElementById('commander-card-loading');
+    if (!img) return;
+    fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent('Sythis, Harvest\'s Hand'))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var uri = data.image_uris ? data.image_uris.normal : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+        if (uri) { img.src = uri; img.style.display = 'block'; if (loading) loading.style.display = 'none'; }
+      }).catch(function() {});
+  })();
+
+  // Scryfall hover previews voor sleutelkaarten
+  document.querySelectorAll('.card-preview img[data-name]').forEach(function(img) {
+    var name = img.getAttribute('data-name');
+    if (!name || img.src) return;
+    // Lazy load: alleen ophalen als parent zichtbaar wordt (hover)
+    var loaded = false;
+    var parent = img.closest('.card-link');
+    if (!parent) return;
+    parent.addEventListener('mouseenter', function() {
+      if (loaded) return;
+      loaded = true;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(name))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var uri = data.image_uris ? data.image_uris.normal : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+          if (uri) img.src = uri;
+        }).catch(function() {});
+    }, { once: false });
+  });
+</script>
+</body>
+</html>
