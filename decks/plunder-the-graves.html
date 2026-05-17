@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plunder the Graves – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<nav><a href="../index.html">Deck Library</a><span>/</span><a href="#">Plunder the Graves</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Plunder the Graves</div>
+      <div class="commander-name">Commander: Meren of Clan Nel Toth</div>
+      <a href="https://archidekt.com/decks/7407854/plunder_the_graves" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Meren of Clan Nel Toth" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Sacrifice · Recursion</span>
+      <span class="badge badge-thm">Graveyard · Midrange</span>
+      <span class="badge badge-brk">Bracket 3 – Upgraded</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Golgari)</div>
+      <div class="meta-value"><div class="color-pips"><span class="pip pip-B">B</span><span class="pip pip-G">G</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Hoog</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">5 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Gestaag — groeit elke beurt sterker</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Plunder the Graves is een van de klassieke Commander-archetypes: <strong>Meren of Clan Nel Toth</strong> als recursie-engine. Elke keer dat een creature sterft onder jouw controle, krijg je een ervaringsteller. Aan het einde van je beurt kies je een creature in je graveyard: als de mana value ervan lager of gelijk is aan je ervaringstellers, keert het terug naar het slagveld. Anders naar je hand.</p>
+      <p class="intro-text" style="margin-top:1rem">Het deck speelt een gesloten lus: offer creatures (voor mana via Ashnod's Altar, voor tutors via Birthing Pod, voor removal via Grave Pact) → krijg ervaringstellers → haal ze terug met Meren → doe het opnieuw, maar sterker. Na een paar ronden is je board onverslaanbaar. Met <strong>Survival of the Fittest</strong> (~€450!) en <strong>Grave Pact</strong> is dit een van de duurdere en sterkste decks in de pool.</p>
+    </section>
+
+    <section>
+      <div class="section-title">De Meren Engine</div>
+      <div class="engine-box">
+        <div class="engine-title">Stap 1: Goedkope Sacrifice Outlets</div>
+        <div class="engine-text">Offer creatures gratis of goedkoop via Viscera Seer (scry), Carrion Feeder (counters), Ashnod's Altar (mana), of Jarad (damage). Elke dood = ervaringsteller.</div>
+        <div class="engine-cards"><span class="etag">Viscera Seer</span><span class="etag">Carrion Feeder</span><span class="etag">Ashnod's Altar</span></div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">Stap 2: Ervaringstellers opbouwen</div>
+        <div class="engine-text">Met 3–4 tellers haal je Sakura-Tribe Elder elke beurt terug (ramp!). Met 5+ tellers haal je grotere threats terug. Met 7+ tellers haal je alles terug — inclusief Craterhoof.</div>
+        <div class="engine-cards"><span class="etag">Sakura-Tribe Elder</span><span class="etag">Wood Elves</span><span class="etag">Fleshbag Marauder</span></div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">Stap 3: Grave Pact board controle</div>
+        <div class="engine-text">Grave Pact + Butcher of Malakir: elke keer dat jij een creature offert, moeten alle tegenstanders ook een creature offeren. In combinatie met Fleshbag Marauder en Plaguecrafter (elke beurt teruggeroepen door Meren) is hun board leeg binnen drie ronden.</div>
+        <div class="engine-cards"><span class="etag">Grave Pact</span><span class="etag">Butcher of Malakir</span><span class="etag">Fleshbag Marauder</span><span class="etag">Plaguecrafter</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item"><div class="wincon-icon">🦌</div><div><div class="wincon-name">Craterhoof Behemoth Alpha Strike</div><div class="wincon-desc">De klassieke Golgari finisher. Met 6+ creatures in play geeft Craterhoof ze allemaal trample en +6/+6 of meer. Eén aanval is genoeg om iedereen aan tafel te elimineren. Via Survival of the Fittest of Birthing Pod op te zoeken.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">⚰️</div><div><div class="wincon-name">Grave Pact Lockdown</div><div class="wincon-desc">Met Grave Pact + continue sacrifice loop kunnen tegenstanders geen board opbouwen. Elke beurt moeten ze een creature offeren, terwijl jij je board herbouwt via Meren. Na 3–4 ronden heeft niemand meer blockers.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">💀</div><div><div class="wincon-name">Gray Merchant / Blood Artist Drain</div><div class="wincon-desc">Met hoge zwarte devotion doet Gray Merchant massale schade bij enter. Blood Artist en Zulaport Cutthroat draineren bij elke creature-dood. In combinatie met Living Death kan dit in één klap de hele tafel neerhalen.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">🐺</div><div><div class="wincon-name">Kessig Cagebreakers Token Flood</div><div class="wincon-desc">Kessig Cagebreakers maakt bij elke aanval Wolf tokens gelijk aan het aantal creature-kaarten in je graveyard. Met een volle graveyard (zoals die van Meren) is dit plotseling 10+ Wolves die aanvallen.</div></div></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard"><div class="keycard-name">Meren of Clan Nel Toth</div><div class="keycard-desc">De hart van het deck. Elke creature-dood = ervaringsteller. End step: gratis recursie. Bescherm haar met Lightning Greaves — zonder Meren werkt de engine niet.</div></div>
+        <div class="keycard"><div class="keycard-name">Survival of the Fittest (~€450)</div><div class="keycard-desc">Discard een creature, zoek een ander op. De beste creature-tutor in Magic. Zet elke creature die je nodig hebt in je graveyard voor Meren, terwijl je de juiste kaart op hand haalt.</div></div>
+        <div class="keycard"><div class="keycard-name">Grave Pact</div><div class="keycard-desc">Elke keer dat jij een creature offert, moeten alle andere spelers ook offeren. Met de sacrifice-engine in dit deck betekent dit dat niemand een board kan opbouwen.</div></div>
+        <div class="keycard"><div class="keycard-name">Birthing Pod</div><div class="keycard-desc">Offer een creature van mana value X, zoek een creature van mana value X+1 op. Klimt de curve op terwijl je ervaringstellers vergaart. Eindigt bij Craterhoof of Terastodon.</div></div>
+        <div class="keycard"><div class="keycard-name">Ashnod's Altar</div><div class="keycard-desc">Offer een creature: add {2} kleurloos. Combineert met Nim Deathmantle voor een infinite loop: als een creature sterft, pay {4} om het terug te brengen met de Mantle.</div></div>
+        <div class="keycard"><div class="keycard-name">Spore Frog</div><div class="keycard-desc">Offer: voorkom alle combat damage deze beurt. Met Meren haal je hem elke beurt terug. Één frog blokkert effectief alle aanvallen zolang jij hem kunt offeren.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Begin elke beurt met de vraag: "Welk creature wil ik Meren laten terugbrengen?" Plan je sacrifices zo dat je aan het einde van je beurt het juiste creature in je graveyard hebt.</div></div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Spore Frog is een geheime MVP. Offer hem elke beurt om geen combat damage te krijgen, en haal hem terug met Meren (mana value 1). Niemand kan je aanvallen zolang hij in je graveyard zit.</div></div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Grisly Salvage, Satyr Wayfinder en Mulch vullen je graveyard en halen een land. Dit zijn de "motor"-kaarten van de early game — speel ze vroeg.</div></div>
+      <div class="tip-box w"><div class="tip-label">Valkuil</div><div class="tip-text">Dit deck is zwak tegen graveyard hate (Bojuka Bog, Rest in Peace). Als tegenstanders je graveyard exilen, verliest Meren al haar kracht. Houd Golgari Charm achter de hand om enchantments te vernietigen die je graveyard locken.</div></div>
+      <div class="tip-box w"><div class="tip-label">Valkuil</div><div class="tip-text">De ervaringstellers verdwijnen als Meren sterft — maar de tellers <em>blijven</em>! Zelfs als Meren opnieuw gecast wordt, heb je nog dezelfde tellers. Wees dus niet bang om haar opnieuw te spelen als ze geremoved wordt.</div></div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een solide <strong style="color:var(--gold)">5/5</strong> naast Blight Curse. De combinatie van Survival of the Fittest, Grave Pact, Damnation, Sylvan Library en Craterhoof plaatst dit in bracket 3 — maar het voelt dichter bij een bracket 4 deck door de consistentie en de waarde van de tutors. Eén van de zwaarste decks in de pool qua competitief potentieel. Ideaal voor spelers die van planning, sac-loops en graveyard-combinaties houden.</p>
+    </section>
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 3 — Upgraded</div>
+      <div class="bracket-desc">Bevat krachtige tutors (Survival of the Fittest, Entomb, Birthing Pod) en sterke synergieën. Past het beste bij andere bracket 3–4 decks. ~€990 waarde.</div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:45px"></div><div class="curve-label">1</div><div class="curve-count">8</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:60px"></div><div class="curve-label">2</div><div class="curve-count">11</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px"></div><div class="curve-label">3</div><div class="curve-count">10</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:35px"></div><div class="curve-label">4</div><div class="curve-count">6</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:25px"></div><div class="curve-label">5+</div><div class="curve-count">5</div></div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="dg">Commander</span>
+        <li><span class="cn">Meren of Clan Nel Toth</span><span class="cq">1×</span></li>
+        <span class="dg">Tutors (4)</span>
+        <li><span class="cn">Survival of the Fittest</span><span class="cq">1×</span></li>
+        <li><span class="cn">Birthing Pod</span><span class="cq">1×</span></li>
+        <li><span class="cn">Buried Alive</span><span class="cq">1×</span></li>
+        <li><span class="cn">Entomb</span><span class="cq">1×</span></li>
+        <span class="dg">Sac Outlets (4)</span>
+        <li><span class="cn">Viscera Seer</span><span class="cq">1×</span></li>
+        <li><span class="cn">Carrion Feeder</span><span class="cq">1×</span></li>
+        <li><span class="cn">Ashnod's Altar</span><span class="cq">1×</span></li>
+        <li><span class="cn">Jarad, Golgari Lich Lord</span><span class="cq">1×</span></li>
+        <li><span class="cn">Phyrexian Plaguelord</span><span class="cq">1×</span></li>
+        <span class="dg">Removal (16)</span>
+        <li><span class="cn">Grave Pact</span><span class="cq">1×</span></li>
+        <li><span class="cn">Butcher of Malakir</span><span class="cq">1×</span></li>
+        <li><span class="cn">Fleshbag Marauder / Plaguecrafter</span><span class="cq">2×</span></li>
+        <li><span class="cn">Damnation</span><span class="cq">1×</span></li>
+        <li><span class="cn">Abrupt Decay / Putrefy / Golgari Charm</span><span class="cq">3×</span></li>
+        <li><span class="cn">Terastodon / Shriekmaw / Acidic Slime</span><span class="cq">3×</span></li>
+        <li><span class="cn">Barter in Blood / Rise of the Witch-king</span><span class="cq">2×</span></li>
+        <li><span class="cn">Cankerbloom / Haywire Mite / Viridian Zealot</span><span class="cq">3×</span></li>
+        <span class="dg">Draw (5)</span>
+        <li><span class="cn">Sylvan Library</span><span class="cq">1×</span></li>
+        <li><span class="cn">Skullclamp</span><span class="cq">1×</span></li>
+        <li><span class="cn">Corpse Augur / Wretched Confluence</span><span class="cq">2×</span></li>
+        <li><span class="cn">Wall of Blossoms</span><span class="cq">1×</span></li>
+        <span class="dg">Drain (4)</span>
+        <li><span class="cn">Blood Artist / Zulaport Cutthroat</span><span class="cq">2×</span></li>
+        <li><span class="cn">Gray Merchant of Asphodel / Mitotic Slime</span><span class="cq">2×</span></li>
+        <span class="dg">Finishers (3)</span>
+        <li><span class="cn">Craterhoof Behemoth</span><span class="cq">1×</span></li>
+        <li><span class="cn">Pathbreaker Ibex</span><span class="cq">1×</span></li>
+        <li><span class="cn">Overwhelming Stampede</span><span class="cq">1×</span></li>
+        <span class="dg">Recursie (6)</span>
+        <li><span class="cn">Eternal Witness / Skullwinder</span><span class="cq">2×</span></li>
+        <li><span class="cn">Victimize / Living Death</span><span class="cq">2×</span></li>
+        <li><span class="cn">Nim Deathmantle / Scourge of Nel Toth</span><span class="cq">2×</span></li>
+        <span class="dg">Ramp (8)</span>
+        <li><span class="cn">Sakura-Tribe Elder / Wood Elves / Viridian Emissary</span><span class="cq">3×</span></li>
+        <li><span class="cn">Deathrite Shaman / Sol Ring / Golgari Signet</span><span class="cq">3×</span></li>
+        <li><span class="cn">Primal Growth / Ashnod's Altar</span><span class="cq">2×</span></li>
+        <span class="dg">Tokens / Overig</span>
+        <li><span class="cn">Drivnod / Kessig Cagebreakers / Mycoloth</span><span class="cq">3×</span></li>
+        <li><span class="cn">Avenger of Zendikar / Mazirek</span><span class="cq">2×</span></li>
+        <li><span class="cn">Lotleth Troll / Grave Researcher</span><span class="cq">2×</span></li>
+        <li><span class="cn">Mill: Grisly Salvage / Mulch / Satyr Wayfinder</span><span class="cq">3×</span></li>
+        <li><span class="cn">Protection: Lightning Greaves / Spore Frog</span><span class="cq">2×</span></li>
+        <span class="dg">Lands (37)</span>
+        <li><span class="cn">Forest ×12, Swamp ×12</span><span class="cq"></span></li>
+        <li><span class="cn">Westvale Abbey + utility lands</span><span class="cq"></span></li>
+      </ul>
+    </div>
+    <a href="https://archidekt.com/decks/7407854/plunder_the_graves" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+  <script>
+    // Laad commander kaartafbeelding via Scryfall API
+    (function() {
+      var cardName = "Meren of Clan Nel Toth";
+      var img = document.getElementById('commander-card-img');
+      var loading = document.getElementById('commander-card-loading');
+      if (!img) return;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(cardName))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.image_uris && data.image_uris.normal) {
+            img.src = data.image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          } else if (data.card_faces && data.card_faces[0].image_uris) {
+            img.src = data.card_faces[0].image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          }
+        })
+        .catch(function() {
+          // Stil falen — loading div blijft zichtbaar
+        });
+    })();
+  </script>
+
+</body>
+</html>

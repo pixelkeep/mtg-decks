@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winter is Coming – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<nav><a href="../index.html">Deck Library</a><span>/</span><a href="#">Winter is Coming</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Winter is Coming</div>
+      <div class="commander-name">Commander: Jorn, God of Winter // Kaldring, the Rimestaff</div>
+      <a href="https://archidekt.com/decks/7670985/winter_is_coming" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Jorn, God of Winter" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Stax · Control</span>
+      <span class="badge badge-thm">❄ Snow · Untap Engine</span>
+      <span class="badge badge-brk">Bracket 4 – Optimized</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Sultai)</div>
+      <div class="meta-value"><div class="color-pips"><span class="pip pip-U">U</span><span class="pip pip-B">B</span><span class="pip pip-G">G</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Hoog</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">5 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Opbouw — bevriest de tafel, wint laat</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Winter is Coming is een volledig <span class="snow-tag">Snow</span>-thematisch Sultai deck rondom <span class="card-link">Jorn, God of Winter<span class="card-preview"><img src="" data-name="Jorn, God of Winter" alt="" /></span></span>: elke keer dat Jorn aanvalt, untapt hij alle snow permanenten die jij controleert. Dat klinkt bescheiden, maar met een board vol snow lands, snow creatures en snow artefacten genereer je na iedere aanval enorme hoeveelheden mana. Meer mana dan je ooit in één beurt kunt gebruiken.</p>
+      <p class="intro-text" style="margin-top:1rem">Tegelijkertijd legt het deck de tafel lam via stax-stukken: <span class="card-link">Winter Orb<span class="card-preview"><img src="" data-name="Winter Orb" alt="" /></span></span> (tegenstanders mogen maar één land untappen), <span class="card-link">Stasis<span class="card-preview"><img src="" data-name="Stasis" alt="" /></span></span> (niemand untapt) en <span class="card-link">Frozen Aether<span class="card-preview"><img src="" data-name="Frozen Aether" alt="" /></span></span> (alles van tegenstanders komt tapped in). Jij untapt alles via Jorn — zij kunnen nauwelijks iets doen. De winter is gekomen, en alleen jij hebt een jas aan.</p>
+    </section>
+
+    <section>
+      <div class="section-title">De Jorn-engine — hoe werkt het?</div>
+      <div class="engine-box">
+        <div class="engine-title">❄ Snow mana — wat is dat?</div>
+        <div class="engine-text">Snow is een supertype op permanenten. Snow mana ({S}) is mana dat geproduceerd wordt door een snow bron — een snow land, snow artifact of snow creature. Bijna alle lands in dit deck zijn snow-covered basics of snow dual lands. De meeste spells in het deck kosten of produceren snow mana voor extra effects.</div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">❄ Jorn aanvallen = alles untappen</div>
+        <div class="engine-text">Zodra Jorn aanvalt en door tegenstanders niet gestopt wordt, untapt hij alle snow permanenten: je lands, je creatures, je artefacten. Dit geeft je na de combat phase een complete tweede main phase met een vol mana. Met <span class="card-link">Seedborn Muse<span class="card-preview"><img src="" data-name="Seedborn Muse" alt="" /></span></span> en <span class="card-link">Wilderness Reclamation<span class="card-preview"><img src="" data-name="Wilderness Reclamation" alt="" /></span></span> erbij: je untapt zelfs tijdens tegenstanders' beurten.</div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">❄ Kaldring — de andere kant van de kaart</div>
+        <div class="engine-text">Jorn is een dubbelzijdige kaart. De achterkant, <strong>Kaldring, the Rimestaff</strong>, kun je casten als alternatief: tap hem om een snow permanent uit welke graveyard dan ook te spelen. Dit geeft je toegang tot tegenstanders' gestorven snow-stukken en biedt recursie. Je gebruikt meestal Jorn als commander, maar Kaldring is een waardevolle optie in bepaalde situaties.</div>
+      </div>
+      <div class="engine-box">
+        <div class="engine-title">❄ Winter Orb + Jorn = asymmetrische lockdown</div>
+        <div class="engine-text">Met <span class="card-link">Winter Orb<span class="card-preview"><img src="" data-name="Winter Orb" alt="" /></span></span> in play mogen tegenstanders maar één land untappen per beurt. Jij untapt alles via Jorn. Resultaat: tegenstanders zitten vast op 1 mana per beurt terwijl jij vrijelijk door je deck raast met 10–15 mana per beurt. <span class="card-link">Stasis<span class="card-preview"><img src="" data-name="Stasis" alt="" /></span></span> is nog extremer: niemand untapt — behalve jij, via Jorn.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">🌊</div>
+          <div>
+            <div class="wincon-name">Torment of Hailfire met enorme X</div>
+            <div class="wincon-desc">Met de Jorn-mana-engine genereer je 15–20+ mana per beurt. <span class="card-link">Torment of Hailfire<span class="card-preview"><img src="" data-name="Torment of Hailfire" alt="" /></span></span> met X=15 of hoger laat elke tegenstander 15 keer kiezen: 3 life verliezen, een permanent sacrificen of een kaart discard. Dat is niet vol te houden.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🦕</div>
+          <div>
+            <div class="wincon-name">Marit Lage — 20/20 Flying Indestructible</div>
+            <div class="wincon-desc"><span class="card-link">Dark Depths<span class="card-preview"><img src="" data-name="Dark Depths" alt="" /></span></span> heeft 10 ice counters. <span class="card-link">Thespian's Stage<span class="card-preview"><img src="" data-name="Thespian's Stage" alt="" /></span></span> kopieert Dark Depths maar als kopie heeft die geen counters — dus Marit Lage verschijnt direct. Of bouw counters af via Kaldring. <span class="card-link">Marit Lage's Slumber<span class="card-preview"><img src="" data-name="Marit Lage's Slumber" alt="" /></span></span> maakt haar ook bij 10+ snow permanenten. Een 20/20 flying indestructible beëindigt het spel in twee slagen.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🌲</div>
+          <div>
+            <div class="wincon-name">Conifer Wurm / Rimefeather Owl Beatdown</div>
+            <div class="wincon-desc"><span class="card-link">Conifer Wurm<span class="card-preview"><img src="" data-name="Conifer Wurm" alt="" /></span></span> is een snow creature dat +X/+X krijgt waarbij X het aantal snow permanenten is dat je controleert. Met 20+ snow permanenten: een 20/20+ trample. <span class="card-link">Rimefeather Owl<span class="card-preview"><img src="" data-name="Rimefeather Owl" alt="" /></span></span> heeft p/t gelijk aan het totale aantal snow permanenten op het slagveld — inclusief die van tegenstanders. Beide zijn goedkoop dankzij de snow-mana-overvloed.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">💸</div>
+          <div>
+            <div class="wincon-name">Villainous Wealth / Braingeyser</div>
+            <div class="wincon-desc">Met ongekende hoeveelheden mana: <span class="card-link">Villainous Wealth<span class="card-preview"><img src="" data-name="Villainous Wealth" alt="" /></span></span> exileert de top X kaarten van een tegenstander en laat je die gratis casten. Bij X=10 heb je het halve deck van een tegenstander. <span class="card-link">Braingeyser<span class="card-preview"><img src="" data-name="Braingeyser" alt="" /></span></span> of Pull from Tomorrow trekken X kaarten voor verdere dominantie.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">📅</div>
+          <div>
+            <div class="wincon-name">The Millennium Calendar</div>
+            <div class="wincon-desc">Bij elke untap-stap krijgt The Millennium Calendar counters gelijk aan het aantal permanenten dat je untapt. Met Jorn die 20+ snow permanenten untapt per aanval vult dit zich razend snel. Eenmaal op 1000 counters: alle tegenstanders verliezen 1000 life tegelijk. Een alternatieve, spectaculaire win condition.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Jorn, God of Winter<span class="card-preview"><img src="" data-name="Jorn, God of Winter" alt="" /></span></span> <span class="snow-tag">Snow</span></div>
+          <div class="keycard-desc">De motor. Aanvallen = alles untappen. Bescherm hem met Swiftfoot Boots en zorg dat hij elke beurt aanvalt. Zelfs als hij geblokt wordt triggert de untap.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Winter Orb<span class="card-preview"><img src="" data-name="Winter Orb" alt="" /></span></span></div>
+          <div class="keycard-desc">Tegenstanders mogen maar één land untappen. Jij untapt alles via Jorn. Het sterkste stax-stuk in het deck — speel het zodra Jorn in play is.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Seedborn Muse<span class="card-preview"><img src="" data-name="Seedborn Muse" alt="" /></span></span></div>
+          <div class="keycard-desc">Untapt alle permanenten tijdens elke untap-stap van tegenstanders. Gecombineerd met Jorn: je untapt meerdere keren per ronde. Praktisch oneindig mana.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Kruphix, God of Horizons<span class="card-preview"><img src="" data-name="Kruphix, God of Horizons" alt="" /></span></span></div>
+          <div class="keycard-desc">Geen maximum hand size én ongebruikt mana wordt kleurloos opgeslagen. Dat overgehouden mana van Jorn's untap-beurten stapelt op — Torment of Hailfire met X=30 wordt mogelijk.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Ohran Frostfang<span class="card-preview"><img src="" data-name="Ohran Frostfang" alt="" /></span></span> <span class="snow-tag">Snow</span></div>
+          <div class="keycard-desc">Alle aanvallende creatures krijgen deathtouch en draw bij combat damage. Gecombineerd met Jorn's aanvalstrigger: je trekt een kaart voor elk creature dat schade doet én untapt alles.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Draugr Necromancer<span class="card-preview"><img src="" data-name="Draugr Necromancer" alt="" /></span></span> <span class="snow-tag">Snow</span></div>
+          <div class="keycard-desc">Creatures die sterven terwijl hij in play is worden geëxiled met ice counter — en jij kunt ze spelen via snow mana. Steel het beste van de tafel telkens als iemand een creature verliest.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Snow mana uitgelegd</div>
+        <div class="tip-text">Het {S} symbool betekent "betaal één mana van een snow bron". In dit deck zijn bijna alle lands snow — dus vrijwel al je mana is snow mana. Zorg alleen dat je bij <span class="card-link">Scrying Sheets<span class="card-preview"><img src="" data-name="Scrying Sheets" alt="" /></span></span> en <span class="card-link">Arcum's Astrolabe<span class="card-preview"><img src="" data-name="Arcum's Astrolabe" alt="" /></span></span> écht een snow bron tapped, niet een gewone.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Volgorde van acties</div>
+        <div class="tip-text">Speel Jorn, geef hem Swiftfoot Boots, tap je mana voor spells in je pre-combat main phase, dan aanvallen met Jorn om alles te untappen, dan een tweede main phase met opnieuw volle mana. Dit is het basisritme van elk Jorn-potje.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Thespian's Stage + Dark Depths</div>
+        <div class="tip-text">Activeer Thespian's Stage ({2}: wordt een kopie van een target land) terwijl je Dark Depths target. De kopie heeft de abilities maar géén counters, want kopieën starten zonder die. De triggered ability gaat af en je sacrificeert de Stage — Marit Lage verschijnt. Dark Depths blijft gewoon in play voor later.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Valkuil — Stasis</div>
+        <div class="tip-text"><span class="card-link">Stasis<span class="card-preview"><img src="" data-name="Stasis" alt="" /></span></span> kost elke upkeep {U} of je sacrificeert hem. Met Jorn erbij untapt je mana, maar vergeet niet de upkeep cost te betalen! Als je het niet kunt betalen, verdwijnt Stasis en kunnen tegenstanders weer normaal spelen.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Valkuil — Winter Orb timing</div>
+        <div class="tip-text">Winter Orb is zelf geen snow permanent, dus hij untapt gewoon mee met Jorn. Maar als Jorn er even niet is (geremoved), zit jij ook vast op één land per beurt. Overweeg om Winter Orb tijdelijk te tappen via Staff of Domination als Jorn niet beschikbaar is.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Bracket 4 — waarschuwing</div>
+        <div class="tip-text">Stasis en Winter Orb zijn frustrerende stax-stukken. Ze kunnen het spel voor anderen letterlijk onmogelijk maken. Communiceer vóór het spel de power level van dit deck — het past bij andere bracket 3–4 decks, niet bij bracket 2.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een <strong style="color:var(--gold)">5/5</strong>. Winter is Coming is uniek in de pool: het enige stax-deck dat de tafel actief bevriest en tegelijkertijd explosief veel mana genereert. De combinatie van mana-lockdown voor tegenstanders en onbeperkte mana voor zichzelf maakt het deck bijna onstopbaar als het eenmaal draait. Vijf volledig onafhankelijke win conditions zorgen voor consistentie. Het moeilijkste deck in de pool om correct te spelen door de stax-interacties en timing van untap-triggers.</p>
+    </section>
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 4 — Optimized</div>
+      <div class="bracket-desc">Bevat harde stax-stukken (Stasis, Winter Orb, Frozen Aether) en meerdere krachtige win conditions. Past bij andere bracket 3–4 decks. Kan potjes "bevriezen" voor minder ervaren spelers.</div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:50px"></div><div class="curve-label">1</div><div class="curve-count">9</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:65px"></div><div class="curve-label">2</div><div class="curve-count">13</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px"></div><div class="curve-label">3</div><div class="curve-count">11</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:35px"></div><div class="curve-label">4</div><div class="curve-count">7</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:20px"></div><div class="curve-label">5+</div><div class="curve-count">4</div></div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="dg">Commander</span>
+        <li><span class="cn">Jorn, God of Winter // Kaldring</span><span class="cq">1×</span></li>
+        <span class="dg">Stax (3)</span>
+        <li><span class="cn">Winter Orb</span><span class="cq">1×</span></li>
+        <li><span class="cn">Stasis</span><span class="cq">1×</span></li>
+        <li><span class="cn">Frozen Aether</span><span class="cq">1×</span></li>
+        <span class="dg">Ramp (17)</span>
+        <li><span class="cn">Sol Ring / Arcane Signet / Coldsteel Heart ❄</span><span class="cq">3×</span></li>
+        <li><span class="cn">Boreal Druid ❄ / Deathrite Shaman</span><span class="cq">2×</span></li>
+        <li><span class="cn">Rime Tender ❄ / Sculptor of Winter ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Spirit of the Aldergard ❄</span><span class="cq">1×</span></li>
+        <li><span class="cn">Glittering Frost ❄ / Into the North</span><span class="cq">2×</span></li>
+        <li><span class="cn">Farseek / Three Visits</span><span class="cq">2×</span></li>
+        <li><span class="cn">Seedborn Muse / Wilderness Reclamation</span><span class="cq">2×</span></li>
+        <li><span class="cn">Kruphix, God of Horizons / Horizon Stone</span><span class="cq">2×</span></li>
+        <li><span class="cn">Replicating Ring ❄</span><span class="cq">1×</span></li>
+        <span class="dg">Draw (13)</span>
+        <li><span class="cn">Arcum's Astrolabe ❄ / Frost Augur ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Scrying Sheets ❄ / Marit Lage's Slumber ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Ice-Fang Coatl ❄ / Ohran Viper ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Ohran Frostfang ❄ / Ascendant Spirit ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Graven Lore ❄ / Blessing of Frost ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Pull from Tomorrow / Well Rested</span><span class="cq">2×</span></li>
+        <li><span class="cn">Braingeyser</span><span class="cq">1×</span></li>
+        <span class="dg">Removal (15)</span>
+        <li><span class="cn">Dead of Winter ❄ / Blood on the Snow ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Abominable Treefolk ❄ / Icebreaker Kraken ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Heidar, Rimewind Master / Hullbreaker Horror</span><span class="cq">2×</span></li>
+        <li><span class="cn">Capsize / Counterspell / Mystic Confluence</span><span class="cq">3×</span></li>
+        <li><span class="cn">Aetherspouts / Rapid Hybridization / Beast Within</span><span class="cq">3×</span></li>
+        <li><span class="cn">Krosan Grip / Putrefy / Oko, Thief of Crowns</span><span class="cq">3×</span></li>
+        <span class="dg">Finishers (5)</span>
+        <li><span class="cn">Torment of Hailfire</span><span class="cq">1×</span></li>
+        <li><span class="cn">Villainous Wealth</span><span class="cq">1×</span></li>
+        <li><span class="cn">Conifer Wurm ❄ / Rimefeather Owl ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">The Millennium Calendar / Overwhelming Stampede</span><span class="cq">2×</span></li>
+        <li><span class="cn">Hydra Broodmaster</span><span class="cq">1×</span></li>
+        <span class="dg">Theft (2)</span>
+        <li><span class="cn">Draugr Necromancer ❄ / Outrageous Robbery</span><span class="cq">2×</span></li>
+        <span class="dg">Overig</span>
+        <li><span class="cn">Moritte of the Frost ❄ (clone)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Narfi, Betrayer King ❄ (anthem)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Staff of Domination (untap)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Mystical Tutor</span><span class="cq">1×</span></li>
+        <li><span class="cn">Swiftfoot Boots / Leyline of Anticipation / Sunstone</span><span class="cq">3×</span></li>
+        <span class="dg">Lands (36) — bijna alles ❄ Snow</span>
+        <li><span class="cn">Snow-Covered Island ×12</span><span class="cq"></span></li>
+        <li><span class="cn">Snow-Covered Forest ×11</span><span class="cq"></span></li>
+        <li><span class="cn">Snow-Covered Swamp ×2</span><span class="cq"></span></li>
+        <li><span class="cn">Dark Depths ❄ / Faceless Haven ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Scrying Sheets ❄ / Frostwalk Bastion ❄</span><span class="cq">2×</span></li>
+        <li><span class="cn">Ice Tunnel / Rimewood Falls / Woodland Chasm / Frost Marsh ❄</span><span class="cq">4×</span></li>
+        <li><span class="cn">Command Tower / Alchemist's Refuge</span><span class="cq">2×</span></li>
+        <li><span class="cn">Thespian's Stage</span><span class="cq">1×</span></li>
+      </ul>
+    </div>
+    <a href="https://archidekt.com/decks/7670985/winter_is_coming" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+<script>
+  // Commander card via Scryfall
+  (function() {
+    var img = document.getElementById('commander-card-img');
+    var loading = document.getElementById('commander-card-loading');
+    if (!img) return;
+    fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent('Jorn, God of Winter'))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var uri = data.image_uris ? data.image_uris.normal
+          : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+        if (uri) { img.src = uri; img.style.display = 'block'; if (loading) loading.style.display = 'none'; }
+      }).catch(function() {});
+  })();
+
+  // Hover previews voor sleutelkaarten
+  document.querySelectorAll('.card-preview img[data-name]').forEach(function(img) {
+    var name = img.getAttribute('data-name');
+    if (!name) return;
+    var loaded = false;
+    var parent = img.closest('.card-link');
+    if (!parent) return;
+    parent.addEventListener('mouseenter', function() {
+      if (loaded) return;
+      loaded = true;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(name))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var uri = data.image_uris ? data.image_uris.normal
+            : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+          if (uri) img.src = uri;
+        }).catch(function() {});
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agatha of the Vile Cauldron – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<nav><a href="../index.html">Deck Library</a><span>/</span><a href="#">Agatha of the Vile Cauldron</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Agatha of the Vile Cauldron</div>
+      <div class="commander-name">Commander: Agatha of the Vile Cauldron</div>
+      <a href="https://archidekt.com/decks/7619586/agatha_of_the_vile_cauldron" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Agatha of the Vile Cauldron" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Combo · Stompy</span>
+      <span class="badge badge-thm">Activated Abilities · +1/+1</span>
+      <span class="badge badge-brk">Bracket 3 – Upgraded</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren (Gruul)</div>
+      <div class="meta-value"><div class="color-pips"><span class="pip pip-R">R</span><span class="pip pip-G">G</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Hoog</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">5 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Explosief — kan turn 5–6 winnen</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Agatha of the Vile Cauldron is het duurste en meest explosieve deck in de pool (~€2.600, mede door een Beta Sol Ring en een Taiga). Het draait om één centraal concept: <strong>Agatha's power verlaagt de kosten van activated abilities</strong> van al je creatures. Hoe groter Agatha is, hoe goedkoper alles wordt.</p>
+      <p class="intro-text" style="margin-top:1rem">Het deck combineert mana-producerende creatures (Kami of Whispered Hopes, Incubation Druid) met +1/+1 counter-doublers (Hardened Scales, Branching Evolution) en eindigt met "Invoker"-creatures die voor enorme hoeveelheden mana direct damage doen of de board overnemen. <strong>Seedborn Muse</strong> maakt dat je alle creatures kunt untappen in tegenstanders' beurten — waardoor je de activated abilities van Agatha ook buiten jouw beurt kunt gebruiken.</p>
+    </section>
+
+    <section>
+      <div class="section-title">De Agatha-engine: hoe werkt het?</div>
+      <div class="cost-box">
+        <div class="cost-title">Agatha's Ability Cost Reduction</div>
+        <div class="cost-text">Agatha verlaagt de activeringskosten van creature abilities met X mana, waarbij X haar power is. Met Hardened Scales en Branching Evolution groeit ze snel tot 4–6 power of meer, waardoor abilities die normaal {8} of {7} kosten plotseling gratis of voor {1} activeerbaar zijn. Dit is de kern van het deck.</div>
+      </div>
+      <p style="font-size:.95rem;color:var(--text-dim);margin-bottom:.75rem">De "Invokers" zijn de win conditions — creatures met dure abilities die normaal {8} of {7} kosten:</p>
+      <div class="invoker-grid">
+        <div class="invoker-item"><div class="invoker-name">Flamewave Invoker</div><div class="invoker-cost">Normaal {7}: 5 schade aan speler. Met Agatha 5/5+: gratis of {1–2}.</div></div>
+        <div class="invoker-item"><div class="invoker-name">Bhaal's Invoker</div><div class="invoker-cost">Normaal {7}: 4 schade aan elke tegenstander. Met Agatha 5/5+: gratis.</div></div>
+        <div class="invoker-item"><div class="invoker-name">Wildheart Invoker</div><div class="invoker-cost">Normaal {8}: een creature +5/+5 trample. Met Agatha groot: goedkoop pump.</div></div>
+        <div class="invoker-item"><div class="invoker-name">Valakut Invoker</div><div class="invoker-cost">Normaal {7}: 3 schade aan target. Met Agatha 5/5+: gratis pinger.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item"><div class="wincon-icon">🔥</div><div><div class="wincon-name">Invoker Burn Loop</div><div class="wincon-desc">Met Agatha groot genoeg en Seedborn Muse in play: activeer Flamewave en Bhaal's Invoker elke beurt (ook buiten jouw beurt) voor direct damage. De tegenstander heeft geen kans dit te stoppen als er geen counterspells zijn.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">⚡</div><div><div class="wincon-name">Shaman of Forgotten Ways Formidable</div><div class="wincon-desc">Als je creatures met totale power 8+ controleert: betaal {5}: elke speler's life wordt gelijk aan het aantal creatures dat hij controleert. Met 1–2 creatures per tegenstander is dit dodelijk. Normaal {5}, met Agatha's korting mogelijk {0–1}.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">🦖</div><div><div class="wincon-name">Etali Combat Swing</div><div class="wincon-desc">Etali, Primal Conqueror heeft trample en een verwoestende aanvalstrigger: elke speler exilt kaarten totdat een non-land verschijnt, jij cast ze gratis. Eén aanval van Etali is vaak genoeg om het spel te winnen.</div></div></li>
+        <li class="wincon-item"><div class="wincon-icon">💪</div><div><div class="wincon-name">Agatha's Overrun Ability</div><div class="wincon-desc">Agatha's eigen ability geeft alle andere creatures +1/+1 en trample en haste tot einde beurt. Met een board van countered-up creatures is dit een one-shot alpha strike. Mana via Kami of Whispered Hopes of Redshift kan dit meerdere keren activeren.</div></div></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard"><div class="keycard-name">Agatha of the Vile Cauldron</div><div class="keycard-desc">De commander. Hoe groter haar power, hoe goedkoper alle abilities. Snel opbouwen met counters is de prioriteit. Protect haar met Heroic Intervention of Guardian Augmenter.</div></div>
+        <div class="keycard"><div class="keycard-name">Agatha's Soul Cauldron (~€90)</div><div class="keycard-desc">Exileert creature-kaarten uit graveyards en geeft +1/+1 counters. Creatures met counters krijgen alle abilities van geëxilde creature-kaarten. Mana als elke kleur. Extreem krachtig samen met de commander.</div></div>
+        <div class="keycard"><div class="keycard-name">Seedborn Muse</div><div class="keycard-desc">Untapt alle permanenten in elke untap-stap van tegenstanders. Betekent dat je Agatha's ability en alle Invokers ook buiten jouw beurt kunt activeren — bijna niet te stoppen.</div></div>
+        <div class="keycard"><div class="keycard-name">Kami of Whispered Hopes</div><div class="keycard-desc">Elke keer dat een +1/+1 counter op een permanent zou komen, komt er één extra. En tap voor X mana van één kleur, waar X zijn power is. Met counters snel enorme mana-producent.</div></div>
+        <div class="keycard"><div class="keycard-name">Hardened Scales + Branching Evolution</div><div class="keycard-desc">Alle +1/+1 counters worden verdubbeld (Branching) of +1 extra (Scales). Agatha groeit exponentieel snel. Samen zijn ze de motor achter de cost-reduction engine.</div></div>
+        <div class="keycard"><div class="keycard-name">Taiga (reservelijst, ~€500) + Beta Sol Ring (~€1400)</div><div class="keycard-desc">De twee duurste kaarten in het deck. De Taiga is een Mountain/Forest dual land, de Beta Sol Ring een historisch stuk. Beide zijn vervangbaar door goedkopere alternatieven zonder het deck te breken.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Prioriteit 1: zorg dat Agatha zo snel mogelijk groter wordt. Speel Hardened Scales, Drillworks Mole, of Halana and Alena vroeg om haar power op te bouwen. Hoe groter ze is, hoe meer alles goedkoper wordt.</div></div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Rishkar, Peema Renegade geeft twee creatures een +1/+1 counter en maakt ze mana dorks. Speel hem vroeg: hij combineert perfect met Agatha's Soul Cauldron en Hardened Scales.</div></div>
+      <div class="tip-box"><div class="tip-label">Tip</div><div class="tip-text">Inspiring Call trekt een kaart voor elk creature met een counter én geeft ze indestructible. Gebruik hem als reactie op een board wipe om al je creatures te redden en meteen nieuwe kaarten te trekken.</div></div>
+      <div class="tip-box w"><div class="tip-label">Valkuil</div><div class="tip-text">Dit deck heeft geen harde interactie (geen counterspells, weinig instant-removal). Als een tegenstander een combo start, heb je weinig om het te stoppen. Voer je eigen plan zo snel mogelijk uit.</div></div>
+      <div class="tip-box w"><div class="tip-label">Valkuil</div><div class="tip-text">Seedborn Muse maakt iedereen ongerust. Verwacht dat hij direct geremoved wordt als hij in play komt. Speel hem pas als je direct van zijn effect kunt profiteren, of zorg voor bescherming.</div></div>
+      <div class="tip-box w"><div class="tip-label">Let op: waarde</div><div class="tip-text">Dit is het duurste deck in de pool (~€2.600). De Beta Sol Ring en Taiga zijn historische collector's items en vrijwel onvervangbaar. Behandel ze voorzichtig.</div></div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een <strong style="color:var(--gold)">5/5</strong> naast Blight Curse en Plunder the Graves. Qua prijs het duurste deck in de pool, en dat vertaalt zich in consistentie en explosiviteit. De combinatie van snelle counter-doublers, goedkope invoker-abilities en Seedborn Muse maakt dit deck uiterst moeilijk te stoppen als het op gang komt. Geschikt voor ervaren spelers die een combo-achtig Gruul deck willen.</p>
+    </section>
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 3 — Upgraded</div>
+      <div class="bracket-desc">Geen oneindige combo's, maar hoge consistentie en explosiviteit. Past bij andere bracket 3 decks. ~€2.600 waarde door vintage reserved list cards.</div>
+    </div>
+    <div class="value-block">
+      <div class="value-title">Waardevolste kaarten</div>
+      <div class="value-text">Beta Sol Ring (~€1.400) · Taiga (~€500) · Agatha's Soul Cauldron (~€90) · Wooded Foothills (~€140) · Stomping Ground (~€21) · Seedborn Muse (~€16) · Beast Whisperer (~€9)</div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:50px"></div><div class="curve-label">1</div><div class="curve-count">8</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:65px"></div><div class="curve-label">2</div><div class="curve-count">12</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px"></div><div class="curve-label">3</div><div class="curve-count">10</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:40px"></div><div class="curve-label">4</div><div class="curve-count">7</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:25px"></div><div class="curve-label">5+</div><div class="curve-count">5</div></div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="dg">Commander</span>
+        <li><span class="cn">Agatha of the Vile Cauldron</span><span class="cq">1×</span></li>
+        <span class="dg">Counters Engine (10)</span>
+        <li><span class="cn">Agatha's Soul Cauldron</span><span class="cq">1×</span></li>
+        <li><span class="cn">Hardened Scales / Ozolith</span><span class="cq">2×</span></li>
+        <li><span class="cn">Branching Evolution</span><span class="cq">1×</span></li>
+        <li><span class="cn">Forgotten Ancient</span><span class="cq">1×</span></li>
+        <li><span class="cn">Arwen, Weaver of Hope</span><span class="cq">1×</span></li>
+        <li><span class="cn">Halana and Alena, Partners</span><span class="cq">1×</span></li>
+        <li><span class="cn">Fight Rigging</span><span class="cq">1×</span></li>
+        <li><span class="cn">Drillworks Mole</span><span class="cq">1×</span></li>
+        <li><span class="cn">Invigorating Hot Spring</span><span class="cq">1×</span></li>
+        <span class="dg">Win Conditions — Invokers</span>
+        <li><span class="cn">Flamewave Invoker</span><span class="cq">1×</span></li>
+        <li><span class="cn">Bhaal's Invoker</span><span class="cq">1×</span></li>
+        <li><span class="cn">Wildheart Invoker</span><span class="cq">1×</span></li>
+        <li><span class="cn">Valakut Invoker</span><span class="cq">1×</span></li>
+        <li><span class="cn">Leafkin Avenger</span><span class="cq">1×</span></li>
+        <li><span class="cn">Shaman of Forgotten Ways</span><span class="cq">1×</span></li>
+        <li><span class="cn">Etali, Primal Conqueror</span><span class="cq">1×</span></li>
+        <span class="dg">Ramp (19)</span>
+        <li><span class="cn">Beta Sol Ring</span><span class="cq">1×</span></li>
+        <li><span class="cn">Birds of Paradise</span><span class="cq">1×</span></li>
+        <li><span class="cn">Kami of Whispered Hopes</span><span class="cq">1×</span></li>
+        <li><span class="cn">Incubation Druid</span><span class="cq">1×</span></li>
+        <li><span class="cn">Rishkar, Peema Renegade</span><span class="cq">1×</span></li>
+        <li><span class="cn">Defiler of Vigor</span><span class="cq">1×</span></li>
+        <li><span class="cn">Seedborn Muse</span><span class="cq">1×</span></li>
+        <li><span class="cn">Soulbright Flamekin / Svella / Magus</span><span class="cq">3×</span></li>
+        <li><span class="cn">Vorinclex / Redshift</span><span class="cq">2×</span></li>
+        <li><span class="cn">Nature's Lore / Three Visits / Kodama's Reach</span><span class="cq">3×</span></li>
+        <li><span class="cn">Goblin Anarchomancer / Arcane Signet</span><span class="cq">2×</span></li>
+        <span class="dg">Draw (9)</span>
+        <li><span class="cn">Beast Whisperer</span><span class="cq">1×</span></li>
+        <li><span class="cn">Tribute to the World Tree</span><span class="cq">1×</span></li>
+        <li><span class="cn">Rishkar's Expertise</span><span class="cq">1×</span></li>
+        <li><span class="cn">Inspiring Call</span><span class="cq">1×</span></li>
+        <li><span class="cn">Towashi Guide-Bot / Duskwatch Recruiter</span><span class="cq">2×</span></li>
+        <li><span class="cn">Witch's Mark / Swashbuckler's Whip</span><span class="cq">2×</span></li>
+        <span class="dg">Protection (7)</span>
+        <li><span class="cn">Heroic Intervention</span><span class="cq">1×</span></li>
+        <li><span class="cn">Guardian Augmenter</span><span class="cq">1×</span></li>
+        <li><span class="cn">Rhythm of the Wild</span><span class="cq">1×</span></li>
+        <li><span class="cn">Gaea's Gift / Snakeskin Veil</span><span class="cq">2×</span></li>
+        <li><span class="cn">Soul of New Phyrexia / Lavaspur Boots</span><span class="cq">2×</span></li>
+        <span class="dg">Removal (9)</span>
+        <li><span class="cn">Beast Within / Chaos Warp</span><span class="cq">2×</span></li>
+        <li><span class="cn">Blasphemous Act / Decimate</span><span class="cq">2×</span></li>
+        <li><span class="cn">Archdruid's Charm / Ruinous Intrusion</span><span class="cq">2×</span></li>
+        <li><span class="cn">Gorilla Shaman / Steel Hellkite</span><span class="cq">2×</span></li>
+        <span class="dg">Pump (6) + Overig</span>
+        <li><span class="cn">Raised by Giants / Blackblade Reforged</span><span class="cq">2×</span></li>
+        <li><span class="cn">Elder of Laurels / Hero's Blade / Almighty Brushwagg</span><span class="cq">3×</span></li>
+        <li><span class="cn">Captivating Crew / Hydra Broodmaster</span><span class="cq">2×</span></li>
+        <span class="dg">Lands (35)</span>
+        <li><span class="cn">Taiga (reserved list!)</span><span class="cq">1×</span></li>
+        <li><span class="cn">Stomping Ground / Wooded Foothills</span><span class="cq">2×</span></li>
+        <li><span class="cn">Castle Garenbrig / Kessig Wolf Run</span><span class="cq">2×</span></li>
+        <li><span class="cn">Forest ×13, Mountain ×6 + duals</span><span class="cq"></span></li>
+      </ul>
+    </div>
+    <a href="https://archidekt.com/decks/7619586/agatha_of_the_vile_cauldron" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+  <script>
+    // Laad commander kaartafbeelding via Scryfall API
+    (function() {
+      var cardName = "Agatha of the Vile Cauldron";
+      var img = document.getElementById('commander-card-img');
+      var loading = document.getElementById('commander-card-loading');
+      if (!img) return;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(cardName))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.image_uris && data.image_uris.normal) {
+            img.src = data.image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          } else if (data.card_faces && data.card_faces[0].image_uris) {
+            img.src = data.card_faces[0].image_uris.normal;
+            img.style.display = 'block';
+            if (loading) loading.style.display = 'none';
+          }
+        })
+        .catch(function() {
+          // Stil falen — loading div blijft zichtbaar
+        });
+    })();
+  </script>
+
+</body>
+</html>

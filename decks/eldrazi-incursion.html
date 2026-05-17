@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eldrazi Incursion – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<nav><a href="../index.html">Deck Library</a><span>/</span><a href="#">Eldrazi Incursion</a></nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="deck-title">Eldrazi Incursion</div>
+      <div class="commander-name">Commander: Ulalek, Fused Atrocity</div>
+      <a href="https://archidekt.com/decks/7927721/eldrazi_incursion" target="_blank" class="arch-link">Bekijk op Archidekt ↗</a>
+      <div class="color-pips">
+        <span class="pip pip-W" title="Wit">W</span>
+        <span class="pip pip-U" title="Blauw">U</span>
+        <span class="pip pip-B" title="Zwart">B</span>
+        <span class="pip pip-R" title="Rood">R</span>
+        <span class="pip pip-G" title="Groen">G</span>
+      </div>
+    </div>
+    <div class="commander-card">
+      <div class="card-loading" id="commander-card-loading">Laden...</div>
+      <img id="commander-card-img" src="" alt="Ulalek, Fused Atrocity" style="display:none" />
+    </div>
+    <div class="badges">
+      <span class="badge badge-cmd">Commander</span>
+      <span class="badge badge-arc">Tribal · Stompy</span>
+      <span class="badge badge-thm">Eldrazi · Copy · Annihilator</span>
+      <span class="badge badge-brk">Bracket 3 – Upgraded</span>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren</div>
+      <div class="meta-value">Vijfkleurig (WUBRG)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value"><div class="diff-meter"><div class="dot d"></div><div class="dot d"></div><div class="dot d"></div><div class="dot"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">Gevorderd</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value"><div class="str-meter"><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot s"></div><div class="dot"></div>&nbsp;<span style="font-size:.85rem;color:var(--text-dim)">4 / 5</span></div></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Middengame — één grote beurt beslist</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">Eldrazi Incursion is een vijfkleurig Eldrazi tribal deck dat draait om één simpele, verwoestende vraag: wat als elke Eldrazi die je cast ook al je andere spells en abilities kopieert? <span class="card-link">Ulalek, Fused Atrocity<span class="card-preview"><img src="" data-name="Ulalek, Fused Atrocity" alt="" /></span></span> doet precies dat: betaal {C} als je een Eldrazi cast, en hij kopieert alle spells én alle triggered/activated abilities die op dat moment de stack op gaan.</p>
+      <p class="intro-text" style="margin-top:1rem">Het deck bouwt vroeg mana op via tientallen cost-reducers en mana-artifacts, gooit massa removal via <strong>Annihilator</strong><span class="anni-tag">Annihilator</span> (aanvallen dwingen tegenstanders permanenten te sacrificen), en eindigt met één explosieve beurt waarin Ulalek alles dubbelgaat. Vijfkleurig is mogelijk omdat bijna alles kleurloos is — de manabase is hoofdzakelijk pain-lands en utility-lands die elke kleur produceren.</p>
+    </section>
+
+    <section>
+      <div class="section-title">Annihilator — uitgelegd voor nieuwe spelers</div>
+      <div class="anni-box">
+        <div class="anni-title">☠ Wat is Annihilator?</div>
+        <div class="anni-text">Annihilator X is een keyword op Eldrazi. Elke keer dat een Eldrazi met Annihilator X aanvalt, moet de <em>verdedigende speler</em> X permanenten sacrificen — vóórdat blockers worden aangegeven. Dat betekent: zelfs als je de Eldrazi blokkeert en vernietigt, ben je al lands, creatures of andere permanenten kwijt. Annihilator 2 per aanval betekent dat een tegenstander na 5 aanvallen al 10 permanenten heeft verloren. Dit is de primaire manier waarop het deck de board domineert.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">De Ulalek-engine — hoe werkt het?</div>
+      <div class="ulalek-box">
+        <div class="ulalek-title">Ulalek's ability — kopieer alles</div>
+        <div class="ulalek-text">Wanneer je een Eldrazi spell cast, mag je {C} betalen. Als je dat doet, kopieert Ulalek alle spells die je op dat moment controleert én alle andere triggered/activated abilities van jou op de stack. Dit is enorm krachtig in combinatie met Eldrazi die cast-triggers hebben.</div>
+        <div class="ulalek-example">
+          <strong>Voorbeeld:</strong> Je hebt <span class="card-link">Kozilek's Unsealing<span class="card-preview"><img src="" data-name="Kozilek's Unsealing" alt="" /></span></span> in play (cast een 7+ creature → draw 3) en <span class="card-link">Garruk's Uprising<span class="card-preview"><img src="" data-name="Garruk's Uprising" alt="" /></span></span> (creature 4+ power enters → draw 1). Je cast <span class="card-link">Emrakul, the Promised End<span class="card-preview"><img src="" data-name="Emrakul, the Promised End" alt="" /></span></span>. Ulalek triggert — betaal {C}: alle cast-triggers en enter-triggers worden gekopieerd. Je draw 6+ kaarten in één beurt en krijgt meerdere extra turns via Emrakul's kopieën.
+        </div>
+      </div>
+      <div class="ulalek-box">
+        <div class="ulalek-title">Cost reducers — hoe goedkoop wordt alles?</div>
+        <div class="ulalek-text">Het deck heeft meerdere lagen cost reduction: <span class="card-link">Herald of Kozilek<span class="card-preview"><img src="" data-name="Herald of Kozilek" alt="" /></span></span> (kleurloos spells {1} goedkoper), <span class="card-link">It That Heralds the End<span class="card-preview"><img src="" data-name="It That Heralds the End" alt="" /></span></span> (7+ mana value kleurloos {2} goedkoper), <span class="card-link">Ugin, the Ineffable<span class="card-preview"><img src="" data-name="Ugin, the Ineffable" alt="" /></span></span> ({2} korting op kleurloos), <span class="card-link">Darksteel Monolith<span class="card-preview"><img src="" data-name="Darksteel Monolith" alt="" /></span></span> (één kleurloos per beurt voor {3}), en Urza's Incubator (Eldrazi {2} goedkoper). Met alle reducers actief kosten grote Eldrazi als Emrakul soms maar {7} of minder.</div>
+      </div>
+      <div class="ulalek-box">
+        <div class="ulalek-title">Urza's Triptych — de mana-basis</div>
+        <div class="ulalek-text"><span class="card-link">Urza's Mine<span class="card-preview"><img src="" data-name="Urza's Mine" alt="" /></span></span> + <span class="card-link">Urza's Power Plant<span class="card-preview"><img src="" data-name="Urza's Power Plant" alt="" /></span></span> + <span class="card-link">Urza's Tower<span class="card-preview"><img src="" data-name="Urza's Tower" alt="" /></span></span> samen produceren {7} kleurloos mana. Dat is genoeg voor de meeste middelgrote Eldrazi in één keer. Aangevuld met <span class="card-link">Ancient Tomb<span class="card-preview"><img src="" data-name="Ancient Tomb" alt="" /></span></span> ({2} voor 2 life), Mana Vault en de vele Talismans draait het deck snel op volle kracht.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">☄️</div>
+          <div>
+            <div class="wincon-name">Annihilator Attrition</div>
+            <div class="wincon-desc">De primaire win con: elke aanval met Annihilator 2+ creatures dwingt tegenstanders permanenten te sacrificen. Na 4–5 aanvallen hebben ze geen lands of blockers meer. <span class="card-link">It That Betrays<span class="card-preview"><img src="" data-name="It That Betrays" alt="" /></span></span> pakt daarna alle gesacrificeide non-token permanenten over.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🌀</div>
+          <div>
+            <div class="wincon-name">Ulalek Copy Explosion</div>
+            <div class="wincon-desc">Cast een grote Eldrazi (Emrakul, Flayer of Loyalties) met Ulalek in play + {C} beschikbaar. Alle cast-triggers, enter-triggers en abilities worden gekopieerd. Eén beurt met Ulalek + <span class="card-link">Echoes of Eternity<span class="card-preview"><img src="" data-name="Echoes of Eternity" alt="" /></span></span> (kopieert elke kleurloze spell opnieuw) kan het spel direct beëindigen.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🌊</div>
+          <div>
+            <div class="wincon-name">All Is Dust Board Wipe</div>
+            <div class="wincon-desc"><span class="card-link">All Is Dust<span class="card-preview"><img src="" data-name="All Is Dust" alt="" /></span></span> laat alle spelers alle gekleurde permanenten sacrificen — maar jouw Eldrazi zijn kleurloos (Devoid). Jij verliest niets, de rest alles. Met Ulalek: via copy wordt het twee keer gecasted voor een dubbele wipe.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">⚡</div>
+          <div>
+            <div class="wincon-name">Zhulodok Double Cascade</div>
+            <div class="wincon-desc"><span class="card-link">Zhulodok, Void Gorger<span class="card-preview"><img src="" data-name="Zhulodok, Void Gorger" alt="" /></span></span> geeft alle kleurloze spells van 7+ mana value "cascade, cascade" — twee keer cascaden. Dat betekent dat je voor elke grote Eldrazi twee extra spells gratis cast. Combineer met Ulalek voor een explosieve kettingreactie.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">👁️</div>
+          <div>
+            <div class="wincon-name">Emrakul, the Promised End</div>
+            <div class="wincon-desc">De ultieme finisher. Bij het casten neem je de beurt van een tegenstander over — je speelt hun hand en stuurt hun acties. Met Ulalek-copies kun je dit meerdere tegenstanders tegelijk aandoen. Eén aanval van Emrakul + Annihilator 6 legt iedereen plat.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Ulalek, Fused Atrocity<span class="card-preview"><img src="" data-name="Ulalek, Fused Atrocity" alt="" /></span></span></div>
+          <div class="keycard-desc">De commander. Betaal {C} bij een Eldrazi cast: kopieert alles op de stack. Beschermen is cruciaal — zijn devoid maakt hem immuun voor veel kleurgebonden removal.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Zhulodok, Void Gorger<span class="card-preview"><img src="" data-name="Zhulodok, Void Gorger" alt="" /></span></span></div>
+          <div class="keycard-desc">Geeft alle kleurloze 7+ spells dubbel cascade. Actief: elke grote Eldrazi haalt gratis twee extra spells van je deck. Gecombineerd met Ulalek: het deck rolt door zichzelf heen.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Echoes of Eternity<span class="card-preview"><img src="" data-name="Echoes of Eternity" alt="" /></span></span></div>
+          <div class="keycard-desc">Elke kleurloze spell die je cast wordt gekopieerd. Elke triggered ability van kleurloze permanenten triggert dubbel. In combinatie met Ulalek: alles gaat vier keer of meer.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">It That Betrays<span class="card-preview"><img src="" data-name="It That Betrays" alt="" /></span></span></div>
+          <div class="keycard-desc">Elke keer dat een tegenstander een non-token permanent sacrificeert (via Annihilator of anderszins) krijg jij die permanent. De perfecte Annihilator-synergist.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Flayer of Loyalties<span class="card-preview"><img src="" data-name="Flayer of Loyalties" alt="" /></span></span></div>
+          <div class="keycard-desc">Bij casten: neem een creature over als tijdelijke 10/10 trample/annihilator/haste. Gecombineerd met Ulalek: neem meerdere tegenstanders' beste creatures over tegelijk.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name"><span class="card-link">Mana Vault<span class="card-preview"><img src="" data-name="Mana Vault" alt="" /></span></span></div>
+          <div class="keycard-desc">Klassieke mana-accelerator: {1} tap voor {3} kleurloos. Met de Urza-triptych en Ancient Tomb kan je al op beurt 3-4 grote Eldrazi casten.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Flash-spells als verrassing</div>
+        <div class="tip-text"><span class="card-link">Vedalken Orrery<span class="card-preview"><img src="" data-name="Vedalken Orrery" alt="" /></span></span>, <span class="card-link">Liberator, Urza's Battlethopter<span class="card-preview"><img src="" data-name="Liberator, Urza's Battlethopter" alt="" /></span></span> en <span class="card-link">Skittering Cicada<span class="card-preview"><img src="" data-name="Skittering Cicada" alt="" /></span></span> geven al je kleurloze spells flash. Dat betekent dat je grote Eldrazi als instant kunt casten — aan het einde van de beurt van een tegenstander, zodat ze geen kans krijgen te reageren vóórdat ze moeten blocken.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Ulalek's cost is optioneel</div>
+        <div class="tip-text">Je hoeft de {C} voor Ulalek niet te betalen. Soms is het beter om gewoon een Eldrazi te casten zonder alles te kopiëren — bijv. als de stack leeg is en er niets te kopiëren valt. Kopiëren heeft pas waarde als er cast-triggers of andere abilities op de stack staan.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip — Sanctum of Ugin als tutor</div>
+        <div class="tip-text"><span class="card-link">Sanctum of Ugin<span class="card-preview"><img src="" data-name="Sanctum of Ugin" alt="" /></span></span>: als je een kleurloze 7+ mana spell cast, kan je dit land sacrificen om een kleurloze creature op te zoeken. Gebruik dit na een grote Eldrazi om de volgende al klaar te leggen.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Valkuil — Annihilator raakt jou niet</div>
+        <div class="tip-text">Annihilator wordt getriggerd wanneer de Eldrazi aanvalt — de verdedigende speler sacrificeert. Als jij aanvalt en de tegenstander blokkeert, verliest die tegenstander de permanenten, niet jij. Maar als een tegenstander Annihilator-creatures heeft en op jou aanvalt, verlies jij de permanenten. Pas op als je Flayer of Loyalties een creature met Annihilator overneemt en aanvalt.</div>
+      </div>
+      <div class="tip-box w">
+        <div class="tip-label">Valkuil — Vijfkleurige manabase</div>
+        <div class="tip-text">Het deck is vijfkleurig maar de meeste spells zijn kleurloos. De gekleurde mana is alleen nodig voor een handvol spells. Prioriteer kleurloos mana boven gekleurd — Ancient Tomb, Urza-triptych en Sol Ring zijn belangrijker dan de pain-lands.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:.92rem;color:var(--text-dim);line-height:1.6">Een stevige <strong style="color:var(--gold)">4/5</strong>. Bracket 3 maar speelt als een 4 in de juiste situaties. De combinatie van passieve Annihilator-druk (tegenstanders verliezen altijd permanenten bij aanvallen) en de explosieve Ulalek-kopieerbeurt maakt het onvoorspelbaar en sterk. Het deck heeft meer ramp dan vrijwel elk ander deck in de pool (20 stukken!), wat grote Eldrazi vroeg in play brengt. Zwakheid: het mist consistente early interaction — als iemand vóór jou een combo-kill uitvoert, heb je weinig om het te stoppen.</p>
+    </section>
+
+  </main>
+
+  <aside>
+    <div class="bracket-block">
+      <div class="bracket-title">Commander Bracket</div>
+      <div class="bracket-value">Bracket 3 — Upgraded</div>
+      <div class="bracket-desc">Sterk tribal met krachtige ramp (Mana Vault, Ancient Tomb) en meerdere win conditions. Geen oneindige combo. Past bij bracket 2–4 decks.</div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin-bottom:0.75rem;font-style:italic">Bimodaal: goedkope ramp vroeg, zware Eldrazi laat</p>
+      <div class="curve-bars">
+        <div class="curve-col"><div class="curve-bar" style="height:40px"></div><div class="curve-label">1–2</div><div class="curve-count">9</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:55px"></div><div class="curve-label">3–4</div><div class="curve-count">13</div></div>
+        <div class="curve-col"><div class="curve-bar" style="height:45px"></div><div class="curve-label">5–6</div><div class="curve-count">10</div></div>
+        <div class="curve-col"><div class="curve-bar high" style="height:65px"></div><div class="curve-label">7–9</div><div class="curve-count">16</div></div>
+        <div class="curve-col"><div class="curve-bar high" style="height:50px"></div><div class="curve-label">10+</div><div class="curve-count">6</div></div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Decklist (100)</div>
+      <ul class="decklist">
+        <span class="dg">Commander</span>
+        <li><span class="cn">Ulalek, Fused Atrocity</span><span class="cq">1×</span></li>
+        <span class="dg">Ramp (20)</span>
+        <li><span class="cn">Sol Ring / Arcane Signet / Mana Vault</span><span class="cq">3×</span></li>
+        <li><span class="cn">Talisman ×4 (alle kleuren)</span><span class="cq">4×</span></li>
+        <li><span class="cn">Herald of Kozilek / It That Heralds the End</span><span class="cq">2×</span></li>
+        <li><span class="cn">Herald's Horn / Urza's Incubator</span><span class="cq">2×</span></li>
+        <li><span class="cn">Ugin, the Ineffable / Darksteel Monolith</span><span class="cq">2×</span></li>
+        <li><span class="cn">Forsaken Monument / Chromatic Orrery / Chromatic Lantern</span><span class="cq">3×</span></li>
+        <li><span class="cn">From Beyond / Path of Annihilation / Snapping Voidcraw</span><span class="cq">3×</span></li>
+        <li><span class="cn">Oblivion Sower / Sowing Mycospawn</span><span class="cq">2×</span></li>
+        <span class="dg">Draw (11)</span>
+        <li><span class="cn">Kozilek, the Great Distortion / Zhulodok, Void Gorger</span><span class="cq">2×</span></li>
+        <li><span class="cn">Sire of Stagnation / Deepfathom Skulker / Endbringer</span><span class="cq">3×</span></li>
+        <li><span class="cn">Garruk's Uprising / Up the Beanstalk / Kozilek's Unsealing</span><span class="cq">3×</span></li>
+        <li><span class="cn">Mystic Forge / Return of the Wildspeaker / Nulldrifter</span><span class="cq">3×</span></li>
+        <span class="dg">Removal (14)</span>
+        <li><span class="cn">All Is Dust</span><span class="cq">1×</span></li>
+        <li><span class="cn">Emrakul, the Promised End / Emrakul, the Aeons Torn</span><span class="cq">2×</span></li>
+        <li><span class="cn">Flayer of Loyalties / It That Betrays</span><span class="cq">2×</span></li>
+        <li><span class="cn">Artisan of Kozilek / Breaker of Creation</span><span class="cq">2×</span></li>
+        <li><span class="cn">Ulamog ×2 / Kozilek (Butcher of Truth)</span><span class="cq">3×</span></li>
+        <li><span class="cn">Hideous Taskmaster / Twins of Discord</span><span class="cq">2×</span></li>
+        <li><span class="cn">Eldrazi Confluence / Benthic Anomaly</span><span class="cq">2×</span></li>
+        <span class="dg">Copy & Enchantment</span>
+        <li><span class="cn">Echoes of Eternity</span><span class="cq">1×</span></li>
+        <span class="dg">Protection (5)</span>
+        <li><span class="cn">Vedalken Orrery / Liberator, Urza's Battlethopter</span><span class="cq">2×</span></li>
+        <li><span class="cn">Skittering Cicada / Eldritch Immunity / Not of This World</span><span class="cq">3×</span></li>
+        <span class="dg">Tutors (2)</span>
+        <li><span class="cn">From Beyond (sac) / Sanctum of Ugin (land-sac)</span><span class="cq">2×</span></li>
+        <span class="dg">Recursie (2)</span>
+        <li><span class="cn">Artisan of Kozilek / Spawnbed Protector</span><span class="cq">2×</span></li>
+        <span class="dg">Stax (1)</span>
+        <li><span class="cn">Forsaken Monument (anthem + life)</span><span class="cq">1×</span></li>
+        <span class="dg">Lands (36)</span>
+        <li><span class="cn">Urza's Mine / Power Plant / Tower</span><span class="cq">3×</span></li>
+        <li><span class="cn">Ancient Tomb / Eldrazi Temple / Shrine of the Forsaken Gods</span><span class="cq">3×</span></li>
+        <li><span class="cn">Sanctum of Ugin / Spawning Bed / Dark Depths (—nee, die zit in Winter is Coming)</span><span class="cq">2×</span></li>
+        <li><span class="cn">Pain-lands ×8 (alle kleurcombinaties)</span><span class="cq">8×</span></li>
+        <li><span class="cn">Command Tower / Path of Ancestry / Exotic Orchard</span><span class="cq">3×</span></li>
+        <li><span class="cn">Reliquary Tower / Emergence Zone / Bonders' Enclave</span><span class="cq">3×</span></li>
+        <li><span class="cn">The World Tree / Secluded Courtyard / Unclaimed Territory</span><span class="cq">3×</span></li>
+        <li><span class="cn">Basics (1× each) + Corrupted Crossroads + Tomb of the Spirit Dragon</span><span class="cq"></span></li>
+      </ul>
+    </div>
+
+    <a href="https://archidekt.com/decks/7927721/eldrazi_incursion" class="arch-btn" target="_blank">Bekijk volledig op Archidekt ↗</a>
+  </aside>
+</div>
+
+<footer>Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a></footer>
+
+<script>
+  (function() {
+    var img = document.getElementById('commander-card-img');
+    var loading = document.getElementById('commander-card-loading');
+    if (!img) return;
+    fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent('Ulalek, Fused Atrocity'))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var uri = data.image_uris ? data.image_uris.normal
+          : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+        if (uri) { img.src = uri; img.style.display = 'block'; if (loading) loading.style.display = 'none'; }
+      }).catch(function() {});
+  })();
+
+  document.querySelectorAll('.card-preview img[data-name]').forEach(function(img) {
+    var name = img.getAttribute('data-name');
+    if (!name) return;
+    var loaded = false;
+    var parent = img.closest('.card-link');
+    if (!parent) return;
+    parent.addEventListener('mouseenter', function() {
+      if (loaded) return;
+      loaded = true;
+      fetch('https://api.scryfall.com/cards/named?exact=' + encodeURIComponent(name))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var uri = data.image_uris ? data.image_uris.normal
+            : (data.card_faces && data.card_faces[0].image_uris ? data.card_faces[0].image_uris.normal : null);
+          if (uri) img.src = uri;
+        }).catch(function() {});
+    });
+  });
+</script>
+</body>
+</html>

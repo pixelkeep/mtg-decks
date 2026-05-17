@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entmoot – Ed's MTG Deck Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
 
+<nav>
+  <a href="../index.html">Deck Library</a>
+  <span>/</span>
+  <a href="#">Entmoot</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="deck-title">Entmoot</div>
+      <a href="https://archidekt.com/u/EdDotNet" target="_blank" style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;margin-top:0.4rem;display:inline-block;border-bottom:1px solid var(--gold-dim);">Bekijk op Archidekt ↗</a>
+    </div>
+    <div class="badges">
+      <span class="badge badge-format">Modern</span>
+      <span class="badge badge-archetype">Midrange</span>
+      <span class="badge badge-tribal">Tribal · Treefolk</span>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Kleuren</div>
+      <div class="meta-value">
+        <div class="color-pips">
+          <span class="pip pip-B" title="Zwart">B</span>
+          <span class="pip pip-G" title="Groen">G</span>
+          <span class="pip pip-W" title="Wit (splash)">W</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Moeilijkheid</div>
+      <div class="meta-value">
+        <div class="diff-meter">
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot filled"></div>
+          <div class="diff-dot"></div>
+          <div class="diff-dot"></div>
+          &nbsp;<span style="font-size:0.85rem;color:var(--text-dim)">Gemiddeld</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Sterkte in pool</div>
+      <div class="meta-value">
+        <div class="strength-meter">
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot filled"></div>
+          <div class="str-dot"></div>
+          <div class="str-dot"></div>
+          &nbsp;<span style="font-size:0.85rem;color:var(--text-dim)">3 / 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Snelheid</div>
+      <div class="meta-value">Turn 4–6 winnen mogelijk</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <main>
+
+    <section>
+      <div class="section-title">Over dit deck</div>
+      <p class="intro-text">
+        Entmoot is een tribal midrange deck dat volledig draait om Treefolk — de langzaamste en taaiste creaturen in Magic. Het deck speelt een klassiek groeispel: goedkope tutors en ramp in de vroege beurten, gevolgd door grote, bijna onsterfelijke bomen die de board domineren. De sleutel ligt bij <strong>Doran, the Siege Tower</strong>: zodra hij in play is, wijzen al je treefolk schade toe op basis van hun toughness, wat ze plotseling tot formidabele aanvallers maakt.
+      </p>
+      <p class="intro-text" style="margin-top:1rem">
+        Het deck is consistent en zelfvoorzienend — Treefolk Harbinger zoekt elke boom of forest op die je nodig hebt, en Leaf-Crowned Elder kan gratis treefolk spells triggeren. Eén zwakte: het is relatief traag en heeft moeite met snelle combo-decks of massale removals.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-title">Win Conditions</div>
+      <ul class="wincon-list">
+        <li class="wincon-item">
+          <div class="wincon-icon">🌳</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Doran + Hoge Toughness Creatures</div>
+            <div class="wincon-desc">Met Doran in play vallen je Dauntless Dourbark (vaak 6/6+) en Timber Protector (4/6) aan als monsters. Aanvallen met 3–4 treefolk is vaak genoeg.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🍃</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Dungrove Elder + Hexproof</div>
+            <div class="wincon-desc">In een mono-forest hand groeit Dungrove Elder snel tot een 5/5 of groter die niks kan aanraken. Eenvoudig maar effectief als standalone threat.</div>
+          </div>
+        </li>
+        <li class="wincon-item">
+          <div class="wincon-icon">🌲</div>
+          <div class="wincon-body">
+            <div class="wincon-name">Leaf-Crowned Elder Gratis Cascades</div>
+            <div class="wincon-desc">Elke treefolk die je cast kan via Leaf-Crowned Elder een extra treefolk gratis uit je library onthullen. In een goede hand schakelt dit snel door naar een volle board.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-title">Sleutelkaarten</div>
+      <div class="keycard-grid">
+        <div class="keycard">
+          <div class="keycard-name">Treefolk Harbinger</div>
+          <div class="keycard-desc">1-drop die elke treefolk óf forest boven op je library legt. Fungeert als tutor en mana-fixing tegelijk. Altijd als eerste spelen.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Doran, the Siege Tower</div>
+          <div class="keycard-desc">De sterspeler. Maakt alle toughness-waarden relevant als aanvalsschade. Met hem in play is elke boom een gevaarlijke aanvaller.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Dauntless Dourbark</div>
+          <div class="keycard-desc">Groeit mee met het aantal forests en treefolk. In de lategame gemakkelijk een 6/6 of groter met trample.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Timber Protector</div>
+          <div class="keycard-desc">Geeft alle treefolk indestructible. Met hem in play is je board bijna onmogelijk weg te removen via destroy-effecten.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Bosk Banneret</div>
+          <div class="keycard-desc">Goedkope cost-reducer: treefolk en shaman spells kosten {1} minder. Versnelt het hele deck aanzienlijk.</div>
+        </div>
+        <div class="keycard">
+          <div class="keycard-name">Leaf-Crowned Elder</div>
+          <div class="keycard-desc">Kinship-ability: begin van elke beurt een treefolk gratis onthullen en casten. Levert enorm veel card advantage.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Tips voor Nieuwe Spelers</div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Begin altijd met Treefolk Harbinger als die op hand staat. Die zet je volgende stap klaar — haal Doran, the Siege Tower op als je die nog niet hebt.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Tip</div>
+        <div class="tip-text">Nameless Inversion is ook een treefolk voor Harbinger en Leaf-Crowned Elder! Gebruik dit om je removal via de tutors op te zoeken.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Doran maakt ook de treefolk van de tegenstander sterker als aanvaller. Pas op wanneer je hem speelt als de tegenstander ook dikkere blockers heeft.</div>
+      </div>
+      <div class="tip-box warning">
+        <div class="tip-label">Valkuil</div>
+        <div class="tip-text">Het deck heeft weinig flyers. Tegenstanders met een luchtmacht kunnen moeilijk zijn. Arashi in de sideboard helpt daartegen.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Sterkte in de Deck Pool</div>
+      <p style="font-size:0.92rem; color:var(--text-dim); line-height:1.6">
+        In een casual home-meta scoort Entmoot een solide <strong style="color:var(--gold)">3/5</strong>. Het deck is consistent en heeft een duidelijke strategie die makkelijk te begrijpen is als je één keer gezien hebt wat Doran doet. Het is echter niet het snelste deck in de pool en heeft moeite met zware controlledekken of snelle aggro's die al hebben gewonnen voor de bomen op gang komen. Degelijk, maar niet dominant.
+      </p>
+    </section>
+
+  </main>
+
+  <aside class="sidebar">
+
+    <div class="info-block">
+      <div class="section-title">Mana Curve</div>
+      <div class="curve-bars">
+        <!-- Geschatte verdeling op basis van decklist -->
+        <div class="curve-col">
+          <div class="curve-bar" style="height:55px" title="1-drops: ~7"></div>
+          <div class="curve-label">1</div>
+          <div class="curve-count">7</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:65px" title="2-drops: ~8"></div>
+          <div class="curve-label">2</div>
+          <div class="curve-count">8</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:50px" title="3-drops: ~6"></div>
+          <div class="curve-label">3</div>
+          <div class="curve-count">6</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:35px" title="4-drops: ~4"></div>
+          <div class="curve-label">4</div>
+          <div class="curve-count">4</div>
+        </div>
+        <div class="curve-col">
+          <div class="curve-bar" style="height:20px" title="5-drops: ~2"></div>
+          <div class="curve-label">5+</div>
+          <div class="curve-count">2</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="section-title">Decklist (60)</div>
+      <ul class="decklist">
+        <span class="decklist-group">Creatures</span>
+        <li><span class="card-name">Treefolk Harbinger</span><span class="card-qty">4×</span></li>
+        <li><span class="card-name">Bosk Banneret</span><span class="card-qty">3×</span></li>
+        <li><span class="card-name">Birds of Paradise</span><span class="card-qty">3×</span></li>
+        <li><span class="card-name">Sakura-Tribe Elder</span><span class="card-qty">3×</span></li>
+        <li><span class="card-name">Doran, the Siege Tower</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Heartwood Storyteller</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Ulvenwald Tracker</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Dungrove Elder</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Unstoppable Ash</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Dauntless Dourbark</span><span class="card-qty">4×</span></li>
+        <li><span class="card-name">Timber Protector</span><span class="card-qty">3×</span></li>
+        <li><span class="card-name">Leaf-Crowned Elder</span><span class="card-qty">3×</span></li>
+        <li><span class="card-name">Kalonian Twingrove</span><span class="card-qty">2×</span></li>
+        <span class="decklist-group">Removal</span>
+        <li><span class="card-name">Abrupt Decay</span><span class="card-qty">3×</span></li>
+        <li><span class="card-name">Nameless Inversion</span><span class="card-qty">2×</span></li>
+        <span class="decklist-group">Overig</span>
+        <li><span class="card-name">Growing Rites of Itlimoc</span><span class="card-qty">1×</span></li>
+        <span class="decklist-group">Lands (21)</span>
+        <li><span class="card-name">Forest</span><span class="card-qty">7×</span></li>
+        <li><span class="card-name">Murmuring Bosk</span><span class="card-qty">4×</span></li>
+        <li><span class="card-name">Canopy Vista</span><span class="card-qty">4×</span></li>
+        <li><span class="card-name">Swamp</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Vivid Grove</span><span class="card-qty">2×</span></li>
+        <li><span class="card-name">Vines of Vastwood</span><span class="card-qty">4× (SB)</span></li>
+      </ul>
+    </div>
+
+    <a href="https://archidekt.com/u/EdDotNet" class="archidekt-link" target="_blank">
+      Bekijk op Archidekt ↗
+    </a>
+
+  </aside>
+</div>
+
+<footer>
+  Deel van <a href="../index.html" style="color:var(--gold-dim)">Ed's MTG Deck Library</a>
+</footer>
+
+</body>
+</html>
